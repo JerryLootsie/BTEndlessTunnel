@@ -1266,6 +1266,21 @@ void GameLayer::_checkAchievements()
         }
         
     }
+    else if(_gameLevel == kGameLevelEasy && _obstaclesAvoided >= 3)
+    {
+        
+        if(!LocalStorageManager::isAchievementUnlocked("ACH_AVOID_3_OBSTACLES_IN_EASY_MODE"))
+        {
+            Utils::unlockAchievement("ACH_AVOID_3_OBSTACLES_IN_EASY_MODE");
+            LocalStorageManager::unlockAchievement("ACH_AVOID_3_OBSTACLES_IN_EASY_MODE");
+        } else {
+            std::cout <<  "GameLayer: checkAchievements: ACH_AVOID_3_OBSTACLES_IN_EASY_MODE reached already!";
+            
+            // make this repeatable
+            Utils::unlockAchievement("ACH_AVOID_3_OBSTACLES_IN_EASY_MODE");
+        }    
+        
+    }
     else if(_gameLevel == kGameLevelNormal && _obstaclesAvoided >= 50)
     {
         

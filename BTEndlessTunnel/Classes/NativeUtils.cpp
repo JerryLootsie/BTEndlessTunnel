@@ -88,7 +88,7 @@ void NativeUtils::incrementAchievement(const char* achievementID, int numSteps)
 {
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	JniHelpers::jniCommonVoidCall(
-		"incrementAchievement", 
+		"incrementAchievement",
 		CLASS_NAME,
 		achievementID,
 		numSteps);
@@ -109,6 +109,8 @@ void NativeUtils::incrementPercentageAchievement(const char *achievementID, floa
 #pragma mark - Show achievements, leaderboards and single leaderboard.
 void NativeUtils::showAchievements()
 {
+    std::cout << "NativeUtils: showAchievements\n";
+    
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	JniHelpers::jniCommonVoidCall(
 		"showAchievements", 
@@ -116,6 +118,7 @@ void NativeUtils::showAchievements()
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    std::cout << "NativeUtils: showAchievements: ios\n";    
     PlayGameSingleton::sharedInstance().showAchievements();
 #endif
 }
@@ -215,10 +218,10 @@ void NativeUtils::showAdBuddiz()
 void NativeUtils::shareOnFacebook(long score, int level, int obstacles)
 {
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	JniHelpers::jniCommonVoidCall(
-                                  "shareOnFacebook",
-                                  CLASS_NAME,
-                                  level, score, obstacles);
+//	JniHelpers::jniCommonVoidCall(
+//                                  "shareOnFacebook",
+//                                  CLASS_NAME,
+//                                  level, score, obstacles);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

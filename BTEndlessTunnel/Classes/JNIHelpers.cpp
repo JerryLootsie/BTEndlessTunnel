@@ -7,22 +7,22 @@
 #include <android/log.h>
 #endif
 
-void JniHelpers::jniCommonVoidCall(const char* methodName, const char* classPath, unsigned int level, unsigned long score, unsigned int obstacles)
-{
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    cocos2d::JniMethodInfo minfo;
-    
-    bool isHave = cocos2d::JniHelper::getStaticMethodInfo(minfo,classPath,methodName, "(IJI)V");
-    
-    if (isHave)
-	{
-        jlong scoreArg1    = score;
-        
-        minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, level, scoreArg1, obstacles);
-        
-    }
-#endif
-}
+//void JniHelpers::jniCommonVoidCall(const char* methodName, const char* classPath, unsigned int level, unsigned long score, unsigned int obstacles)
+//{
+//#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//    cocos2d::JniMethodInfo minfo;
+//    
+//    bool isHave = cocos2d::JniHelper::getStaticMethodInfo(minfo,classPath,methodName, "(IJI)V");
+//    
+//    if (isHave)
+//	{
+//        jlong scoreArg1    = score;
+//        
+//        minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, level, scoreArg1, obstacles);
+//        
+//    }
+//#endif
+//}
 
 
 unsigned int JniHelpers::jniCommonIntCall(const char* methodName, const char* classPath, const char* arg0)
@@ -77,7 +77,8 @@ void JniHelpers::jniCommonVoidCall(const char* methodName, const char* classPath
 	{
 		jstring stringArg0 = minfo.env->NewStringUTF(arg0);
 
-        minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, stringArg0);
+        //minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, stringArg0);
+        minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0);
 
 		minfo.env->DeleteLocalRef(stringArg0);
     }
@@ -114,7 +115,8 @@ void JniHelpers::jniCommonVoidCall(const char* methodName, const char* classPath
 		jstring stringArg0 = minfo.env->NewStringUTF(arg0);
         jlong scoreArg1    = score;
 
-        minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, stringArg0, scoreArg1);
+        //minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, stringArg0, scoreArg1);
+        minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, scoreArg1);
 
 		minfo.env->DeleteLocalRef(stringArg0);
 
@@ -132,7 +134,8 @@ void JniHelpers::jniCommonVoidCall(const char* methodName, const char* classPath
 	{
 		jstring stringArg0 = minfo.env->NewStringUTF(arg0);
 
-        minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, stringArg0, numSteps);
+        //minfo.env->CallStaticIntMethod(minfo.classID, minfo.methodID, stringArg0, numSteps);
+        minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, numSteps);
 
 		minfo.env->DeleteLocalRef(stringArg0);
 

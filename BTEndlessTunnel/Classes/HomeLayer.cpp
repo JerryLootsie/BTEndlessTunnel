@@ -181,7 +181,7 @@ void HomeLayer::_manageMusic(cocos2d::CCObject* pSender)
         return;
     
     SimpleAudioEngine::sharedEngine()->playEffect(SFX_BUTTON);
-        
+    
     bool state = LocalStorageManager::isMute();
     LocalStorageManager::setMute(!state);
 }
@@ -205,6 +205,7 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
     switch (item->getTag()) {
             
         case kTagHowToPlay:
+            std::cout << "HomeLayer: show HowToPlay\n";
             NativeUtils::sendAnalytics("How to Play");
             LocalStorageManager::isTutorialOn(true);
             runGame = true;
@@ -213,39 +214,46 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
         
         case kTagEasyMode:
             runGame = true;
+            std::cout << "HomeLayer: show Easy Mode\n";
             NativeUtils::sendAnalytics("Easy Mode");
             _gameLayer->configureGame(kGameLevelEasy);
             break;
             
         case kTagNormalMode:
             runGame = true;
+            std::cout << "HomeLayer: show Normal Mode\n";
             NativeUtils::sendAnalytics("Normal Mode");
             _gameLayer->configureGame(kGameLevelNormal);
             break;
             
         case kTagHardMode:
             runGame = true;
+            std::cout << "HomeLayer: show Hard Mode\n";
             NativeUtils::sendAnalytics("Hard Mode");
             _gameLayer->configureGame(kGameLevelHard);
             break;
             
         case kTagSettings:
             _disableButtons();
+            std::cout << "HomeLayer: show Settings\n";
             NativeUtils::sendAnalytics("Settings");
             _settingsLayer->setVisible(true);
             break;
             
         case kTagLeaderboard:
+            std::cout << "HomeLayer: show Leaderboards\n";
             NativeUtils::sendAnalytics("Show Leaderboards");
             NativeUtils::showLeaderboards();
             break;
             
         case kTagAchievements:
+            std::cout << "HomeLayer: show achievments\n";
             NativeUtils::sendAnalytics("Show Achievements");
             NativeUtils::showAchievements();
             break;
             
         case kTagRateApp:
+            std::cout << "HomeLayer: show Rate App\n";
             NativeUtils::sendAnalytics("Rate App");
             NativeUtils::rateApp();
             break;

@@ -86,7 +86,7 @@ PopUpLoseLayer::PopUpLoseLayer()
         menu->setAnchorPoint(ccp(0, 0));
         menu->setPosition(CCPointZero);
         
-        menu->addChild(itemScore);
+//        menu->addChild(itemScore);
         menu->addChild(itemHome);
         menu->addChild(itemPlayAgain);
         

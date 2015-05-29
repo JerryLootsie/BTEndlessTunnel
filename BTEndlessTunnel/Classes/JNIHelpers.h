@@ -19,7 +19,7 @@ public:
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, const char* arg0, int numSteps);
 
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, unsigned int arg0);
-    static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, unsigned int level, unsigned long score, unsigned int obstacles);
+//    static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, unsigned int level, unsigned long score, unsigned int obstacles);
 	static 			float 		jniCommonFloatCall	(const char* methodName, const char* classPath ) ;
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, float arg0);
 
