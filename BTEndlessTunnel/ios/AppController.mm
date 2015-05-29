@@ -17,7 +17,9 @@
 #import "RootViewController.h"
 //#import "GCHelper.h"
 
-//#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h> 
+
+#import "Lootsie.h"
 
 @implementation AppController
 
@@ -93,6 +95,37 @@ static AppDelegate s_sharedApplication;
 //    [[GCHelper sharedInstance] authenticateLocalUser];
     // PlayGameSingleton::sharedInstance().authenticate();
 
+    // Override point for customization after application launch.
+    ServiceCallback initCallback = ^(BOOL success, id result, NSString* error, NSInteger statusCode) {
+        if (success) {
+            NSLog(@"AppDelegate: initCallback success: %@", error);
+
+            //[[Lootsie sharedInstance] achievementReachedWithId:@"first_x"];
+        } else {
+            NSLog(@"AppDelegate: initCallback failure: %@", error);
+        }
+    };
+
+    [[Lootsie sharedInstance] setLogLevel:verbose];
+
+    // ttl 91BA8D7CF70420A628EABDFECB2E63F0D6CC4F9D256D978B1A7C0F209231CBD8
+    // turbo race android on live - AC254671B2752EF9BF4F8ACA24F9F717B17B5BC900A233C4AE49DE215B6E8FE3
+    [[Lootsie sharedInstance] initWithAppKeyCallback:@"AC254671B2752EF9BF4F8ACA24F9F717B17B5BC900A233C4AE49DE215B6E8FE3" callback:initCallback];
+
+    [[Lootsie sharedInstance] setRenderingMode:landscape];
+    
+   	Lootsie *lootsie = [Lootsie sharedInstance];
+   	lootsie->getControllerBlock = ^UIViewController* (void){
+        // Change these example lines: get your viewcontroller instead.
+//        id<UIApplicationDelegate> delegate =[UIApplication sharedApplication].delegate;
+//        UIViewController * controller = [delegate window].rootViewController;
+//       	NSLog(@"AppDelegate: overridden Lootsie getController: %@", controller.class);
+//       	return controller; // You will return your viewcontroller here.
+        
+        UIViewController * controller = [[AppController sharedInstance] getRootViewController];
+        NSLog(@"AppDelegate: overridden Lootsie getController: %@", controller.class);
+        return controller;
+    };
     
     [[AppController sharedInstance] init];
 
@@ -164,7 +197,6 @@ static AppDelegate s_sharedApplication;
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    
     
     return false;
 }

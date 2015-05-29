@@ -14,6 +14,7 @@
 #import "GameLayer.h"
 #import <UIKit/UIKit.h>
 
+#import "LootsieManager.h"
 
 #import "cocos2d.h"
 
@@ -58,12 +59,7 @@ PlayGameSingleton& PlayGameSingleton::sharedInstance()
 #pragma mark - Single Leaderboard
 void PlayGameSingleton::showSingleLeaderboard(const char* leaderBoardID)
 {    
-//    if(!isSignedIn())
-//        authenticate();
-    
-//    CCDirector::sharedDirector()->stopAnimation();
-//    NSString* name = [NSString stringWithUTF8String:leaderBoardID];
-//    [[GCHelper sharedInstance] showLeaderboard:name];
+
 }
 
 void PlayGameSingleton::finishSingleLeaderboard()
@@ -75,14 +71,7 @@ void PlayGameSingleton::finishSingleLeaderboard()
 void PlayGameSingleton::showLeaderboards()
 {
     
-//    if(!isSignedIn())
-//    {
-//        authenticate();
-//        return;
-//    }
-    
-//    CCDirector::sharedDirector()->stopAnimation();
-//    [[GCHelper sharedInstance] showLeaderboard:nil];
+
 }
 
 void PlayGameSingleton::finishLeaderboards()
@@ -94,12 +83,6 @@ void PlayGameSingleton::finishLeaderboards()
 void PlayGameSingleton::submitScore(long score, const char *leaderBoardID)
 {
     
-//    if(!isSignedIn())
-//        return;
-
-//    NSString* name = [NSString stringWithUTF8String:leaderBoardID];
-//    [[GCHelper sharedInstance] submitScore: score forCategory:name];
-    
 }
 
 #pragma mark - Achievements
@@ -107,9 +90,7 @@ void PlayGameSingleton::showAchievements()
 {
     std::cout << "PlayGameSingleton: showAchievments\n";
     
-    //CCDirector::sharedDirector()->stopAnimation();
-    //[[GCHelper sharedInstance] showAchievements];
-    
+    LootsieManager::showAchievements();
 }
 
 void PlayGameSingleton::finishAchievements()
@@ -126,28 +107,14 @@ void PlayGameSingleton::revealAchievement(const char *achievementID)
 
 void PlayGameSingleton::unlockAchievement(const char *achievementID)
 {
-        
-    if(!isSignedIn())
-        return;
     
-    if(strlen(achievementID) == 0)
-        return;
-    
-    NSString* name = [NSString stringWithUTF8String:achievementID];
-//    [[GCHelper sharedInstance] reportAchievementIdentifier:name percentComplete:100];
+    LootsieManager::achievementReached((char *)achievementID);
     
 }
 
 void PlayGameSingleton::incrementPercentageAchievement(float percentage, const char *achievementID)
 {
-    if(!isSignedIn())
-        return;
-    
-    if(strlen(achievementID) == 0)
-        return;
-    
-    NSString* name = [NSString stringWithUTF8String:achievementID];
-//    [[GCHelper sharedInstance] reportAchievementIdentifier:name percentComplete:percentage];
+
 }
 
 void PlayGameSingleton::incrementAchievement(int numSteps, const char *achievementID)
@@ -163,7 +130,6 @@ void PlayGameSingleton::trySilentAuthentication()
 
 void PlayGameSingleton::authenticate()
 {
-//    [[GCHelper sharedInstance] authenticateLocalUser];
 }
 
 bool PlayGameSingleton::isSignedIn()
@@ -183,16 +149,7 @@ void PlayGameSingleton::signOut()
 #pragma mark - Advertisement
 void PlayGameSingleton::initAd()
 {
-//    if(!adMobBannerView)
-//        adMobBannerView = [[AdMobBannerView alloc] init];
-    
-    
-    UIWindow *window =  [[UIApplication sharedApplication] keyWindow];
-    
-    if(!rootController)
-        rootController = window.rootViewController;
-    
-//    [((UIViewController *) rootController).view addSubview: adMobBannerView.view];
+
 }
 
 
@@ -203,10 +160,7 @@ void PlayGameSingleton::showAd()
 
 void PlayGameSingleton::hideAd()
 {
-//    [adMobBannerView hide];
-    //[adMobBannerView.view removeFromSuperview];
-    //[adMobBannerView release];
-    //adMobBannerView = 0;
+
 }
 
 void PlayGameSingleton::rateApp()
@@ -256,10 +210,6 @@ void PlayGameSingleton::shareOnFacebook(long score, int level, int obstacles)
     NSURL* params_picture = [NSURL URLWithString:picture];
     
 
-    
-    [params_link release];
-    [params_picture release];
-    [description release];
     
 }
 

@@ -10,31 +10,43 @@
 	<string>BTEndlessTunnel</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CEEB8283-E3CA-4090-816C-ECA4E4EB3183</key>
-		<string>https://github.com/cpinan/BTEndlessTunnel.git</string>
+		<key>9BD3A3F926B7735E7AE4CA4E7D291ECC86F62823</key>
+		<string>ssh://bitbucket.org/lootsie/ios-sdk4.git</string>
+		<key>AB7A540E812E832622FC8CE73C6F746E46E0C23B</key>
+		<string>https://github.com/JerryLootsie/BTEndlessTunnel.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>BTEndlessTunnel.xcodeproj/project.xcworkspace</string>
+	<string>BTEndlessTunnel.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CEEB8283-E3CA-4090-816C-ECA4E4EB3183</key>
+		<key>9BD3A3F926B7735E7AE4CA4E7D291ECC86F62823</key>
+		<string>../../../bitbucket/ios-sdk4-dev/ios-sdk4</string>
+		<key>AB7A540E812E832622FC8CE73C6F746E46E0C23B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/cpinan/BTEndlessTunnel.git</string>
+	<string>https://github.com/JerryLootsie/BTEndlessTunnel.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CEEB8283-E3CA-4090-816C-ECA4E4EB3183</string>
+	<string>AB7A540E812E832622FC8CE73C6F746E46E0C23B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CEEB8283-E3CA-4090-816C-ECA4E4EB3183</string>
+			<string>AB7A540E812E832622FC8CE73C6F746E46E0C23B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BTEndlessTunnel</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9BD3A3F926B7735E7AE4CA4E7D291ECC86F62823</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-sdk4</string>
 		</dict>
 	</array>
 </dict>

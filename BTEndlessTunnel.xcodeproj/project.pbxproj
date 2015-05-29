@@ -323,7 +323,37 @@
 		07EC9E0D18EB203500E2C037 /* LocalStorageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9E0B18EB203500E2C037 /* LocalStorageManager.cpp */; };
 		07EC9E1018EB204000E2C037 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9E0E18EB204000E2C037 /* Utils.cpp */; };
 		07EC9E1318EB442C00E2C037 /* PauseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9E1118EB442C00E2C037 /* PauseLayer.cpp */; };
+		520ABD8D1B191CDD00FAEAE0 /* LootsieManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 520ABD8C1B191CDD00FAEAE0 /* LootsieManager.mm */; };
+		520ABDB41B1920C400FAEAE0 /* libLootsie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB31B1920C400FAEAE0 /* libLootsie.a */; };
+		520ABDB81B1920D400FAEAE0 /* LootsieSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 520ABDB71B1920D400FAEAE0 /* LootsieSDKResources.bundle */; };
+		520ABDB91B19231600FAEAE0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB51B1920C700FAEAE0 /* libRestKit.a */; };
+		520ABDBA1B1926A400FAEAE0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E8781318F465C3002E38F1 /* CoreText.framework */; };
+		520ABDBC1B1926D200FAEAE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		520ABDA21B191E7500FAEAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 520ABD9B1B191E7500FAEAE0 /* Lootsie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5271633C1AB0B3A600B6E8DE;
+			remoteInfo = Lootsie;
+		};
+		520ABDA41B191E7500FAEAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 520ABD9B1B191E7500FAEAE0 /* Lootsie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 527163471AB0B3A600B6E8DE;
+			remoteInfo = LootsieTests;
+		};
+		520ABDA61B191E7500FAEAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 520ABD9B1B191E7500FAEAE0 /* Lootsie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52BF11351AD3167300E7D7B2;
+			remoteInfo = LootsieSDKResources;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0414D283190B2B160056C584 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon29x29.png; path = Resources/AppIcon29x29.png; sourceTree = "<group>"; };
@@ -994,6 +1024,14 @@
 		07EC9E0F18EB204000E2C037 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Classes/Utils.h; sourceTree = "<group>"; };
 		07EC9E1118EB442C00E2C037 /* PauseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PauseLayer.cpp; path = Classes/PauseLayer.cpp; sourceTree = "<group>"; };
 		07EC9E1218EB442C00E2C037 /* PauseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PauseLayer.h; path = Classes/PauseLayer.h; sourceTree = "<group>"; };
+		520ABD8B1B191CDD00FAEAE0 /* LootsieManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LootsieManager.h; path = ios/LootsieManager.h; sourceTree = "<group>"; };
+		520ABD8C1B191CDD00FAEAE0 /* LootsieManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LootsieManager.mm; path = ios/LootsieManager.mm; sourceTree = "<group>"; };
+		520ABD9B1B191E7500FAEAE0 /* Lootsie.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Lootsie.xcodeproj; path = "../../../../bitbucket/ios-sdk4-dev/ios-sdk4/Lootsie/Lootsie.xcodeproj"; sourceTree = "<group>"; };
+		520ABDAF1B191FA000FAEAE0 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "../../../bitbucket/ios-sdk4-dev/ios-sdk4/External/RestKit-0.20.3/Build/Products/Debug-iphoneos/libRestKit.a"; sourceTree = "<group>"; };
+		520ABDB31B1920C400FAEAE0 /* libLootsie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLootsie.a; path = "Build/Products/Debug-iphonesimulator/libLootsie.a"; sourceTree = "<group>"; };
+		520ABDB51B1920C700FAEAE0 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "Build/Products/Debug-iphonesimulator/libRestKit.a"; sourceTree = "<group>"; };
+		520ABDB71B1920D400FAEAE0 /* LootsieSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LootsieSDKResources.bundle; path = "Build/Products/Debug-iphonesimulator/LootsieSDKResources.bundle"; sourceTree = "<group>"; };
+		520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1001,6 +1039,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520ABDBC1B1926D200FAEAE0 /* MobileCoreServices.framework in Frameworks */,
+				520ABDBA1B1926A400FAEAE0 /* CoreText.framework in Frameworks */,
 				0414D2A7190B30190056C584 /* QuartzCore.framework in Frameworks */,
 				0414D29F190B2FC90056C584 /* SystemConfiguration.framework in Frameworks */,
 				07E8792518F49D4E002E38F1 /* MessageUI.framework in Frameworks */,
@@ -1016,6 +1056,8 @@
 				07CBA3F318DCAFBC004E8B35 /* libcurl.a in Frameworks */,
 				07CBA28018DCAFB8004E8B35 /* OpenGLES.framework in Frameworks */,
 				07CBA28A18DCAFB9004E8B35 /* Foundation.framework in Frameworks */,
+				520ABDB41B1920C400FAEAE0 /* libLootsie.a in Frameworks */,
+				520ABDB91B19231600FAEAE0 /* libRestKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,6 +1095,7 @@
 		07CBA27118DCAFB8004E8B35 = {
 			isa = PBXGroup;
 			children = (
+				520ABDB71B1920D400FAEAE0 /* LootsieSDKResources.bundle */,
 				07CBA28D18DCAFB9004E8B35 /* BTEndlessTunnel */,
 				07CBA27C18DCAFB8004E8B35 /* Frameworks */,
 				07CBA27B18DCAFB8004E8B35 /* Products */,
@@ -1070,6 +1113,10 @@
 		07CBA27C18DCAFB8004E8B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */,
+				520ABDB51B1920C700FAEAE0 /* libRestKit.a */,
+				520ABDB31B1920C400FAEAE0 /* libLootsie.a */,
+				520ABDAF1B191FA000FAEAE0 /* libRestKit.a */,
 				07E8792418F49D4E002E38F1 /* MessageUI.framework */,
 				07E8792218F49D48002E38F1 /* CoreTelephony.framework */,
 				07E8792018F49D2C002E38F1 /* AdSupport.framework */,
@@ -1143,6 +1190,8 @@
 		07CBA2A618DCAFB9004E8B35 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				520ABD8B1B191CDD00FAEAE0 /* LootsieManager.h */,
+				520ABD8C1B191CDD00FAEAE0 /* LootsieManager.mm */,
 				07E8781D18F46656002E38F1 /* PlayGameSingleton.h */,
 				07E8781E18F46656002E38F1 /* PlayGameSingleton.mm */,
 				07CBA2A718DCAFB9004E8B35 /* AppController.h */,
@@ -1157,6 +1206,7 @@
 		07CBA2AF18DCAFB9004E8B35 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				520ABD9B1B191E7500FAEAE0 /* Lootsie.xcodeproj */,
 				07CBA2B018DCAFB9004E8B35 /* cocos2dx */,
 				07CBA4A018DCAFBD004E8B35 /* CocosDenshion */,
 				07CBA4B818DCAFBE004E8B35 /* extensions */,
@@ -2369,6 +2419,16 @@
 			name = Obstacles;
 			sourceTree = "<group>";
 		};
+		520ABD9C1B191E7500FAEAE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				520ABDA31B191E7500FAEAE0 /* libLootsie.a */,
+				520ABDA51B191E7500FAEAE0 /* LootsieTests.xctest */,
+				520ABDA71B191E7500FAEAE0 /* LootsieSDKResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2420,6 +2480,12 @@
 			mainGroup = 07CBA27118DCAFB8004E8B35;
 			productRefGroup = 07CBA27B18DCAFB8004E8B35 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 520ABD9C1B191E7500FAEAE0 /* Products */;
+					ProjectRef = 520ABD9B1B191E7500FAEAE0 /* Lootsie.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				07CBA27918DCAFB8004E8B35 /* BTEndlessTunnel */,
@@ -2427,11 +2493,36 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		520ABDA31B191E7500FAEAE0 /* libLootsie.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLootsie.a;
+			remoteRef = 520ABDA21B191E7500FAEAE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		520ABDA51B191E7500FAEAE0 /* LootsieTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LootsieTests.xctest;
+			remoteRef = 520ABDA41B191E7500FAEAE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		520ABDA71B191E7500FAEAE0 /* LootsieSDKResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LootsieSDKResources.bundle;
+			remoteRef = 520ABDA61B191E7500FAEAE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		07CBA27818DCAFB8004E8B35 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520ABDB81B1920D400FAEAE0 /* LootsieSDKResources.bundle in Resources */,
 				0439628B19104C020032FE72 /* CartonSixBMP.png in Resources */,
 				077CBB6218F84EB5005FD669 /* Default@2x.png in Resources */,
 				0414D29E190B2B160056C584 /* AppIcon76x76@2x.png in Resources */,
@@ -2667,6 +2758,7 @@
 				07CBA4AB18DCAFBE004E8B35 /* CDOpenALSupport.m in Sources */,
 				07CBA56218DCAFBF004E8B35 /* LocalStorage.cpp in Sources */,
 				07CBA4AE18DCAFBE004E8B35 /* CocosDenshion.m in Sources */,
+				520ABD8D1B191CDD00FAEAE0 /* LootsieManager.mm in Sources */,
 				07CBA43C18DCAFBD004E8B35 /* ccUTF8.cpp in Sources */,
 				07CBA36A18DCAFBA004E8B35 /* CCLabelBMFont.cpp in Sources */,
 				07CBA2DE18DCAFB9004E8B35 /* CCNode.cpp in Sources */,
@@ -2830,14 +2922,24 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BTEndlessTunnel/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(PROJECT_NAME)/libs/cocos2dx/kazmath/include\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx\"",
+					"\"$(PROJECT_NAME)/libs/CocosDenshion/include\"",
+					"\"$(PROJECT_NAME)/libs/extensions\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx/include\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
+					"$(BUILT_PRODUCTS_DIR)/**",
+					"$(BUILT_PRODUCTS_DIR)/../../Headers/**",
+				);
 				INFOPLIST_FILE = BTEndlessTunnel/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BTEndlessTunnel/libs/cocos2dx/platform/third_party/ios/libraries",
 					"$(PROJECT_DIR)/BTEndlessTunnel/libs/libwebsockets/ios/lib",
-					"$(PROJECT_DIR)/BTEndlessTunnel/ios/GoogleAdMobSDK/Add-ons/GoogleAnalyticsServicesiOS_3.03",
-					"$(PROJECT_DIR)/BTEndlessTunnel/ios/GoogleAdMobSDK",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -2866,14 +2968,24 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BTEndlessTunnel/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(PROJECT_NAME)/libs/cocos2dx/kazmath/include\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx\"",
+					"\"$(PROJECT_NAME)/libs/CocosDenshion/include\"",
+					"\"$(PROJECT_NAME)/libs/extensions\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx/include\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
+					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
+					"$(BUILT_PRODUCTS_DIR)/**",
+					"$(BUILT_PRODUCTS_DIR)/../../Headers/**",
+				);
 				INFOPLIST_FILE = BTEndlessTunnel/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BTEndlessTunnel/libs/cocos2dx/platform/third_party/ios/libraries",
 					"$(PROJECT_DIR)/BTEndlessTunnel/libs/libwebsockets/ios/lib",
-					"$(PROJECT_DIR)/BTEndlessTunnel/ios/GoogleAdMobSDK/Add-ons/GoogleAnalyticsServicesiOS_3.03",
-					"$(PROJECT_DIR)/BTEndlessTunnel/ios/GoogleAdMobSDK",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
