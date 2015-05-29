@@ -23,16 +23,11 @@
 		0414D29E190B2B160056C584 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0414D290190B2B160056C584 /* AppIcon76x76@2x.png */; };
 		0414D29F190B2FC90056C584 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E8781918F465E0002E38F1 /* SystemConfiguration.framework */; };
 		0414D2A7190B30190056C584 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CBA27D18DCAFB8004E8B35 /* QuartzCore.framework */; };
-		041CE78518F50003006D05D9 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041CE73618F50003006D05D9 /* libGoogleAdMobAds.a */; };
-		041CE78618F50003006D05D9 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 041CE73718F50003006D05D9 /* README.txt */; };
 		041DE38618FF751900301586 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 041DE38318FF751900301586 /* audio */; };
-		04396284191012FD0032FE72 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04396283191012FD0032FE72 /* FacebookSDK.framework */; };
 		04396287191031A50032FE72 /* JNIHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04396285191031A50032FE72 /* JNIHelpers.cpp */; };
 		0439628A19104C020032FE72 /* CartonSixBMP.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0439628819104C020032FE72 /* CartonSixBMP.fnt */; };
 		0439628B19104C020032FE72 /* CartonSixBMP.png in Resources */ = {isa = PBXBuildFile; fileRef = 0439628919104C020032FE72 /* CartonSixBMP.png */; };
 		0444D42C1902C4C2001E04D7 /* Globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0444D42A1902C4C2001E04D7 /* Globals.cpp */; };
-		04E5C29618FF879B000C47FF /* GCHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C29518FF879B000C47FF /* GCHelper.mm */; };
-		04E5C29818FF883C000C47FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E5C29718FF883C000C47FF /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		070A18B01905A8E00094F95A /* 1024x768 in Resources */ = {isa = PBXBuildFile; fileRef = 070A18AF1905A8E00094F95A /* 1024x768 */; };
 		073DC21619070B82009FCDF8 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 073DC21419070B82009FCDF8 /* iTunesArtwork@2x.png */; };
 		073DC21719070B82009FCDF8 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 073DC21519070B82009FCDF8 /* iTunesArtwork.png */; };
@@ -321,8 +316,6 @@
 		07E8792118F49D2C002E38F1 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E8792018F49D2C002E38F1 /* AdSupport.framework */; };
 		07E8792318F49D48002E38F1 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E8792218F49D48002E38F1 /* CoreTelephony.framework */; };
 		07E8792518F49D4E002E38F1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E8792418F49D4E002E38F1 /* MessageUI.framework */; };
-		07E8792718F49D54002E38F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E8792618F49D54002E38F1 /* StoreKit.framework */; };
-		07E8792A18F49D92002E38F1 /* AdMobBannerView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07E8792918F49D92002E38F1 /* AdMobBannerView.mm */; };
 		07EC9DFA18EB19B200E2C037 /* HomeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9DF818EB19B200E2C037 /* HomeScene.cpp */; };
 		07EC9DFD18EB19BF00E2C037 /* HomeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9DFB18EB19BF00E2C037 /* HomeLayer.cpp */; };
 		07EC9E0018EB19DB00E2C037 /* SettingsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9DFE18EB19DB00E2C037 /* SettingsLayer.cpp */; };
@@ -347,28 +340,13 @@
 		0414D28E190B2B160056C584 /* AppIcon72x72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon72x72@2x.png"; path = "Resources/AppIcon72x72@2x.png"; sourceTree = "<group>"; };
 		0414D28F190B2B160056C584 /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon76x76.png; path = Resources/AppIcon76x76.png; sourceTree = "<group>"; };
 		0414D290190B2B160056C584 /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon76x76@2x.png"; path = "Resources/AppIcon76x76@2x.png"; sourceTree = "<group>"; };
-		041CE72D18F50003006D05D9 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		041CE72E18F50003006D05D9 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		041CE72F18F50003006D05D9 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		041CE73018F50003006D05D9 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		041CE73118F50003006D05D9 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		041CE73218F50003006D05D9 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		041CE73318F50003006D05D9 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		041CE73418F50003006D05D9 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		041CE73518F50003006D05D9 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		041CE73618F50003006D05D9 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		041CE73718F50003006D05D9 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		041DE38318FF751900301586 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
-		04396283191012FD0032FE72 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ios/FacebookSDK.framework; sourceTree = "<group>"; };
 		04396285191031A50032FE72 /* JNIHelpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JNIHelpers.cpp; path = Classes/JNIHelpers.cpp; sourceTree = "<group>"; };
 		04396286191031A50032FE72 /* JNIHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JNIHelpers.h; path = Classes/JNIHelpers.h; sourceTree = "<group>"; };
 		0439628819104C020032FE72 /* CartonSixBMP.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CartonSixBMP.fnt; sourceTree = "<group>"; };
 		0439628919104C020032FE72 /* CartonSixBMP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CartonSixBMP.png; sourceTree = "<group>"; };
 		0444D42A1902C4C2001E04D7 /* Globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Globals.cpp; path = Classes/Globals.cpp; sourceTree = "<group>"; };
 		0444D42B1902C4C2001E04D7 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Classes/Globals.h; sourceTree = "<group>"; };
-		04E5C29418FF879B000C47FF /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCHelper.h; path = ios/GCHelper.h; sourceTree = "<group>"; };
-		04E5C29518FF879B000C47FF /* GCHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GCHelper.mm; path = ios/GCHelper.mm; sourceTree = "<group>"; };
-		04E5C29718FF883C000C47FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		070A18AF1905A8E00094F95A /* 1024x768 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 1024x768; sourceTree = "<group>"; };
 		073DC21419070B82009FCDF8 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		073DC21519070B82009FCDF8 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/iTunesArtwork.png; sourceTree = "<group>"; };
@@ -1002,9 +980,6 @@
 		07E8792018F49D2C002E38F1 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		07E8792218F49D48002E38F1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		07E8792418F49D4E002E38F1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		07E8792618F49D54002E38F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		07E8792818F49D92002E38F1 /* AdMobBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdMobBannerView.h; path = ios/AdMobBannerView.h; sourceTree = "<group>"; };
-		07E8792918F49D92002E38F1 /* AdMobBannerView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AdMobBannerView.mm; path = ios/AdMobBannerView.mm; sourceTree = "<group>"; };
 		07EC9DF818EB19B200E2C037 /* HomeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HomeScene.cpp; path = Classes/HomeScene.cpp; sourceTree = "<group>"; };
 		07EC9DF918EB19B200E2C037 /* HomeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeScene.h; path = Classes/HomeScene.h; sourceTree = "<group>"; };
 		07EC9DFB18EB19BF00E2C037 /* HomeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HomeLayer.cpp; path = Classes/HomeLayer.cpp; sourceTree = "<group>"; };
@@ -1027,17 +1002,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0414D2A7190B30190056C584 /* QuartzCore.framework in Frameworks */,
-				04396284191012FD0032FE72 /* FacebookSDK.framework in Frameworks */,
 				0414D29F190B2FC90056C584 /* SystemConfiguration.framework in Frameworks */,
-				04E5C29818FF883C000C47FF /* GameKit.framework in Frameworks */,
-				07E8792718F49D54002E38F1 /* StoreKit.framework in Frameworks */,
 				07E8792518F49D4E002E38F1 /* MessageUI.framework in Frameworks */,
 				07E8792318F49D48002E38F1 /* CoreTelephony.framework in Frameworks */,
 				07CBA28C18DCAFB9004E8B35 /* CoreGraphics.framework in Frameworks */,
 				07CBA28618DCAFB9004E8B35 /* AVFoundation.framework in Frameworks */,
 				07CBA28418DCAFB9004E8B35 /* AudioToolbox.framework in Frameworks */,
 				07E8792118F49D2C002E38F1 /* AdSupport.framework in Frameworks */,
-				041CE78518F50003006D05D9 /* libGoogleAdMobAds.a in Frameworks */,
 				07CBA28218DCAFB8004E8B35 /* OpenAL.framework in Frameworks */,
 				07CBA61B18DCAFC0004E8B35 /* libwebsockets.a in Frameworks */,
 				07CBA3F518DCAFBC004E8B35 /* libwebp.a in Frameworks */,
@@ -1051,25 +1022,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		041CE6A118F50003006D05D9 /* GoogleAdMobSDK */ = {
-			isa = PBXGroup;
-			children = (
-				041CE72D18F50003006D05D9 /* GADAdMobExtras.h */,
-				041CE72E18F50003006D05D9 /* GADAdNetworkExtras.h */,
-				041CE72F18F50003006D05D9 /* GADAdSize.h */,
-				041CE73018F50003006D05D9 /* GADBannerView.h */,
-				041CE73118F50003006D05D9 /* GADBannerViewDelegate.h */,
-				041CE73218F50003006D05D9 /* GADInterstitial.h */,
-				041CE73318F50003006D05D9 /* GADInterstitialDelegate.h */,
-				041CE73418F50003006D05D9 /* GADRequest.h */,
-				041CE73518F50003006D05D9 /* GADRequestError.h */,
-				041CE73618F50003006D05D9 /* libGoogleAdMobAds.a */,
-				041CE73718F50003006D05D9 /* README.txt */,
-			);
-			name = GoogleAdMobSDK;
-			path = ios/GoogleAdMobSDK;
-			sourceTree = "<group>";
-		};
 		041DE32318FF750300301586 /* CommonResources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1080,15 +1032,6 @@
 				041DE38318FF751900301586 /* audio */,
 			);
 			path = CommonResources;
-			sourceTree = "<group>";
-		};
-		04E5C28518FF7FBE000C47FF /* GameCenter */ = {
-			isa = PBXGroup;
-			children = (
-				04E5C29418FF879B000C47FF /* GCHelper.h */,
-				04E5C29518FF879B000C47FF /* GCHelper.mm */,
-			);
-			name = GameCenter;
 			sourceTree = "<group>";
 		};
 		07AC274118E5017100F6AEA0 /* SneakyInputCocos2dx */ = {
@@ -1127,8 +1070,6 @@
 		07CBA27C18DCAFB8004E8B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04E5C29718FF883C000C47FF /* GameKit.framework */,
-				07E8792618F49D54002E38F1 /* StoreKit.framework */,
 				07E8792418F49D4E002E38F1 /* MessageUI.framework */,
 				07E8792218F49D48002E38F1 /* CoreTelephony.framework */,
 				07E8792018F49D2C002E38F1 /* AdSupport.framework */,
@@ -1202,9 +1143,6 @@
 		07CBA2A618DCAFB9004E8B35 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				04396283191012FD0032FE72 /* FacebookSDK.framework */,
-				04E5C28518FF7FBE000C47FF /* GameCenter */,
-				041CE6A118F50003006D05D9 /* GoogleAdMobSDK */,
 				07E8781D18F46656002E38F1 /* PlayGameSingleton.h */,
 				07E8781E18F46656002E38F1 /* PlayGameSingleton.mm */,
 				07CBA2A718DCAFB9004E8B35 /* AppController.h */,
@@ -1212,8 +1150,6 @@
 				07CBA2AA18DCAFB9004E8B35 /* RootViewController.h */,
 				07CBA2AB18DCAFB9004E8B35 /* RootViewController.mm */,
 				07CBA2AD18DCAFB9004E8B35 /* main.m */,
-				07E8792818F49D92002E38F1 /* AdMobBannerView.h */,
-				07E8792918F49D92002E38F1 /* AdMobBannerView.mm */,
 			);
 			name = ios;
 			sourceTree = "<group>";
@@ -2462,7 +2398,15 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					07CBA27918DCAFB8004E8B35 = {
-						DevelopmentTeam = 78S83S4VV9;
+						DevelopmentTeam = 8CL69GL5L4;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -2496,7 +2440,6 @@
 				0414D298190B2B160056C584 /* AppIcon57x57@2x.png in Resources */,
 				07CBA34318DCAFBA004E8B35 /* ChangeLog in Resources */,
 				0414D292190B2B160056C584 /* AppIcon29x29@2x.png in Resources */,
-				041CE78618F50003006D05D9 /* README.txt in Resources */,
 				077CBB6118F84EB5005FD669 /* Default-Portrait@2x.png in Resources */,
 				070A18B01905A8E00094F95A /* 1024x768 in Resources */,
 				041DE38618FF751900301586 /* audio in Resources */,
@@ -2643,7 +2586,6 @@
 				07CBA3FC18DCAFBC004E8B35 /* CCScriptSupport.cpp in Sources */,
 				07CBA4F818DCAFBE004E8B35 /* CCNodeLoader.cpp in Sources */,
 				07CBA59618DCAFBF004E8B35 /* CCSkeletonAnimation.cpp in Sources */,
-				07E8792A18F49D92002E38F1 /* AdMobBannerView.mm in Sources */,
 				07CBA2B318DCAFB9004E8B35 /* CCAction.cpp in Sources */,
 				07CBA5AB18DCAFBF004E8B35 /* Skin.cpp in Sources */,
 				07CBA50518DCAFBE004E8B35 /* CCScrollViewLoader.cpp in Sources */,
@@ -2660,7 +2602,6 @@
 				07CBA46D18DCAFBD004E8B35 /* CCIMEDispatcher.cpp in Sources */,
 				07CBA31618DCAFB9004E8B35 /* cocos2d.cpp in Sources */,
 				07CBA31918DCAFB9004E8B35 /* CCDrawingPrimitives.cpp in Sources */,
-				04E5C29618FF879B000C47FF /* GCHelper.mm in Sources */,
 				07CBA35918DCAFBA004E8B35 /* vec2.c in Sources */,
 				07CBA40318DCAFBC004E8B35 /* ccGLStateCache.cpp in Sources */,
 				07CBA2E118DCAFB9004E8B35 /* CCCamera.cpp in Sources */,
@@ -2905,7 +2846,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3d08f5e9-9e9d-413a-8178-b3fe6f9d9798";
 				USER_HEADER_SEARCH_PATHS = "\"BTEndlessTunnel/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2941,7 +2882,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3d08f5e9-9e9d-413a-8178-b3fe6f9d9798";
 				USER_HEADER_SEARCH_PATHS = "\"BTEndlessTunnel/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

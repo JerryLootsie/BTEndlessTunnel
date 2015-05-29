@@ -7,12 +7,13 @@
 //
 
 #import "PlayGameSingleton.h"
-#import "AdMobBannerView.h"
+//#import "AdMobBannerView.h"
 #import "Globals.h"
-#import <FacebookSDK/FacebookSDK.h>
-#import "GCHelper.h"
+//#import <FacebookSDK/FacebookSDK.h>
+//#import "GCHelper.h"
 #import "GameLayer.h"
 #import <UIKit/UIKit.h>
+
 
 #import "cocos2d.h"
 
@@ -35,7 +36,7 @@ NSDictionary* parseURLParams(NSString* query)
 }
 
 #pragma mark - Declare Views
-AdMobBannerView* adMobBannerView = 0;
+//AdMobBannerView* adMobBannerView = 0;
 
 #pragma mark - Destructor and Constructor
 PlayGameSingleton::~PlayGameSingleton()
@@ -57,12 +58,12 @@ PlayGameSingleton& PlayGameSingleton::sharedInstance()
 #pragma mark - Single Leaderboard
 void PlayGameSingleton::showSingleLeaderboard(const char* leaderBoardID)
 {    
-    if(!isSignedIn())
-        authenticate();
+//    if(!isSignedIn())
+//        authenticate();
     
-    CCDirector::sharedDirector()->stopAnimation();
-    NSString* name = [NSString stringWithUTF8String:leaderBoardID];
-    [[GCHelper sharedInstance] showLeaderboard:name];
+//    CCDirector::sharedDirector()->stopAnimation();
+//    NSString* name = [NSString stringWithUTF8String:leaderBoardID];
+//    [[GCHelper sharedInstance] showLeaderboard:name];
 }
 
 void PlayGameSingleton::finishSingleLeaderboard()
@@ -74,14 +75,14 @@ void PlayGameSingleton::finishSingleLeaderboard()
 void PlayGameSingleton::showLeaderboards()
 {
     
-    if(!isSignedIn())
-    {
-        authenticate();
-        return;
-    }
+//    if(!isSignedIn())
+//    {
+//        authenticate();
+//        return;
+//    }
     
-    CCDirector::sharedDirector()->stopAnimation();
-    [[GCHelper sharedInstance] showLeaderboard:nil];
+//    CCDirector::sharedDirector()->stopAnimation();
+//    [[GCHelper sharedInstance] showLeaderboard:nil];
 }
 
 void PlayGameSingleton::finishLeaderboards()
@@ -93,26 +94,22 @@ void PlayGameSingleton::finishLeaderboards()
 void PlayGameSingleton::submitScore(long score, const char *leaderBoardID)
 {
     
-    if(!isSignedIn())
-        return;
+//    if(!isSignedIn())
+//        return;
 
-    NSString* name = [NSString stringWithUTF8String:leaderBoardID];
-    [[GCHelper sharedInstance] submitScore: score forCategory:name];
+//    NSString* name = [NSString stringWithUTF8String:leaderBoardID];
+//    [[GCHelper sharedInstance] submitScore: score forCategory:name];
     
 }
 
 #pragma mark - Achievements
 void PlayGameSingleton::showAchievements()
 {
+    std::cout << "PlayGameSingleton: showAchievments\n";
     
-    if(!isSignedIn())
-    {
-        authenticate();
-        return;
-    }
+    //CCDirector::sharedDirector()->stopAnimation();
+    //[[GCHelper sharedInstance] showAchievements];
     
-    CCDirector::sharedDirector()->stopAnimation();
-    [[GCHelper sharedInstance] showAchievements];
 }
 
 void PlayGameSingleton::finishAchievements()
@@ -129,6 +126,7 @@ void PlayGameSingleton::revealAchievement(const char *achievementID)
 
 void PlayGameSingleton::unlockAchievement(const char *achievementID)
 {
+        
     if(!isSignedIn())
         return;
     
@@ -136,7 +134,7 @@ void PlayGameSingleton::unlockAchievement(const char *achievementID)
         return;
     
     NSString* name = [NSString stringWithUTF8String:achievementID];
-    [[GCHelper sharedInstance] reportAchievementIdentifier:name percentComplete:100];
+//    [[GCHelper sharedInstance] reportAchievementIdentifier:name percentComplete:100];
     
 }
 
@@ -149,7 +147,7 @@ void PlayGameSingleton::incrementPercentageAchievement(float percentage, const c
         return;
     
     NSString* name = [NSString stringWithUTF8String:achievementID];
-    [[GCHelper sharedInstance] reportAchievementIdentifier:name percentComplete:percentage];
+//    [[GCHelper sharedInstance] reportAchievementIdentifier:name percentComplete:percentage];
 }
 
 void PlayGameSingleton::incrementAchievement(int numSteps, const char *achievementID)
@@ -165,7 +163,7 @@ void PlayGameSingleton::trySilentAuthentication()
 
 void PlayGameSingleton::authenticate()
 {
-    [[GCHelper sharedInstance] authenticateLocalUser];
+//    [[GCHelper sharedInstance] authenticateLocalUser];
 }
 
 bool PlayGameSingleton::isSignedIn()
@@ -185,8 +183,8 @@ void PlayGameSingleton::signOut()
 #pragma mark - Advertisement
 void PlayGameSingleton::initAd()
 {
-    if(!adMobBannerView)
-        adMobBannerView = [[AdMobBannerView alloc] init];
+//    if(!adMobBannerView)
+//        adMobBannerView = [[AdMobBannerView alloc] init];
     
     
     UIWindow *window =  [[UIApplication sharedApplication] keyWindow];
@@ -194,18 +192,18 @@ void PlayGameSingleton::initAd()
     if(!rootController)
         rootController = window.rootViewController;
     
-    [((UIViewController *) rootController).view addSubview: adMobBannerView.view];
+//    [((UIViewController *) rootController).view addSubview: adMobBannerView.view];
 }
 
 
 void PlayGameSingleton::showAd()
 {
-    [adMobBannerView show];
+//    [adMobBannerView show];
 }
 
 void PlayGameSingleton::hideAd()
 {
-    [adMobBannerView hide];
+//    [adMobBannerView hide];
     //[adMobBannerView.view removeFromSuperview];
     //[adMobBannerView release];
     //adMobBannerView = 0;
@@ -257,76 +255,7 @@ void PlayGameSingleton::shareOnFacebook(long score, int level, int obstacles)
     NSURL* params_link = [NSURL URLWithString:linkToShare];
     NSURL* params_picture = [NSURL URLWithString:picture];
     
-    // Check if the Facebook app is installed and we can present the share dialog
-    FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
-    params.link = params_link;
-    params.name = name;
-    params.caption = caption;
-    params.picture = params_picture;
-    params.description = description;
-    
-    // If the Facebook app is installed and we can present the share dialog
-    if ([FBDialogs canPresentShareDialogWithParams:params]) {
-        
-        // Present share dialog
-        [FBDialogs presentShareDialogWithLink:params.link
-                                         name:params.name
-                                      caption:params.caption
-                                  description:params.description
-                                      picture:params.picture
-                                  clientState:nil
-                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                          if(error) {
-                                              // An error occurred, we need to handle the error
-                                              // See: https://developers.facebook.com/docs/ios/errors
-                                          } else {
-                                              // Success
-                                              NSLog(@"result %@", results);
-                                          }
-                                      }];
-        
-        
-    } else {
-        // Present the feed dialog
-        
-        // Put together the dialog parameters
-        NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       name, @"name",
-                                       caption, @"caption",
-                                       description, @"description",
-                                       linkToShare, @"link",
-                                       picture, @"picture",
-                                       nil];
-        
-        // Show the feed dialog
-        [FBWebDialogs presentFeedDialogModallyWithSession:nil
-                                               parameters:params2
-                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-                                                      if (error) {
-                                                          // An error occurred, we need to handle the error
-                                                          // See: https://developers.facebook.com/docs/ios/errors
-                                                      } else {
-                                                          if (result == FBWebDialogResultDialogNotCompleted) {
-                                                              // User cancelled.
-                                                              NSLog(@"User cancelled.");
-                                                          } else {
-                                                              // Handle the publish feed callback
-                                                              NSDictionary *urlParams = parseURLParams([resultURL query]);
-                                                              
-                                                              if (![urlParams valueForKey:@"post_id"]) {
-                                                                  // User cancelled.
-                                                                  NSLog(@"User cancelled.");
-                                                                  
-                                                              } else {
-                                                                  // User clicked the Share button
-                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
-                                                                  NSLog(@"result %@", result);
-                                                              }
-                                                          }
-                                                      }
-                                                  }];
-        
-    }
+
     
     [params_link release];
     [params_picture release];

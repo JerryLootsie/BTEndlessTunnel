@@ -8,11 +8,12 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.carlospinan.turborace.R;
-import com.google.android.gms.games.Games;
+//import com.google.android.gms.games.Games;
+
 
 /**
  * 
- * @author Carlos Eduardo Piñan Indacochea
+ * @author Carlos Eduardo Piï¿½an Indacochea
  * @version 1.0.0
  * @date 2014/02/25
  * @update 2014/02/25
@@ -27,22 +28,34 @@ public class NativeUtils {
 	private static UtilActivity app = null;
 	private static NativeUtils instance = null;
 
+	private static String TAG = "NativeUtils";
+	
 	// ID's
 	private static final int REQUEST_ACHIEVEMENTS = 10000;
 	private static final int REQUEST_LEADERBOARDS = 10001;
 	private static final int REQUEST_LEADERBOARD = 10002;
 
+
+
+
 	/**
 	 * Singleton
 	 */
 	public static NativeUtils sharedInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new NativeUtils();
+		}
 		return instance;
 	}
+	
+	public NativeUtils() {
+		Log.v(TAG, "NativeUtils: constructor");
+		
+	}
 
+	
 	/**
-	 * Configura los datos iniciales para comunicar los eventos de aquí a
+	 * Configura los datos iniciales para comunicar los eventos de aquï¿½ a
 	 * cocos2d-x.
 	 */
 	public static void configure(Context context) {
@@ -56,7 +69,7 @@ public class NativeUtils {
 	 * @param message
 	 */
 	public static void displayAlert(final String message) {
-		Log.d(UtilActivity.TAG, message);
+		Log.d(UtilActivity.TAG, "NativeUtils: displayAlert: " + message);
 		/*
 		 * AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		 * builder.setMessage(message); builder.setNeutralButton(
@@ -81,29 +94,14 @@ public class NativeUtils {
 	 * Google Play Games Services Sign In
 	 */
 	public static void gameServicesSignIn() {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (!isSignedIn())
-					app.signInGooglePlay();
-			}
-		});
+		Log.d(TAG, "NativeUtils: gameServicesSignIn");
 	}
 
 	/**
 	 * Google Play Games Services Sign Out
 	 */
 	public static void gameServicesSignOut() {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					app.signOutGooglePlay();
-			}
-		});
-
+		Log.d(TAG, "NativeUtils: gameServicesSignOut");
 	}
 
 	/**
@@ -113,23 +111,7 @@ public class NativeUtils {
 	 * @param score
 	 */
 	public static void submitScore(final String leaderboardID, final long score) {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					Games.Leaderboards.submitScore(app.getCustomApiClient(),
-							leaderboardID, score);
-				else {
-					String message = context.getResources().getString(
-							R.string.fail_submit_score_leaderboard);
-					message = message.replace("{score}", score + "");
-					message = message.replace("{leaderboardID}", leaderboardID);
-					displayAlert(message);
-				}
-			}
-		});
-
+		Log.d(TAG, "NativeUtils: submitScore: " + score );
 	}
 
 	/**
@@ -137,22 +119,9 @@ public class NativeUtils {
 	 * 
 	 * @param achievementId
 	 */
-	public static void unlockAchievement(final String achievementID) {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					Games.Achievements.unlock(app.getCustomApiClient(),
-							achievementID);
-				else {
-					String message = context.getResources().getString(
-							R.string.fail_unlock_achievement);
-					message = message.replace("{achievementID}", achievementID);
-					displayAlert(message);
-				}
-			}
-		});
+	public static void unlockAchievement(final String achievementID) {		
+		Log.d(TAG, "NativeUtils: unlockAchievement: " + achievementID );
+				
 	}
 
 	/**
@@ -162,46 +131,16 @@ public class NativeUtils {
 	 * @param numSteps
 	 */
 	public static void incrementAchievement(final String achievementID,
-			final int numSteps) {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					Games.Achievements.increment(app.getCustomApiClient(),
-							achievementID, numSteps);
-				else {
-					String message = context.getResources().getString(
-							R.string.fail_increment_achievement);
-					message = message.replace("{achievementID}", achievementID);
-					message = message.replace("{numSteps}", numSteps + "");
-					displayAlert(message);
-				}
-			}
-		});
+			final int numSteps) {		
+		Log.d(TAG, "NativeUtils: incrementAchievement: " + achievementID + " : " + numSteps);
 	}
 
 	/**
 	 * Show all achievements.
 	 */
 	public static void showAchievements() {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					app.startActivityForResult(Games.Achievements
-							.getAchievementsIntent(app.getCustomApiClient()),
-							REQUEST_ACHIEVEMENTS);
-				else {
-					gameServicesSignIn();
-					String message = context.getResources().getString(
-							R.string.fail_show_achievements);
-					displayAlert(message);
-				}
-
-			}
-		});
+		Log.v(TAG,"NativeUtils: showAchievements");
+		
 
 	}
 
@@ -209,51 +148,14 @@ public class NativeUtils {
 	 * Show all leaderboard.
 	 */
 	public static void showLeaderboards() {
-
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					app.startActivityForResult(
-							Games.Leaderboards.getAllLeaderboardsIntent(app
-									.getCustomApiClient()),
-							REQUEST_LEADERBOARDS);
-				else {
-					gameServicesSignIn();
-					String message = context.getResources().getString(
-							R.string.fail_show_leaderboards);
-					displayAlert(message);
-				}
-			}
-		});
-
+		Log.v(TAG,"NativeUtils: showLeaderboards");
 	}
 
 	/**
 	 * Show single leaderboard.
 	 */
 	public static void showLeaderboard(final String leaderboardID) {
-
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					app.startActivityForResult(
-							Games.Leaderboards.getLeaderboardIntent(
-									app.getCustomApiClient(), leaderboardID),
-							REQUEST_LEADERBOARD);
-				else {
-					gameServicesSignIn();
-					String message = context.getResources().getString(
-							R.string.fail_show_leaderboard);
-					message = message.replace("{leaderboardID}", leaderboardID);
-					displayAlert(message);
-				}
-			}
-		});
-
+		Log.v(TAG,"NativeUtils: showLeaderboard: " + leaderboardID);
 	}
 
 	/**
@@ -262,23 +164,8 @@ public class NativeUtils {
 	 * @param app_state
 	 */
 	public static void inCloudSaveOrUpdate(final int key, final byte[] app_state) {
-
-		if (!ConfigUtils.GOOGLE_PLAY_IN_CLOUD_SAVE)
-			return;
-
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					app.inCloudSaveOrUpdate(key, app_state);
-				else {
-					String message = context.getResources().getString(
-							R.string.gamehelper_alert);
-					displayAlert(message);
-				}
-			}
-		});
+		Log.v(TAG,"NativeUtils: inCloudSaveOrUpdate");
+		return;
 	}
 
 	/**
@@ -286,23 +173,8 @@ public class NativeUtils {
 	 * @param key
 	 */
 	public static void inCloudLoad(final int key) {
-
-		if (!ConfigUtils.GOOGLE_PLAY_IN_CLOUD_SAVE)
-			return;
-
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isSignedIn())
-					app.inCloudLoad(key);
-				else {
-					String message = context.getResources().getString(
-							R.string.gamehelper_alert);
-					displayAlert(message);
-				}
-			}
-		});
+		Log.v(TAG,"NativeUtils: inCloudLoad");
+		return;
 	}
 
 	/*
@@ -310,80 +182,28 @@ public class NativeUtils {
 	 */
 
 	public static void showAd() {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				app.showAd();
-			}
-		});
+		Log.v(TAG,"NativeUtils: showAd");
 	}
 
 	public static void hideAd() {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				app.hideAd();
-			}
-		});
+		Log.v(TAG,"NativeUtils: hideAd");
 	}
 
-	public static void rateApp() {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				Uri uri = Uri.parse("market://details?id="
-						+ context.getPackageName());
-				Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-				try {
-					context.startActivity(goToMarket);
-				} catch (ActivityNotFoundException e) {
-
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							context);
-					builder.setMessage("Couldn't launch the PlayStore");
-					builder.setNeutralButton(
-							context.getResources().getString(
-									android.R.string.ok), null);
-					builder.create().show();
-
-				}
-
-			}
-		});
+	public static void rateApp() {		
+		Log.v(TAG,"NativeUtils: rateApp");		
 	}
 
 	public static void shareOnFacebook(final int level, final long score,
 			final int obstacles) {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				app.shareOnFacebook(level, score, obstacles);
-			}
-		});
+		Log.v(TAG,"NativeUtils: shareOnFacebook");
 	}
 
 	public static void showAdBuddiz() {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				app.showAdbuddiz();
-			}
-		});
+		Log.v(TAG,"NativeUtils: showAdBuddiz");
 	}
 
 	public static void sendAnalytics(final String screen) {
-		app.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				app.sendAnalyticData(screen);
-			}
-		});
+		Log.v(TAG,"NativeUtils: sendAnalytics");
 	}
 
 	public static void killApp() {

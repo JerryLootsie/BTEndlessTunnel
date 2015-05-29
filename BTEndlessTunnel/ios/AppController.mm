@@ -15,28 +15,44 @@
 #import "PlayGameSingleton.h"
 
 #import "RootViewController.h"
-#import "GCHelper.h"
+//#import "GCHelper.h"
 
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
 
 @implementation AppController
 
 @synthesize window;
 @synthesize viewController;
+//@synthesize viewController = _viewController;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 // cocos2d application instance
+// BTEndlessTunnel/ios/AppController.mm:33:20: error: interface type cannot be statically allocated
 static AppDelegate s_sharedApplication;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+/**
+ Singleton instance
+ */
++ (id)sharedInstance {
+    static dispatch_once_t pred = 0;
+    __strong static id _sharedObject = nil;
+    dispatch_once(&pred, ^{
+        //_sharedObject = [[self alloc] init];
+        _sharedObject = [self alloc];
+        
+        NSLog(@"AppController: singleton created!");
+    });
+    return _sharedObject;
+}
+
+
+-(id) init
+{
     
-    [[GCHelper sharedInstance] authenticateLocalUser];
-    // PlayGameSingleton::sharedInstance().authenticate();
-
-    // Override point for customization after application launch.
-
+     NSLog(@"AppController: init");
+    
     // Add the view controller's view to the window and display.
     window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
     EAGLView *__glView = [EAGLView viewWithFrame: [window bounds]
@@ -46,13 +62,13 @@ static AppDelegate s_sharedApplication;
                                       sharegroup: nil
                                    multiSampling: NO
                                  numberOfSamples:0 ];
-
+    
     // Use RootViewController manage EAGLView
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     viewController.wantsFullScreenLayout = YES;
     viewController.view = __glView;
     [__glView setMultipleTouchEnabled: YES];
-
+    
     // Set RootViewController to window
     if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)
     {
@@ -66,13 +82,28 @@ static AppDelegate s_sharedApplication;
     }
     
     [window makeKeyAndVisible];
-
+    
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
+    
+    return self;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+//    [[GCHelper sharedInstance] authenticateLocalUser];
+    // PlayGameSingleton::sharedInstance().authenticate();
+
+    
+    [[AppController sharedInstance] init];
 
     PlayGameSingleton::sharedInstance().initAd();
     cocos2d::CCApplication::sharedApplication()->run();
     
     return YES;
+}
+
+-(UIViewController*) getRootViewController {
+    return viewController;
 }
 
 
@@ -134,15 +165,8 @@ static AppDelegate s_sharedApplication;
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-                                sourceApplication:sourceApplication
-                                  fallbackHandler:^(FBAppCall *call) {
-                                      NSLog(@"Unhandled deep link: %@", url);
-                                      // Here goes the code to handle the links
-                                      // Use the links to show a relevant view of your app to the user
-                                  }];
     
-    return urlWasHandled;
+    return false;
 }
 
 @end

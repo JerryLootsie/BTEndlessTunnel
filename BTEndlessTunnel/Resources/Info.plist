@@ -26,7 +26,7 @@
 		<string>AppIcon72x72</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.carlospinan.turborace</string>
+	<string>com.lootsie.btendlesstunnel</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -68,8 +68,6 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<dict>
 		<key>accelerometer</key>
-		<true/>
-		<key>gamekit</key>
 		<true/>
 		<key>opengles-1</key>
 		<true/>
