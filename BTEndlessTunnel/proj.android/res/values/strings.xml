@@ -9,4 +9,26 @@
     <string name="caption">Estoy jugando Turbo Race</string>
     <string name="fb_description">He obtenido {score} en modo {modo} y he esquivado {obstaculos} obstáculo(s).</string>
 
+ 	<string name="lootsie_terms_section1_title">Fraud</string>
+    <string name="lootsie_terms_section2_title">Returns</string>
+    <string name="lootsie_terms_section3_title">Resale</string>
+    <string name="lootsie_terms_section4_title">Redemption</string>
+    <string name="lootsie_terms_section5_title">Expiration</string>
+    <string name="lootsie_terms_section6_title">Refunds</string>
+    <string name="lootsie_terms_section7_title">Lost or stolen gift cards</string>
+
+    <string name="lootsie_terms_section1_text">Lootsie reserves the right to refuse, cancel or hold for review gift cards and orders, redemptions or claims for suspected fraud, for cards mistakenly issued in an incorrect denomination, or for other violations of gift card policies.</string>
+
+    <string name="lootsie_terms_section2_text">All returns and/or exchanges or customer service issues must be dealt with through that card\'s retailer. Lootsie, Inc. is not responsible for any of the above mentioned. Once a gift card or special offer has been redeemed through Lootsie, Inc., any and all further engagement with the gift card/offer provider must be through that retailer.</string>
+
+    <string name="lootsie_terms_section3_text">Gift cards/discounts cannot be resold or combined with any other offer, unless specifically stated.</string>
+
+    <string name="lootsie_terms_section4_text">If the order total is more than the gift card amount, the remaining balance must be paid for by cash, credit/debit card, PayPal account, product voucher or additional gift card(s). The gift card balance will immediately be reduced. Upon redemption, any unused balance on the gift card will be carried over for future purchases. Balances cannot be redeemed or exchanged for cash.</string>
+
+    <string name="lootsie_terms_section5_text">Gift cards and special offers may have an expiration date listed on Lootsie.com and will not be valid after that date.</string>
+
+    <string name="lootsie_terms_section6_text">Gift cards may not be returned or cancelled after redemption. There are no refunds of Lootsie Points.</string>
+
+    <string name="lootsie_terms_section7_text">Gift cards will not be replaced if lost or stolen. Treat them like gold.</string>
+    
 </resources>

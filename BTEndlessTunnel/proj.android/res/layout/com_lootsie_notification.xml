@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:minWidth="150dp"
+    android:minHeight="100dp">
+
+
+    <!-- Left image -->
+    <!--
+    <com.lootsie.internal.toolbox.LootsieNetworkImageView
+    -->
+
+    <!-- Notification text (title and message) -->
+
+    <!-- Right button -->
+
+
+    <RelativeLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_weight=".8"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"        
+        android:id="@+id/ianLeft"
+        android:layout_toLeftOf="@+id/ianRight"
+        android:ignoreGravity="@android:color/black">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ianLeftImage"
+            android:background="#fff7fffd" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="#00e1fffb">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="You've earned xx Lootsie Points"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="left|top"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="left|top"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:text="first_x"
+                android:textSize="15dp"
+                android:textColor="#ffff3250"
+                android:textIsSelectable="false" />
+
+            <!--
+            android:text="stuff"
+             -->
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:layout_weight=".2"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/ianRight">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView2"
+            android:background="#ffff322b"
+            android:layout_alignParentRight="true" />
+
+        <LinearLayout
+            android:id="@+id/btn"
+            android:layout_width="77dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:visibility="visible"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/arrowImage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:contentDescription="@null"
+                android:src="@drawable/com_lootsie_redeem_logo_white_77x77"
+                android:visibility="visible"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tap_for_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="Redeem"
+                android:textSize="12sp"
+                android:visibility="visible"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

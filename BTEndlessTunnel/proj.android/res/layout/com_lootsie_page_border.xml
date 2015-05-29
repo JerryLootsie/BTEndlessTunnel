@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff4eee7">
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/imageButton"
+            android:background="@drawable/icon_used_46x46"
+            android:contentDescription="test"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:onClick="onClickClose"
+            android:layout_margin="8dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/imageView"
+            android:background="@drawable/lootsie_logo_165x44"
+            android:layout_gravity="center"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_margin="4dp"
+            android:layout_centerInParent="true" />
+
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/icon_more_46x46"
+            android:contentDescription="popup menu"
+            android:onClick="showPopup"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp" />
+
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/rewardsFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        class="com.lootsie.sdk.viewcontrollers.RewardsFragment"
+        tools:layout="@layout/com_lootsie_rewards_fragment"></fragment>
+
+    <fragment
+        android:id="@+id/achievementsFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        class="com.lootsie.sdk.viewcontrollers.AchievementsFragment"
+        tools:layout="@layout/com_lootsie_achievements_fragment"></fragment>
+
+    <fragment
+        android:id="@+id/versionInfoFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        class="com.lootsie.sdk.viewcontrollers.VersionInfoFragment"
+        tools:layout="@layout/com_lootsie_versioninfo_fragment"></fragment>
+
+    <fragment
+        android:id="@+id/termsFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        class="com.lootsie.sdk.viewcontrollers.TermsFragment"
+        tools:layout="@layout/com_lootsie_terms_fragment"></fragment>
+
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        class="com.lootsie.sdk.viewcontrollers.AccountSettingsFragment"
+        tools:layout="@layout/com_lootsie_accountsettings_fragment"></fragment>
+
+
+</LinearLayout>

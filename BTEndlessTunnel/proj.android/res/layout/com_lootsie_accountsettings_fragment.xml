@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fffff9f2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Account Settings"
+                android:id="@+id/accountSettingsTitleTextView"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff000000" />
+
+            <!--
+            android:background="#fff2f2f2"
+            android:background="@drawable/back"
+            -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="My Points"
+                android:id="@+id/accountSettingsTextView1"
+                android:textColor="#ff000000"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Total Lootsie Points: 0 LP"
+                android:id="@+id/accountSettingsPointsTextView"
+                android:textColor="#ff000000"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/accountSettingslootsieSpacer1"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Merge Points"
+                android:id="@+id/accountSettingsTextView3"
+                android:textColor="#ff000000"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/accountSettingsEditTextEmail"
+                android:hint="my email address" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Merge Points"
+                android:id="@+id/accountSettingsMergePointsButton"
+                android:background="#ff1571a5"
+                android:textColor="#ffffffff" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/accountSettingsLootsieSpacer2"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="My Account Information"
+                android:id="@+id/accountSettingsTextView4"
+                android:textColor="#ff000000"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/accountSettingsEditTextFirstName"
+                android:hint="first name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/accountSettingsEditTextLastName"
+                android:hint="last name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/accountSettingsEditTextEmail2"
+                android:hint="my email address" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/accountSettingsEditTextCity"
+                android:hint="city" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/accountSettingsEditTextZipcode"
+                android:hint="zipcode" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Update My Info"
+                android:id="@+id/accountSettingsUpdateInfoButton"
+                android:background="#ff1571a5"
+                android:textColor="#ffffffff" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

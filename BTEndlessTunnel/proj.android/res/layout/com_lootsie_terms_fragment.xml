@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff4eee7">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout 
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff4eee7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Terms &amp; Conditions"
+                android:id="@+id/lootsieTermsTitleTextView"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section1_title"
+                android:id="@+id/lootsieTermsSection1Title"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section1_text"
+                android:id="@+id/lootsieTermsSection1Text"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/lootsieSpacer1"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section2_title"
+                android:id="@+id/lootsieTermsSection2Title"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section2_text"
+                android:id="@+id/lootsieTermsSection2Text"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/lootsieSpacer2"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section3_title"
+                android:id="@+id/lootsieTermsSection3Title"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section3_text"
+                android:id="@+id/lootsieTermsSection3Text"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/lootsieSpacer3"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section4_title"
+                android:id="@+id/lootsieTermsSection4Title"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section4_text"
+                android:id="@+id/lootsieTermsSection4Text"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/lootsieSpacer4"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section5_title"
+                android:id="@+id/lootsieTermsSection5Title"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section5_text"
+                android:id="@+id/lootsieTermsSection5Text"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/lootsieSpacer5"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section6_title"
+                android:id="@+id/lootsieTermsSection6Title"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section6_text"
+                android:id="@+id/lootsieTermsSection6Text"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/lootsieSpacer6"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section7_title"
+                android:id="@+id/lootsieTermsSection7Title"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/lootsie_terms_section7_text"
+                android:id="@+id/lootsieTermsSection7Text"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ff696969" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_rewards"
+        android:icon="@drawable/trophy"
+        android:title="Rewards"
+        android:onClick="onClickMenuRewards"/>
+    <!-- menu group -->
+    <group android:id="@+id/group_delete">
+        <item android:id="@+id/menu_achievments"
+            android:title="Achievements"
+            android:onClick="onClickMenuAchievements"/>
+        <item android:id="@+id/menu_version_info"
+            android:title="Version Info"
+            android:onClick="onClickMenuVersionInfo"/>
+        <item android:id="@+id/menu_terms"
+            android:title="Terms and Conditions"
+            android:onClick="onClickMenuTerms"/>
+        <item android:id="@+id/menu_account"
+            android:title="My Account"
+            android:onClick="onClickMenuAccount"/>
+
+    </group>
+</menu>

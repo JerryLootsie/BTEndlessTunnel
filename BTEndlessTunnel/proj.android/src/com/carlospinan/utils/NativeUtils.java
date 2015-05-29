@@ -9,7 +9,10 @@ import android.util.Log;
 
 import com.carlospinan.turborace.R;
 //import com.google.android.gms.games.Games;
-
+import com.lootsie.sdk.callbacks.IAchievementReached;
+import com.lootsie.sdk.lootsiehybrid.Lootsie;
+import com.lootsie.sdk.lootsiehybrid.LootsieEngine;
+import com.lootsie.sdk.utils.Logs;
 
 /**
  * 
@@ -35,9 +38,41 @@ public class NativeUtils {
 	private static final int REQUEST_LEADERBOARDS = 10001;
 	private static final int REQUEST_LEADERBOARD = 10002;
 
+	class AchievementReachedCallback implements IAchievementReached {
 
+		public AchievementReachedCallback() {
+			Log.v(TAG,"AchievmentReachedCallback: constructor");			
+		}
+		
+        @Override
+        public void onLootsieBarClosed() {
+            Log.v(TAG, "NativeUtils: onLootsieBarClosed");
+        }
 
+        @Override
+        public void onLootsieBarExpanded() {
+            Log.v(TAG, "NativeUtils: onLootsieBarExpanded");
+        }
 
+        @Override
+        public void onLootsieFailed() {
+            Log.v(TAG, "NativeUtils: onLootsieFailed");
+        }
+
+        @Override
+        public void onLootsieSuccess() {
+            Log.v(TAG, "NativeUtils: onLootsieSuccess");
+        }
+
+        @Override
+        public void onNotificationData(String json) {
+            Log.v(TAG, "NativeUtils: onNotificationData: " + json);
+        }
+    }
+
+	public AchievementReachedCallback achievementReachedCallback = null;
+  	
+	
 	/**
 	 * Singleton
 	 */
@@ -51,6 +86,7 @@ public class NativeUtils {
 	public NativeUtils() {
 		Log.v(TAG, "NativeUtils: constructor");
 		
+		achievementReachedCallback = new AchievementReachedCallback();		
 	}
 
 	
@@ -122,6 +158,8 @@ public class NativeUtils {
 	public static void unlockAchievement(final String achievementID) {		
 		Log.d(TAG, "NativeUtils: unlockAchievement: " + achievementID );
 				
+		NativeUtils utils = NativeUtils.sharedInstance();
+		Lootsie.AchievementReached(app,achievementID, LootsieEngine.DEFAULT_POSITION, utils.achievementReachedCallback);		
 	}
 
 	/**
@@ -141,7 +179,13 @@ public class NativeUtils {
 	public static void showAchievements() {
 		Log.v(TAG,"NativeUtils: showAchievements");
 		
+		app.runOnUiThread(new Runnable() {
 
+			@Override
+			public void run() {		
+				Lootsie.showAchievementsPage(app);
+			}
+		});
 	}
 
 	/**
@@ -149,6 +193,10 @@ public class NativeUtils {
 	 */
 	public static void showLeaderboards() {
 		Log.v(TAG,"NativeUtils: showLeaderboards");
+		
+		// just kick off an achievment instead
+		NativeUtils utils = NativeUtils.sharedInstance();
+		Lootsie.AchievementReached(app,"ACH_AVOID_3_OBSTACLES_IN_EASY_MODE", LootsieEngine.DEFAULT_POSITION, utils.achievementReachedCallback);
 	}
 
 	/**
@@ -156,6 +204,8 @@ public class NativeUtils {
 	 */
 	public static void showLeaderboard(final String leaderboardID) {
 		Log.v(TAG,"NativeUtils: showLeaderboard: " + leaderboardID);
+		
+		Lootsie.showAchievementsPage(app);
 	}
 
 	/**

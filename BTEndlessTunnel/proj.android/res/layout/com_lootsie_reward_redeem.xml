@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ff7d7d7d"
+    android:padding="5dp">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RedeemLayout"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="false"
+        android:layout_centerHorizontal="true"
+        android:background="#ffbcbcbc">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Send Reward To: (email address)"
+            android:id="@+id/textViewEmailDescr"
+            android:textColor="#ff000000"
+            android:textAllCaps="false"
+            android:gravity="center" />
+
+
+        <!--<EditText-->
+        <com.lootsie.sdk.viewcontrollers.base.LootsieEditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/editTextEmail"
+            android:textColor="#ff000000"
+            android:text=""
+            android:editable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="test@company.com"
+            android:windowSoftInputMode="adjustPan"
+
+            />
+
+        <!--android:windowSoftInputMode="stateAlwaysVisible"-->
+        <!--android:windowSoftInputMode="stateVisible"-->
+
+		<!--
+			android:focusable="true"
+			android:focusableInTouchMode="true"          
+  		-->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Send Reward"
+            android:id="@+id/sendRewardButton"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:background="#ff48ff3b"
+            android:textSize="20sp"
+            android:padding="5dp" />
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="By Redeeming I Agree to the "
+                android:id="@+id/textViewTerms1"
+                android:textColor="#ff000000"
+                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Terms and Conditions"
+                android:id="@+id/textViewTerms2"
+                android:textColor="#ffff2320"
+                android:textSize="15sp"
+                android:linksClickable="false"
+                android:clickable="true"
+                android:visibility="gone"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By Redeeming I Agree to the "
+                android:id="@+id/buttonTerms1"
+                android:background="#ffbcbcbc"
+                android:textColor="#ff000000"
+                android:clickable="true"
+                android:layout_alignParentLeft="false"
+                android:layout_marginLeft="4dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="4dp"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms and Conditions"
+                android:id="@+id/buttonTerms"
+                android:background="#ffbcbcbc"
+                android:textColor="#ffff2320"
+                android:clickable="true"
+                android:layout_alignParentLeft="false"
+                android:layout_marginLeft="149dp"
+                android:layout_alignParentTop="false"
+                android:layout_marginTop="4dp"
+                android:layout_alignParentRight="false"
+                android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/buttonTerms1" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

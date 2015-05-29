@@ -16,3 +16,5 @@ BTEndlessTunnel.xcodeproj/project.xcworkspace/xcuserdata/nss.xcuserdatad/UserInt
 BTEndlessTunnel.xcodeproj/project.xcworkspace/xcuserdata
 BTEndlessTunnel.xcodeproj/xcuserdata
 Build
+BTEndlessTunnel/proj.android/bin
+BTEndlessTunnel/proj.android/gen

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Lootsie Preference Category" />
+
+
+    <Preference
+        android:key="com.lootsie.sdk.user_session_token"
+        android:selectable="false"
+        android:title="Lootsie User Session Token"
+        android:persistent="true"
+        android:summary="Multi line description\ncan go here."/>
+
+    <Preference
+        android:key="com.lootsie.sdk.api_session_token"
+        android:selectable="false"
+        android:title="Lootsie Api Session Token"
+        android:persistent="true"
+        android:summary="Multi line description\ncan go here."/>
+
+    <!--<PreferenceCategory android:title="FussyLogic Authenticator" />-->
+
+    <CheckBoxPreference
+        android:key="com_lootsie_isDebug"
+        android:summary="Connecting to a debug server instead of production server"
+        android:title="Use debug server" />
+
+    <SwitchPreference
+        android:key="com_lootsie_logsVerbose"
+        android:summary="Increase logging verbosity for LogCat output"
+        android:title="Debug Logs" />
+
+    <!-- this causes a crash
+    W/WindowManager﹕ Attempted to add window with non-application token WindowToken{38893040 null}.  Aborting.
+    android:dialogTitle="EditText Dialog"
+    -->
+    <!--<EditTextPreference-->
+        <!--android:key="com_lootsie_editText"-->
+        <!--android:title="EditText title"-->
+        <!--android:summary="EditText summary">-->
+    <!--</EditTextPreference>-->
+
+
+    <!-- causes a crash
+        http://stackoverflow.com/questions/2838063/account-preferences-crashes-on-listpreference
+    -->
+    <!--<ListPreference-->
+        <!--android:key="PREF_LIST"-->
+        <!--android:title="ListPreference title"-->
+        <!--android:summary="ListPreference summary"-->
+        <!--android:entries="@array/listentries"-->
+        <!--android:entryValues="@array/listvalues">-->
+    <!--</ListPreference>-->
+
+
+    <!--is this being blocked by the intent filter?-->
+    <!--<PreferenceScreen-->
+        <!--android:key="key1"-->
+        <!--android:title="Lootsie Preference Screen"-->
+        <!--android:summary="Lootsie Preference Screen Summary">-->
+        <!--<intent-->
+            <!--android:targetPackage="com.lootsie.sdk.utils"-->
+            <!--android:targetClass="com.lootsie.sdk.utils.LootsiePreferencesActivity"-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--/>-->
+    <!--</PreferenceScreen>-->
+
+    <!--doesn't fucking work-->
+    <!--
+    http://stackoverflow.com/questions/14328253/launch-intent-from-account-authenticator-accountpreferences-screen
+    -->
+    <!--<PreferenceScreen-->
+        <!--android:title="Account Settings"-->
+        <!--android:summary="Favorites, Orders, and more.">-->
+        <!--<intent-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--android:targetPackage="com.lootsie.sdk.utils"-->
+            <!--android:targetClass="com.lootsie.sdk.utils.LootsiePreferencesActivity"/>-->
+    <!--</PreferenceScreen>-->
+
+    <!-- This PreferenceScreen tag sends the user to a new fragment of
+                 preferences.  If running in a large screen, they can be embedded
+                 inside of the overall preferences UI. -->
+    <!--
+    android:fragment="com.lootsie.sdk.utils.LootsiePreferencesFragment"
+    android:fragment="com.lootsie.sdk.utils.LootsiePreferencesActivity$LootsiePreferencesFragment"  - fails!
+    -->
+    <!--adding intent breaks this-->
+    <!--<intent-->
+    <!--android:action="android.intent.action.VIEW"-->
+    <!--android:targetPackage="com.lootsie.sdk.utils"-->
+    <!--android:targetClass="com.lootsie.sdk.utils.LootsiePreferencesFragment" />-->
+    <!--<PreferenceScreen-->
+        <!--android:fragment="com.lootsie.sdk.utils.LootsiePreferencesFragment"-->
+        <!--android:title="PreferenceScreen LootsiePreferencesFragment"-->
+        <!--android:summary="LootsiePreferencesFragment Summary">-->
+     <!--<extra android:name="someKey" android:value="somePrefValue" />-->
+    <!--</PreferenceScreen>-->
+
+
+    <!--causes a runtime crash of account manager-->
+    <!--
+    http://gmariotti.blogspot.com/2013/01/preferenceactivity-preferencefragment.html
+    http://gmariotti.blogspot.com/2013/01/preferenceactivity-preferencefragment_28.html
+    preference-headers class not found?
+    -->
+    <!--<preference-headers-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android">-->
+        <!--<header-->
+            <!--android:fragment="com.lootsie.sdk.utils.LootsiePreferencesFragment"-->
+            <!--android:title="PreferenceScreen LootsiePreferencesFragment"-->
+            <!--android:summary="LootsiePreferencesFragment Summary">-->
+        <!--</header>-->
+    <!--</preference-headers>-->
+
+    <!--doesn't fucking work-->
+    <!--<Preference-->
+        <!--android:key="com_lootsie_preference"-->
+        <!--android:title="Lootsie Preference"-->
+        <!--android:summary="Lootsie Preference">-->
+        <!--<intent-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--android:targetPackage="com.lootsie.sdk.utils"-->
+            <!--android:targetClass="com.lootsie.sdk.utils.LootsiePreferencesActivity" />-->
+    <!--</Preference>-->
+
+    <!-- this doesn't show up! -->
+    <!--
+    <Preference
+        android:title="LootsiePreferences Intent"
+        android:summary="LootsiePreferences Intent"  >
+        <intent
+            android:targetPackage="com.lootsie.sdk.utils"
+            android:targetClass="com.lootsie.sdk.utils.LootsiePreferencesActivity"
+            android:action="com.lootsie.sdk.utils.PREFS_ONE" />
+    </Preference>
+    -->
+
+    <PreferenceScreen
+        android:key="account_settings"
+        android:title="Last.fm Settings"
+        android:summary="Configure player, scrobbler, and sync settings">
+        <intent
+          android:action="android.intent.action.VIEW"
+          android:targetPackage="com.lootsie.sdk.utils"
+          android:targetClass="com.lootsie.sdk.utils.LootsiePreferencesActivity" />
+</PreferenceScreen>
+
+</PreferenceScreen>
