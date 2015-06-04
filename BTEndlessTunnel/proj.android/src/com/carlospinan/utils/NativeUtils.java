@@ -47,11 +47,13 @@ public class NativeUtils {
         @Override
         public void onLootsieBarClosed() {
             Log.v(TAG, "NativeUtils: onLootsieBarClosed");
+            app.onResume();
         }
 
         @Override
         public void onLootsieBarExpanded() {
             Log.v(TAG, "NativeUtils: onLootsieBarExpanded");
+            app.onPause();
         }
 
         @Override
@@ -195,8 +197,8 @@ public class NativeUtils {
 		Log.v(TAG,"NativeUtils: showLeaderboards");
 		
 		// just kick off an achievment instead
-		NativeUtils utils = NativeUtils.sharedInstance();
-		Lootsie.AchievementReached(app,"ACH_AVOID_3_OBSTACLES_IN_EASY_MODE", LootsieEngine.DEFAULT_POSITION, utils.achievementReachedCallback);
+		//NativeUtils utils = NativeUtils.sharedInstance();
+		//Lootsie.AchievementReached(app,"ACH_AVOID_3_OBSTACLES_IN_EASY_MODE", LootsieEngine.DEFAULT_POSITION, utils.achievementReachedCallback);
 	}
 
 	/**

@@ -56,10 +56,10 @@ static int counter_ads = 0;
 
 // Level definition
 /*
- 0 = Obstaculo Simple Abajo
- 1 = Obstaculo Simple Arriba
- 2 = Obstaculo Doble en Tierra
- 3 = Obstaculo Doble en Aire
+ 0 = Obstaculo Simple Abajo - Simple obstacle Down
+ 1 = Obstaculo Simple Arriba - Simple obstacle Top
+ 2 = Obstaculo Doble en Tierra - Double obstacle Land
+ 3 = Obstaculo Doble en Aire - Double obstacle in Air
  4 = x2 Obstaculo Simple Abajo
  5 = x2 Obstaculo Simple Arriba
  6 = x3 Obstaculo Doble en Tierra
@@ -966,12 +966,14 @@ void GameLayer::_gameLogic(float dt)
         
         obstacle->doUpdate(positionX, _worldSpeed * dt * DT_SPEED_OBSTACULOS);
         
+        // obstacle reached the left side of screen
         if(obstacle->getPositionX() < -obstacle->getContentSize().width * 0.5f)
         {
             _removeObstacles->addObject(obstacle);
         }
         else
         {
+            // obstacle hit player
             if(obstacle->getPositionX() < WIN_SIZE.width && obstacle->getPositionX() > 0 && obstacle->collision(*_player))
             {
                 if(_hudLayer->isVisible())
@@ -990,6 +992,7 @@ void GameLayer::_gameLogic(float dt)
             }
             else
             {
+                // player avoided obstacle
                 if(!obstacle->getPassPlayerSFX() && obstacle->getPositionX() + obstacle->getContentSize().width * 1.0f < _player->getPositionX())
                 {
                     obstacle->setPassPlayerSFX(true);
@@ -999,6 +1002,8 @@ void GameLayer::_gameLogic(float dt)
                     }
                     _obstaclesAvoided++;
                     SimpleAudioEngine::sharedEngine()->playEffect(SFX_SWOOSH);
+                    
+                    _checkAchievements();
                 }
                 
             }
@@ -1249,6 +1254,7 @@ void GameLayer::_finishTutorial(cocos2d::CCObject *object)
     // pauseGame();
 }
 
+// this is now called every time we pass an object, so the obstacle match can be exact instead of >==
 void GameLayer::_checkAchievements()
 {
     
@@ -1256,7 +1262,7 @@ void GameLayer::_checkAchievements()
     
     // Obstacles avoidment
     
-    if(_gameLevel == kGameLevelEasy && _obstaclesAvoided >= 100)
+    if(_gameLevel == kGameLevelEasy && _obstaclesAvoided == 100)
     {
         
         if(!LocalStorageManager::isAchievementUnlocked(ACH_AVOID_100_OBSTACLES_IN_EASY_MODE))
@@ -1266,7 +1272,7 @@ void GameLayer::_checkAchievements()
         }
         
     }
-    else if(_gameLevel == kGameLevelEasy && _obstaclesAvoided >= 3)
+    else if(_gameLevel == kGameLevelEasy && _obstaclesAvoided == 3)
     {
         
         if(!LocalStorageManager::isAchievementUnlocked("ACH_AVOID_3_OBSTACLES_IN_EASY_MODE"))
@@ -1281,7 +1287,7 @@ void GameLayer::_checkAchievements()
         }    
         
     }
-    else if(_gameLevel == kGameLevelNormal && _obstaclesAvoided >= 50)
+    else if(_gameLevel == kGameLevelNormal && _obstaclesAvoided == 50)
     {
         
         if(!LocalStorageManager::isAchievementUnlocked(ACH_AVOID_50_OBSTACLES_IN_NORMAL_MODE))
@@ -1291,7 +1297,7 @@ void GameLayer::_checkAchievements()
         }
         
     }
-    else if(_gameLevel == kGameLevelHard && _obstaclesAvoided >= 25)
+    else if(_gameLevel == kGameLevelHard && _obstaclesAvoided == 25)
     {
         
         if(!LocalStorageManager::isAchievementUnlocked(ACH_AVOID_25_OBSTACLES_IN_HARD_MODE))
@@ -1302,7 +1308,7 @@ void GameLayer::_checkAchievements()
         
     }
     
-    if(_gameLevel == kGameLevelHard && _obstaclesAvoided >= 100)
+    if(_gameLevel == kGameLevelHard && _obstaclesAvoided == 100)
     {
         
         if(!LocalStorageManager::isAchievementUnlocked(ACH_AVOID_100_OBSTACLES_IN_HARD_MODE))
@@ -1396,7 +1402,9 @@ void GameLayer::_checkAchievements()
         
     }
     
-    _obstaclesJumped = 0;
+    if (_gameOver) {
+        _obstaclesJumped = 0;
+    }
     
 }
 

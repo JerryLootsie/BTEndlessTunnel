@@ -7,10 +7,11 @@
 //
 #import "AppDelegate.h"
 
+#import "Lootsie.h"
 
 @class RootViewController;
 
-@interface AppController : NSObject <UIAccelerometerDelegate, UIAlertViewDelegate, UITextFieldDelegate,UIApplicationDelegate> {
+@interface AppController : NSObject <UIAccelerometerDelegate, UIAlertViewDelegate, UITextFieldDelegate,UIApplicationDelegate, LootsieDelegate> {
     UIWindow *window;
     RootViewController    *viewController;
     //RootViewController    *_viewController;

@@ -129,11 +129,30 @@ static AppDelegate s_sharedApplication;
     
     [[AppController sharedInstance] init];
 
+    // register for callbacks
+    [[Lootsie sharedInstance] setDelegate:self];
+    
     PlayGameSingleton::sharedInstance().initAd();
     cocos2d::CCApplication::sharedApplication()->run();
     
     return YES;
 }
+
+// Lootsie delegate method.  This is called when an achievement (Lootsie pop!) is expanded (Lootsie roll!).
+- (void) achievementReachedBarExpanded
+{
+    NSLog(@"LootsieHybridApp: AppDelegate callback: Achievement reached and the Lootsie Pop has been expanded into a Lootsie Roll because the user tapped it!");
+    cocos2d::CCDirector::sharedDirector()->pause();
+    
+}
+
+// Lootsie delegate method.  This is called when an achievement page has been closed.
+- (void) achievementReachedBarClosed
+{
+    NSLog(@"LootsieHybridApp: AppDelegate callback: Achievement page has been closed");
+    cocos2d::CCDirector::sharedDirector()->resume();    
+}
+
 
 -(UIViewController*) getRootViewController {
     return viewController;
