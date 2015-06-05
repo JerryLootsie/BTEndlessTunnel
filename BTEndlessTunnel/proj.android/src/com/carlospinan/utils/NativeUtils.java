@@ -7,7 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import com.carlospinan.turborace.R;
+//import com.carlospinan.turborace.R;
+import com.lootsie.turborace.R;
 //import com.google.android.gms.games.Games;
 import com.lootsie.sdk.callbacks.IAchievementReached;
 import com.lootsie.sdk.lootsiehybrid.Lootsie;
