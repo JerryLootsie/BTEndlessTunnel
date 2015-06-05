@@ -19,7 +19,8 @@ enum
 {
     kZHomeLayer = 99999,
     kZHudLayer = 9999,
-    kZGameLayer = 999
+    kZGameLayer = 999,
+    kZAchievmentsLayer = 99
 };
 
 class HomeScene : public cocos2d::CCScene

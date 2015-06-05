@@ -63,6 +63,8 @@ bool AppDelegate::applicationDidFinishLaunching()
         pDirector->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
     }
     */
+    searchPaths.push_back(mediumResourceWhitelabel.directory);
+
     
     searchPaths.push_back(mediumResource.directory);
     pDirector->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));

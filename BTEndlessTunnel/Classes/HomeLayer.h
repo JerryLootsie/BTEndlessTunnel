@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "GameLayer.h"
 #include "SettingsLayer.h"
-
+#include "PopUpAchievementsLayer.h"
 
 enum HomeButtons
 {
@@ -33,6 +33,8 @@ public:
     virtual ~HomeLayer();
     void onEnterTransitionDidFinish();
     
+    void _showLayer();
+    
 private:
     cocos2d::CCSprite* tablero;
     cocos2d::CCSprite* logo;
@@ -49,10 +51,17 @@ private:
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
     void _finishHideLayer();
+    void _finishHideLayerDontStartGame();
+    
+    
+    
     void _manageMusic(cocos2d::CCObject* pSender);
     
     void _hideToLeft();
     void _hideToRight();
+    
+    void _unhideFromLeft();
+    void _unhideFromRight();
     
     void _enableButtons();
     void _disableButtons();
@@ -64,6 +73,10 @@ private:
     bool disable;
     GameLayer* _gameLayer;
     SettingsLayer* _settingsLayer;
+    
+//    PopUpLoseLayer* _popUpLoseLayer;
+    PopUpAchievementsLayer* _popUpAchievementsLayer;
+    
     cocos2d::CCMenu* menu;
 };
 

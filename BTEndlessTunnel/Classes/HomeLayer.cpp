@@ -12,6 +12,7 @@
 #include "SimpleAudioEngine.h"
 #include "PlayGameConstants.h"
 #include "LocalStorageManager.h"
+#include "PopupLoseLayer.h"
 
 #define HIDE_TIME 0.4f
 
@@ -172,6 +173,22 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     _settingsLayer->setVisible(false);
     addChild(_settingsLayer, 9999);
     
+    // testing popuploselayer
+//    _popUpLoseLayer = new PopUpLoseLayer();
+//    //_popUpLoseLayer->setPosition(ccp(0, -WIN_SIZE.height));
+//    _popUpLoseLayer->setPositionY(0);
+//    _popUpLoseLayer->setVisible(false);
+//    _popUpLoseLayer->autorelease();
+//    addChild(_popUpLoseLayer, 10000);
+    
+    // testing _popUpAchievementsLayer
+    _popUpAchievementsLayer = new PopUpAchievementsLayer();
+    _popUpAchievementsLayer->setPositionY(0);
+    _popUpAchievementsLayer->setVisible(false);
+    _popUpAchievementsLayer->autorelease();
+    _popUpAchievementsLayer->_setHomeLayer(this);
+    addChild(_popUpAchievementsLayer, 10000);
+    
     NativeUtils::showAd();
 }
 
@@ -248,8 +265,17 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
             
         case kTagAchievements:
             std::cout << "HomeLayer: show achievments\n";
-            NativeUtils::sendAnalytics("Show Achievements");
-            NativeUtils::showAchievements();
+            
+            // normally setting runGame to true => will kick off finish and hide layer
+            _disableButtons();
+            disable = true;
+            _hideToLeft();
+            _hideToRight();
+
+            scheduleOnce(schedule_selector(HomeLayer::_finishHideLayerDontStartGame), HIDE_TIME + 0.1f);
+
+            _popUpAchievementsLayer->setVisible(true);
+            
             break;
             
         case kTagRateApp:
@@ -286,9 +312,31 @@ void HomeLayer::_hideToLeft()
     menuSound->runAction((CCAction*) move->copy()->autorelease());
 }
 
+void HomeLayer::_unhideFromLeft()
+{
+    CCMoveBy* move = CCMoveBy::create(HIDE_TIME, ccp(+WIN_SIZE.width * 0.8f, 0));
+    tablero->runAction((CCAction*) move->copy()->autorelease());
+    menuItemEasy->runAction((CCAction*) move->copy()->autorelease());
+    menuItemNormal->runAction((CCAction*) move->copy()->autorelease());
+    menuItemHard->runAction((CCAction*) move->copy()->autorelease());
+    menuItemAchievements->runAction((CCAction*) move->copy()->autorelease());
+    menuItemLeaderboard->runAction((CCAction*) move->copy()->autorelease());
+    menuSound->runAction((CCAction*) move->copy()->autorelease());
+}
+
+
 void HomeLayer::_hideToRight()
 {
     CCMoveBy* move = CCMoveBy::create(HIDE_TIME, ccp(WIN_SIZE.width * 0.8f, 0));
+    menuItemSettings->runAction((CCAction*) move->copy()->autorelease());
+    menuRateApp->runAction((CCAction*) move->copy()->autorelease());
+    menuHowToPlay->runAction((CCAction*) move->copy()->autorelease());
+    logo->runAction((CCAction*) move->copy()->autorelease());
+}
+
+void HomeLayer::_unhideFromRight()
+{
+    CCMoveBy* move = CCMoveBy::create(HIDE_TIME, ccp(-WIN_SIZE.width * 0.8f, 0));
     menuItemSettings->runAction((CCAction*) move->copy()->autorelease());
     menuRateApp->runAction((CCAction*) move->copy()->autorelease());
     menuHowToPlay->runAction((CCAction*) move->copy()->autorelease());
@@ -301,6 +349,24 @@ void HomeLayer::_finishHideLayer()
     _gameLayer->playGame();
     this->removeFromParent();    
 }
+
+void HomeLayer::_finishHideLayerDontStartGame()
+{
+//    this->setVisible(false);
+//    this->removeFromParent();
+}
+
+void HomeLayer::_showLayer() {
+    std::cout << "HomeLayer: _showLayer\n";
+    
+    _enableButtons();
+    disable = false;
+    _unhideFromLeft();
+    _unhideFromRight();
+    
+    this->setVisible(true);
+}
+
 
 void HomeLayer::_enableButtons()
 {

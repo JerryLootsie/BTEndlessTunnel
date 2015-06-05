@@ -75,6 +75,7 @@ enum GameDeep
 #include "PauseLayer.h"
 #include "PopUpLoseLayer.h"
 #include "BaseObstacle.h"
+#include "PopUpAchievementsLayer.h"
 
 class GameLayer : public cocos2d::CCLayer
 {

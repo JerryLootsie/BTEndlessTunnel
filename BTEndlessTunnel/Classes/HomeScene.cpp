@@ -23,6 +23,10 @@ HomeScene::HomeScene(GameMode gameMode, GameLevel gameLevel, bool showAds)
     gameLayer->autorelease();
     addChild(gameLayer, kZGameLayer);
     
+//    PopUpAchievementsLayer* achievementsLayer = new PopUpAchievementsLayer();
+//    achievementsLayer->autorelease();
+//    addChild(achievementsLayer, kZAchievmentsLayer);
+    
     if(gameMode == kGameModeHome)
     {
         HomeLayer* homeLayer = new HomeLayer(gameLayer, showAds);
