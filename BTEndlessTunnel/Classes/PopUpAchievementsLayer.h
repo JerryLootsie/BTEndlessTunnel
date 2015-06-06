@@ -9,6 +9,7 @@
 #ifndef __BTEndlessTunnel__PopUpAchievementsLayer__
 #define __BTEndlessTunnel__PopUpAchievementsLayer__
 
+#include <vector>
 #include "cocos2d.h"
 //#include "HomeLayer.h"
 
@@ -21,6 +22,15 @@ class HomeLayer;
 //    kTagSendScore = 2
 //};
 
+class AchievementLine {
+    
+public:
+    cocos2d::CCSprite* _spTrophy;
+    cocos2d::CCLabelTTF* _lblAchievement1;
+    cocos2d::CCLabelTTF* _lblAchievementPoints1;
+};
+
+
 class PopUpAchievementsLayer : public cocos2d::CCLayerColor
 {
 public:
@@ -32,6 +42,7 @@ private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
     void _finishHideLayer();
     
+    void _addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset);
 
     
 private:
@@ -43,12 +54,19 @@ private:
 
     HomeLayer *_homeLayer;
     
-    
     cocos2d::CCLabelTTF* _lblTitle;
     
-    cocos2d::CCLabelTTF* _lblScore;
-    cocos2d::CCLabelTTF* _lblMaxScore;
-    cocos2d::CCSprite* spBadge;
+    //AchievementLine *achievementEntries;
+    AchievementLine **achievementEntries;
+
+    
+    //std::vector< std::vector< AchievementLine > > AchievementLineVector;
+
+    
+    
+//    cocos2d::CCLabelTTF* _lblScore;
+//    cocos2d::CCLabelTTF* _lblMaxScore;
+//    cocos2d::CCSprite* spBadge;
     bool disable;
 };
 #endif /* defined(__BTEndlessTunnel__PopUpAchievementsLayer__) */

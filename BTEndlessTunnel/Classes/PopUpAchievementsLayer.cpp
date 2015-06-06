@@ -14,6 +14,9 @@
 //
 //
 
+#include <string.h>
+#include <stdio.h>
+
 #include "Constants.h"
 #include "HomeScene.h"
 #include "AppMacros.h"
@@ -58,38 +61,19 @@ PopUpAchievementsLayer::PopUpAchievementsLayer()
         bgRight->setPosition(achievmentsGroupPointRight);
         addChild(bgRight);
         
+        
         _lblTitle = CCLabelTTF::create("Achievements", FONT_GAME, SIZE_TUT_TITLE, CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * 0.15f), kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
         _lblTitle->setPosition(ccp(origin.x,  visibleOrigin.y + visibleSize.height* 0.92f));
         _lblTitle->setColor(ccWHITE);
         addChild(_lblTitle);
         
+        achievementEntries = new AchievementLine*;
         
-        float w = bgLeft->getContentSize().width;
-        float h = bgLeft->getContentSize().height;
-        CCPoint o = ccp(w * 0.5f, h * 0.5f);
-        
-        // Badge and record
-//        spBadge = CCSprite::create("bicho_0004.png");
-//        spBadge->setPosition(ccp(o.x, o.y + spBadge->getContentSize().height * 0.5f));
-//        bgLeft->addChild(spBadge, 10);
-        
-//        _lblScore = CCLabelTTF::create("", FONT_GAME, SIZE_RATE_END, CCSizeMake(w * 0.5f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
-//        _lblScore->setPosition(ccp(o.x + spBadge->getContentSize().width * 0.8f, o.y - spBadge->getContentSize().height * 0.1f));
-//        _lblScore->setColor(ccWHITE);
-//        _lblScore->setRotation(-3);
-//        bgLeft->addChild(_lblScore);
-        
-//        _lblMaxScore = CCLabelTTF::create("", FONT_GAME, _lblScore->getFontSize(), CCSizeMake(w * 0.5f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
-//        _lblMaxScore->setPosition(ccp(_lblScore->getPositionX(), _lblScore->getPositionY() - spBadge->getContentSize().height * 0.28f));
-//        _lblMaxScore->setColor(ccWHITE);
-//        _lblMaxScore->setRotation(_lblScore->getRotation());
-//        bgLeft->addChild(_lblMaxScore);
-        
-        // Send score button
-//        CCMenuItemImage* itemScore = CCMenuItemImage::create("fb-icon.png", "fb-icon.png", this, menu_selector(PopUpAchievementsLayer::_onOptionPressed));
-//        itemScore->setTag(kTagSendScore);
-//        itemScore->setPositionX(o.x - itemScore->getContentSize().width * 1.5f);
-//        itemScore->setPositionY(o.y - itemScore->getContentSize().height * 1.7f);
+
+        _addAchievementEntries(bgLeft, -3);
+
+        _addAchievementEntries(bgRight, 3);
+
         
         // Home button
         CCMenuItemImage* itemHome = CCMenuItemImage::create("pause_home_off.png", "pause_home.png", this,
@@ -124,6 +108,55 @@ PopUpAchievementsLayer::PopUpAchievementsLayer()
         
     }
 }
+
+void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset) {
+    
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCPoint visibleOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
+    CCPoint origin = ccp(visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height* 0.5f);
+
+    for (int i = 0; i < 5; i++) {
+        AchievementLine *achievementEntry = new AchievementLine();
+        
+        achievementEntries[i] = achievementEntry;
+        
+        
+
+        
+        
+        float w = bgSprite->getContentSize().width;
+        float h = bgSprite->getContentSize().height;
+        CCPoint o = ccp(w * 0.5f, h * 0.5f);
+        
+        char buffer[50];
+        sprintf(buffer, "Achievement %d",i);
+        
+        achievementEntry->_lblAchievement1 = CCLabelTTF::create(buffer, FONT_GAME, SIZE_RATE_END, CCSizeMake(w * 0.5f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
+        achievementEntry->_lblAchievement1->setPosition(ccp(0 + achievementEntry->_lblAchievement1->getContentSize().width,
+                                                            h - (achievementEntry->_lblAchievement1->getContentSize().height * 1.1f * (i+1))));
+        achievementEntry->_lblAchievement1->setColor(ccWHITE);
+        achievementEntry->_lblAchievement1->setRotation(rotationOffset);
+        bgSprite->addChild(achievementEntry->_lblAchievement1);
+        
+        
+        achievementEntry->_spTrophy = CCSprite::create("achievement_icon.png");
+        achievementEntry->_spTrophy->setPosition(ccp(0 + achievementEntry->_spTrophy->getContentSize().width * 1.5f,
+                                                     h - (achievementEntry->_spTrophy->getContentSize().height * 2.0f)
+                                                     - (achievementEntry->_lblAchievement1->getContentSize().height * 1.1f * i)));
+        bgSprite->addChild(achievementEntry->_spTrophy);
+        
+        sprintf(buffer, "%d LP",(i*10 + 1));
+        achievementEntry->_lblAchievementPoints1 = CCLabelTTF::create(buffer, FONT_GAME, SIZE_TUT_INST, CCSizeMake(w * 0.25f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
+        achievementEntry->_lblAchievementPoints1->setPosition(ccp(0 + achievementEntry->_lblAchievement1->getContentSize().width +
+                                                                  achievementEntry->_lblAchievementPoints1->getContentSize().width,
+                                                                  h - (achievementEntry->_spTrophy->getContentSize().height * 1.5f)
+                                                                  - (achievementEntry->_lblAchievement1->getContentSize().height * 1.1f * i)));
+        achievementEntry->_lblAchievementPoints1->setColor(ccWHITE);
+        achievementEntry->_lblAchievementPoints1->setRotation(rotationOffset);
+        bgSprite->addChild(achievementEntry->_lblAchievementPoints1);
+    }
+}
+
 
 void PopUpAchievementsLayer::_setHomeLayer(HomeLayer *inputLayer) {
     
