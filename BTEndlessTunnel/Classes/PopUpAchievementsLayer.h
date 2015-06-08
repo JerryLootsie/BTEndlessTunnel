@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "cocos2d.h"
+#include "cocos-ext.h"
 //#include "HomeLayer.h"
 
 class HomeLayer;
@@ -38,12 +39,21 @@ public:
 //    void updateScore(int level, float score, int obstaclesAvoided);
     void _setHomeLayer(HomeLayer *inputLayer);
     
+    cocos2d::extension::CCScrollView *scrollView;
+    cocos2d::CCSprite *background1;
+    cocos2d::CCSprite *background2;
+    cocos2d::CCLayer *scrollContainer;
+    
+    
+    
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
     void _finishHideLayer();
     
+    void _createAchievementScreens();
     void _addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset);
-
+    void _createScrollView();
+    void _createScrollView2();
     
 private:
     const char* _leaderboardID;
