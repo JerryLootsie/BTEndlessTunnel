@@ -51,9 +51,11 @@ private:
     void _finishHideLayer();
     
     void _createAchievementScreens();
-    void _addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset);
+//    void _addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset);
+    void _addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset);
     void _createScrollView();
     void _createScrollView2();
+    void _createScrollView3();
     
 private:
     const char* _leaderboardID;
