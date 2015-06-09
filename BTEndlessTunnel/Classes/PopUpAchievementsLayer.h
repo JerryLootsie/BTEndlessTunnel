@@ -31,6 +31,11 @@ public:
     cocos2d::CCLabelTTF* _lblAchievementPoints1;
 };
 
+enum AchievmentsOrientation
+{
+    ACHIEVMENT_SCREEN_LEFT = 1,
+    ACHIEVMENT_SCREEN_RIGHT = 2
+};
 
 class PopUpAchievementsLayer : public cocos2d::CCLayerColor
 {
@@ -39,12 +44,11 @@ public:
 //    void updateScore(int level, float score, int obstaclesAvoided);
     void _setHomeLayer(HomeLayer *inputLayer);
     
-    cocos2d::extension::CCScrollView *scrollView;
-    cocos2d::CCSprite *background1;
-    cocos2d::CCSprite *background2;
-    cocos2d::CCLayer *scrollContainer;
-    
-    
+//    cocos2d::extension::CCScrollView *scrollView;
+//    cocos2d::CCLayer *scrollContainer;
+
+    cocos2d::CCLayer *scrollContainerLeft;
+    cocos2d::CCLayer *scrollContainerRight;
     
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
@@ -55,7 +59,7 @@ private:
     void _addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset);
     void _createScrollView();
     void _createScrollView2();
-    void _createScrollView3();
+    cocos2d::CCLayer* _createScrollView3(AchievmentsOrientation orientation);
     
 private:
     const char* _leaderboardID;
@@ -69,8 +73,8 @@ private:
     cocos2d::CCLabelTTF* _lblTitle;
     
     //AchievementLine *achievementEntries;
-    AchievementLine **achievementEntries;
-
+    //AchievementLine **achievementEntries;
+    std::vector<AchievementLine*> achievementEntries;
     
     //std::vector< std::vector< AchievementLine > > AchievementLineVector;
 

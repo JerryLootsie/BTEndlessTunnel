@@ -46,10 +46,26 @@ PopUpAchievementsLayer::PopUpAchievementsLayer()
         CCSize winSize = CCDirector::sharedDirector()->getWinSize();
         
 
+        // cover up the background behind the scrollable area
+        CCSprite* bgLeft = CCSprite::create("achievement_bg.png");
+        bgLeft->setPosition(ccp((winSize.width/2) - (bgLeft->getContentSize().width / 2),
+                                visibleOrigin.y + visibleSize.height* 0.5f));
+        bgLeft->retain();
+        addChild(bgLeft);
+        
+        CCSprite* bgRight = CCSprite::create("achievement_bg.png");
+        bgRight->setFlipX(true);
+        CCPoint achievmentsGroupPointRight = ccp(visibleOrigin.x + (visibleSize.width * 0.5f) + (bgRight->getTextureRect().size.width * 0.5f),
+                                                 visibleOrigin.y + visibleSize.height* 0.5f);
+        bgRight->setPosition(achievmentsGroupPointRight);
+        bgRight->retain();
+        addChild(bgRight);
         
 //        _createScrollView();
 //        _createScrollView2();
-        _createScrollView3();
+        scrollContainerLeft = _createScrollView3(ACHIEVMENT_SCREEN_LEFT);
+        
+        scrollContainerRight = _createScrollView3(ACHIEVMENT_SCREEN_RIGHT);
 
         _createAchievementScreens();
         
@@ -61,7 +77,7 @@ PopUpAchievementsLayer::PopUpAchievementsLayer()
         itemHome->setPositionX(itemHome->getContentSize().width * 0.75f);
         //itemHome->setPositionY(origin.y);
         itemHome->setPositionY(winSize.height - (itemHome->getContentSize().height * 1.7f));
-
+        itemHome->retain();
         std::cout << "PopUpAchievementsLayer: itemHome: " << itemHome->getContentSize().width << "x" << itemHome->getContentSize().height << std::endl;
         
         // Menu
@@ -69,6 +85,7 @@ PopUpAchievementsLayer::PopUpAchievementsLayer()
         menu->setAnchorPoint(ccp(0, 0));
         menu->setPosition(CCPointZero);
         menu->addChild(itemHome);
+        menu->retain();
         addChild(menu);
         
         
@@ -91,12 +108,10 @@ void PopUpAchievementsLayer::_createAchievementScreens() {
                                             visibleOrigin.y + visibleSize.height* 0.5f);
     bgLeft->setPosition(achievmentsGroupPointLeft);
     addChild(bgLeft);
-//    scrollContainer->addChild(bgLeft);
+
     
-    CCSprite* bgRight = CCSprite::create("achievement_bg.png");
-    //bgRight->setRotation(180.0f);
+    CCSprite* bgRight = CCSprite::create("achievement_bg_border.png");
     bgRight->setFlipX(true);
-    
     CCPoint achievmentsGroupPointRight = ccp(visibleOrigin.x + (visibleSize.width * 0.5f) + (bgRight->getTextureRect().size.width * 0.5f),
                                              visibleOrigin.y + visibleSize.height* 0.5f);
     bgRight->setPosition(achievmentsGroupPointRight);
@@ -108,13 +123,14 @@ void PopUpAchievementsLayer::_createAchievementScreens() {
     _lblTitle->setColor(ccWHITE);
     addChild(_lblTitle);
     
-    achievementEntries = new AchievementLine*;
     
-    //_addAchievementEntries(bgLeft, -3);
-    _addAchievementEntries(scrollContainer, -3);
-
+    _addAchievementEntries(scrollContainerLeft, -3);
+    _addAchievementEntries(scrollContainerRight, 3);
     
-//    _addAchievementEntries(bgRight, 3);
+    
+    bgLeft->retain();
+    bgRight->retain();
+    _lblTitle->retain();
     
     
 }
@@ -124,21 +140,25 @@ void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite, i
     
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint visibleOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
-    CCPoint origin = ccp(visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height* 0.5f);
+//    CCPoint origin = ccp(visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height* 0.5f);
 
     for (int i = 0; i < 10; i++) {
         AchievementLine *achievementEntry = new AchievementLine();
         
-        achievementEntries[i] = achievementEntry;
+        achievementEntries.push_back(achievementEntry);
+        //achievementEntries[i] = achievementEntry;
         
         float w = bgSprite->getContentSize().width;
         float h = bgSprite->getContentSize().height;
-        CCPoint o = ccp(w * 0.5f, h * 0.5f);
+//        CCPoint o = ccp(w * 0.5f, h * 0.5f);
         
-        char buffer[50];
-        sprintf(buffer, "Achievement %d",i);
+        std::ostringstream os;
+        os << "Achievment " << i;
+        std::string achievementStr = os.str();
+        const char *testAchievementsStr = achievementStr.c_str();
+//        char testAchievementsStr[] = "Achievement 1";
         
-        achievementEntry->_lblAchievement1 = CCLabelTTF::create(buffer, FONT_GAME, SIZE_RATE_END, CCSizeMake(w * 0.5f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
+        achievementEntry->_lblAchievement1 = CCLabelTTF::create(testAchievementsStr, FONT_GAME, SIZE_RATE_END, CCSizeMake(w * 0.5f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
 //        achievementEntry->_lblAchievement1->setPosition(ccp(0 + achievementEntry->_lblAchievement1->getContentSize().width,
 //                                                            h - (achievementEntry->_lblAchievement1->getContentSize().height * 1.1f * (i+1))));
         achievementEntry->_lblAchievement1->setPosition(ccp(0 + achievementEntry->_lblAchievement1->getContentSize().width,
@@ -154,8 +174,13 @@ void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite, i
                                                      - (achievementEntry->_lblAchievement1->getContentSize().height * .5f * i)));
         bgSprite->addChild(achievementEntry->_spTrophy);
         
-        sprintf(buffer, "%d LP",(i*10 + 1));
-        achievementEntry->_lblAchievementPoints1 = CCLabelTTF::create(buffer, FONT_GAME, SIZE_TUT_INST, CCSizeMake(w * 0.25f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
+        std::ostringstream os2;
+        os2 << (i*10 + 1) << " LP";
+        std::string pointsStr = os2.str();
+        const char *testPointsStr = pointsStr.c_str();
+        //char testPointsStr[] = "10 LP";
+        
+        achievementEntry->_lblAchievementPoints1 = CCLabelTTF::create(testPointsStr, FONT_GAME, SIZE_TUT_INST, CCSizeMake(w * 0.25f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
         achievementEntry->_lblAchievementPoints1->setPosition(ccp(0 + achievementEntry->_lblAchievement1->getContentSize().width +
                                                                   achievementEntry->_lblAchievementPoints1->getContentSize().width,
                                                                   h - (achievementEntry->_spTrophy->getContentSize().height * 1.5f)
@@ -163,6 +188,11 @@ void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite, i
         achievementEntry->_lblAchievementPoints1->setColor(ccWHITE);
         achievementEntry->_lblAchievementPoints1->setRotation(rotationOffset);
         bgSprite->addChild(achievementEntry->_lblAchievementPoints1);
+        
+        
+//        achievementEntry->_lblAchievement1->retain();        
+//        achievementEntry->_spTrophy->retain();
+//        achievementEntry->_lblAchievementPoints1->retain();
     }
 }
 
@@ -178,6 +208,9 @@ void PopUpAchievementsLayer::_createScrollView2() {
     
     std::cout << "PopUpAchievementsLayer: visibleSize: " << visibleSize.width << "x" << visibleSize.height << std::endl;
     
+    cocos2d::extension::CCScrollView *scrollView;
+    cocos2d::CCLayer *scrollContainer;
+    
     scrollContainer = CCLayer::create();
     scrollContainer->setAnchorPoint(CCPointZero);
     
@@ -189,7 +222,8 @@ void PopUpAchievementsLayer::_createScrollView2() {
     float horizOffset = (winSize.width/2) - (contentWidth/2);
     float vertOffset = 128.0f; //30.0f; // 25.0f;
     
-    
+    CCSprite *background1;
+    CCSprite *background2;
 
     background1 = CCSprite::create("checkermap_512x512.png");
     background1->setPosition(ccp(0.f + (background1->getContentSize().width / 2),
@@ -249,26 +283,53 @@ void PopUpAchievementsLayer::_createScrollView2() {
     addChild(scrollView);
 }
 
-void PopUpAchievementsLayer::_createScrollView3() {
+cocos2d::CCLayer* PopUpAchievementsLayer::_createScrollView3(AchievmentsOrientation orientation) {
     
     //SETUP SCROLL CONTAINER
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCPoint visibleOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
     
     std::cout << "PopUpAchievementsLayer: visibleSize: " << visibleSize.width << "x" << visibleSize.height << std::endl;
+    
+    cocos2d::extension::CCScrollView *scrollView;
+    cocos2d::CCLayer *scrollContainer;
     
     scrollContainer = CCLayer::create();
     scrollContainer->setAnchorPoint(CCPointZero);
     
+    // wacky number to position in scrollContainer correctly
     float contentVertOffset = 192.0f; // 128.0f; // 384.0f; //256.0f;
     
-    float contentHeight = 395.0f; // 512.0f; // 600.0f;
-    float contentWidth = 439.0f; // 512.0f; // 600.0f;
+    // chop into the original sized background by this much
+    float vertInset = 32.0f; // 64.0f; // 0.0f;
+    float horizInset = 32.0f; // 64.0f; // 32.0f;
     
-    float horizOffset = (winSize.width/2) - (contentWidth);
-    float vertOffset = (winSize.height/2) - (contentHeight/2);
+    float contentHeight = 395.0f - (vertInset *2);
+    float contentWidth = 439.0f - (horizInset *2); // 439.0f; // 512.0f; // 600.0f;
     
+    float horizOffset = 0.f;
+    float vertOffset = 0.f;
+
+    switch (orientation) {
+        case ACHIEVMENT_SCREEN_LEFT: {
+            horizOffset = (winSize.width/2) - (contentWidth) - horizInset;
+            vertOffset = (winSize.height/2) - (contentHeight/2);
+            break;
+        }
+        case ACHIEVMENT_SCREEN_RIGHT: {
+            horizOffset = (winSize.width/2) + horizInset;
+            vertOffset = (winSize.height/2) - (contentHeight/2);
+            break;
+        }
+        default:
+        {
+            // is likely to be an error
+        }
+    };
     
+    CCSprite *background1;
+    CCSprite *background2;
     
     background1 = CCSprite::create("screen_bg.png");
     background1->setPosition(ccp(0.f + (background1->getContentSize().width / 2),
@@ -299,67 +360,59 @@ void PopUpAchievementsLayer::_createScrollView3() {
     CCSize viewsize = CCSizeMake(contentWidth,
                                  contentHeight);
     scrollView = cocos2d::extension::CCScrollView::create(viewsize, scrollContainer);
-    //scrollView->setPosition(CCPoint(horizOffset, vertOffset));
-    scrollView->setPosition(CCPointZero);
+    scrollView->setPosition(CCPoint(horizOffset, vertOffset));
+    //scrollView->setPosition(CCPointZero);
     scrollView->setDirection(cocos2d::extension::kCCScrollViewDirectionVertical);
     scrollView->setContentOffset(ccp(0.f, 0.f), false);
     scrollView->setAnchorPoint(CCPointZero);
     
     
     
-    
-    ccColor4F color = (ccColor4F){1,0,0,1.f};
-    //    ccColor4F colorbg = (ccColor4F){0,0,0,1.0f};
-    ccColor4F colorfg = (ccColor4F){0,0,0,0.0f};
-    
-    
-    //    cocos2d::CCPoint vertices[4] = {ccp(0.f, 0.f),
-    //        ccp(0.f, vertOffset),
-    //        ccp(vertOffset, vertOffset),
-    //        ccp(vertOffset, 0.f)};
-    
-    cocos2d::CCPoint vertices[4] = {ccp(horizOffset, vertOffset),
-        ccp(horizOffset, vertOffset + contentHeight),
-        ccp(horizOffset + contentWidth, vertOffset + contentHeight),
-        ccp(horizOffset + contentWidth, vertOffset)};
-    
-    CCDrawNode *polyNode = CCDrawNode::create();
-    
-    polyNode->drawPolygon(vertices, 4, colorfg, 5.0f, color);
-    addChild(polyNode);
+    // draw border around scrollview area
+//    ccColor4F color = (ccColor4F){1,0,0,1.f};
+//    //    ccColor4F colorbg = (ccColor4F){0,0,0,1.0f};
+//    ccColor4F colorfg = (ccColor4F){0,0,0,0.0f};
+//    
+//    cocos2d::CCPoint vertices[4] = {ccp(horizOffset, vertOffset),
+//        ccp(horizOffset, vertOffset + contentHeight),
+//        ccp(horizOffset + contentWidth, vertOffset + contentHeight),
+//        ccp(horizOffset + contentWidth, vertOffset)};
+//    
+//    CCDrawNode *polyNode = CCDrawNode::create();
+//    
+//    polyNode->drawPolygon(vertices, 4, colorfg, 5.0f, color);
+//    addChild(polyNode);
     
     
-    
-    cocos2d::CCPoint maskVertices[4] = {ccp(horizOffset, vertOffset),
-        ccp(horizOffset, vertOffset + 100.0f),
-        ccp(horizOffset + 100.0f, vertOffset + 100.0f),
-        ccp(horizOffset + 100.0f, vertOffset)};
-
+    // try using a clipping node to mask the scrollview - failed
+//    cocos2d::CCPoint maskVertices[4] = {ccp(horizOffset, vertOffset),
+//        ccp(horizOffset, vertOffset + 100.0f),
+//        ccp(horizOffset + 100.0f, vertOffset + 100.0f),
+//        ccp(horizOffset + 100.0f, vertOffset)};
+//
 //    cocos2d::CCPoint maskVertices[4] = {ccp(0.0f, 0.0f),
 //        ccp(0.0f, 100.0f),
 //        ccp(100.0f, 100.0f),
 //        ccp(100.0f, 0.0f)};
+//    
+//    CCDrawNode *revealMask = CCDrawNode::create();
+//    revealMask->drawPolygon(maskVertices, 4, colorfg, 5.0f, color);
+//
+//    CCClippingNode *clip = CCClippingNode::create();
+//    clip->setPosition(CCPoint(horizOffset, vertOffset));
+//    clip->setStencil(revealMask);
+//    clip->setZOrder(0);
+//    clip->addChild(scrollView);
+//    
+//    addChild(clip);
     
     
-    CCDrawNode *revealMask = CCDrawNode::create();
-//    revealMask->drawPolygon(vertices, 4, colorfg, 5.0f, color);
-    revealMask->drawPolygon(maskVertices, 4, colorfg, 5.0f, color);
-    
-
-    CCClippingNode *clip = CCClippingNode::create();
-    clip->setPosition(CCPoint(horizOffset, vertOffset));
-    clip->setStencil(revealMask);
-    clip->setZOrder(0);
-    clip->addChild(scrollView);
-    
-    addChild(clip);
-    
-    
-    // draw a red border around the scrollview
-
-    
+    scrollView->retain();
     scrollContainer->retain();
-//    addChild(scrollView);
+    
+    addChild(scrollView);
+    
+    return scrollContainer;
 }
 
 
