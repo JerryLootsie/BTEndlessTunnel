@@ -21,6 +21,9 @@
 
 #import "Lootsie.h"
 
+// cpp stuff
+#import "LootsieManager.h"
+
 @implementation AppController
 
 @synthesize window;
@@ -101,6 +104,10 @@ static AppDelegate s_sharedApplication;
             NSLog(@"AppDelegate: initCallback success: %@", error);
 
             //[[Lootsie sharedInstance] achievementReachedWithId:@"first_x"];
+            
+            //[[LootsieManager sharedInstance] getAchievements];
+            // cpp style call
+            //LootsieManager::sharedInstance().getAchievements();
         } else {
             NSLog(@"AppDelegate: initCallback failure: %@", error);
         }

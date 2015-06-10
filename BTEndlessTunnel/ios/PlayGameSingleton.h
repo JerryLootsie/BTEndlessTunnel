@@ -66,6 +66,7 @@ public:
     
     void shareOnFacebook(long score, int level, int obstacles);
     
+    void getAchievements();
     
 private:
     void* rootController;

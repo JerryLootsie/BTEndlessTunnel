@@ -42,6 +42,7 @@ public:
 	static void incrementAchievement(const char* achievementID, int numSteps);
     static void incrementPercentageAchievement(const char *achievementID, float percentage);
 	static void showAchievements();
+    static void getAchievements();
 	static void showLeaderboards();
 	static void showLeaderboard(const char* leaderboardID);
     

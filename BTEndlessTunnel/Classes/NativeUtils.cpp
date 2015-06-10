@@ -126,13 +126,29 @@ void NativeUtils::showAchievements()
 void NativeUtils::showLeaderboards()
 {
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	JniHelpers::jniCommonVoidCall(
-		"showLeaderboards", 
-		CLASS_NAME);
+    JniHelpers::jniCommonVoidCall(
+                                  "showLeaderboards",
+                                  CLASS_NAME);
 #endif
     
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     PlayGameSingleton::sharedInstance().showLeaderboards();
+#endif
+    
+}
+
+
+void NativeUtils::getAchievements()
+{
+    // not yet implemented!
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	JniHelpers::jniCommonVoidCall(
+		"getAchievements",
+		CLASS_NAME);
+#endif
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    PlayGameSingleton::sharedInstance().getAchievements();
 #endif
     
 }

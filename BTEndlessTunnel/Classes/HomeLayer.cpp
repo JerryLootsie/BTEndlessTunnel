@@ -21,6 +21,11 @@ using namespace CocosDenshion;
 
 static int counter_ads = 0;
 
+// Allocating and initializing HomeLayer
+// static data member.  The pointer is being
+// allocated - not the object inself.
+HomeLayer *HomeLayer::instance = 0;
+
 void HomeLayer::onEnterTransitionDidFinish()
 {
     if(_showAds)
@@ -190,6 +195,15 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     addChild(_popUpAchievementsLayer, 10000);
     
     NativeUtils::showAd();
+    
+    HomeLayer::instance = this;
+}
+
+#pragma mark - Singleton
+//HomeLayer& HomeLayer::sharedInstance()
+HomeLayer* HomeLayer::sharedInstance()
+{
+    return instance;
 }
 
 void HomeLayer::_manageMusic(cocos2d::CCObject* pSender)
@@ -266,15 +280,18 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
         case kTagAchievements:
             std::cout << "HomeLayer: show achievments\n";
             
-            // normally setting runGame to true => will kick off finish and hide layer
-            _disableButtons();
-            disable = true;
-            _hideToLeft();
-            _hideToRight();
+            //NativeUtils::showAchievements();
+            NativeUtils::getAchievements();
+            
+            // this happens in AppController.mm in init callback now
+            
+            // classes/layers/HomeLayer.cpp (kTagAchievements) ->
+            // classes/helpers/ NativeUtils::showAchievements() ->
+            // PlayGameSingleton::sharedInstance().showAchievements() ->
+            // LootsieManager::showAchievements();
 
-            scheduleOnce(schedule_selector(HomeLayer::_finishHideLayerDontStartGame), HIDE_TIME + 0.1f);
+            //_showPopUpAchievementsLayer();
 
-            _popUpAchievementsLayer->setVisible(true);
             
             break;
             
@@ -297,6 +314,23 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
         _hideToRight();
         scheduleOnce(schedule_selector(HomeLayer::_finishHideLayer), HIDE_TIME + 0.1f);
     }
+    
+}
+
+void HomeLayer::_showPopUpAchievementsLayer(std::vector<LootsieAchievement*> lootsieAchievments)
+{
+    std::cout << "HomeLayer: _showPopUpAchievementsLayer: " << lootsieAchievments.size() << std::endl;
+    
+    // normally setting runGame to true => will kick off finish and hide layer
+    _disableButtons();
+    disable = true;
+    _hideToLeft();
+    _hideToRight();
+    
+    scheduleOnce(schedule_selector(HomeLayer::_finishHideLayerDontStartGame), HIDE_TIME + 0.1f);
+    
+    _popUpAchievementsLayer->_setAchievments(lootsieAchievments);
+    _popUpAchievementsLayer->setVisible(true);
     
 }
 

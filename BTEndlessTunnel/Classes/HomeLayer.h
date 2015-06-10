@@ -14,6 +14,8 @@
 #include "SettingsLayer.h"
 #include "PopUpAchievementsLayer.h"
 
+#include "LootsieManager.h"
+
 enum HomeButtons
 {
     kTagEasyMode = 0,
@@ -29,13 +31,21 @@ enum HomeButtons
 class HomeLayer : public cocos2d::CCLayer
 {
 public:
+    //static HomeLayer& sharedInstance();
+    static HomeLayer* sharedInstance();
+    
     HomeLayer(GameLayer* gameLayer, bool showAds = false);
     virtual ~HomeLayer();
     void onEnterTransitionDidFinish();
     
     void _showLayer();
     
+    void _showPopUpAchievementsLayer(std::vector<LootsieAchievement*> lootsieAchievments);
+    
 private:
+    static HomeLayer* instance;
+    //static HomeLayer instance;
+    
     cocos2d::CCSprite* tablero;
     cocos2d::CCSprite* logo;
     cocos2d::CCMenuItemImage* menuItemEasy;

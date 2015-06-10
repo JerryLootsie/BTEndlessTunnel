@@ -124,8 +124,8 @@ void PopUpAchievementsLayer::_createAchievementScreens() {
     addChild(_lblTitle);
     
     
-    _addAchievementEntries(scrollContainerLeft, -3);
-    _addAchievementEntries(scrollContainerRight, 3);
+    _addAchievementEntries(scrollContainerLeft, -3, lootsieAchievments);
+    _addAchievementEntries(scrollContainerRight, 3, lootsieAchievments);
     
     
     bgLeft->retain();
@@ -135,28 +135,73 @@ void PopUpAchievementsLayer::_createAchievementScreens() {
     
 }
 
-//void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset) {
-void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset) {
+void PopUpAchievementsLayer::_setAchievments(std::vector<LootsieAchievement *> inputLootsieAchievments) {
+    std::cout << "PopUpAchievementsLayer: _setAchievements: " << inputLootsieAchievments.size() << std::endl;
     
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    CCPoint visibleOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
+    lootsieAchievments = inputLootsieAchievments;
+    
+    if (lootsieAchievments.size() > 0) {
+        // remove the original set of entries
+        if (achievementEntries.size() > 0) {
+            for (int k = 0; k < achievementEntries.size(); k++) {
+                AchievementLine *achievementEntry = achievementEntries[k];
+                achievementEntry->_lblAchievement1->removeFromParentAndCleanup(true);
+                achievementEntry->_spTrophy->removeFromParentAndCleanup(true);
+                achievementEntry->_lblAchievementPoints1->removeFromParentAndCleanup(true);
+            }
+            
+            achievementEntries.clear();
+        }
+        
+        // split the achievements into 2 lists
+        std::vector<LootsieAchievement *> achievementsLeft;
+        std::vector<LootsieAchievement *> achievementsRight;
+        
+        int halfwayIndex = lootsieAchievments.size()/2;
+        for (int i = 0; i < halfwayIndex; i++) {
+            achievementsLeft.push_back(lootsieAchievments[i]);
+        }
+        for (int j = halfwayIndex; j < lootsieAchievments.size(); j++) {
+            achievementsRight.push_back(lootsieAchievments[j]);
+        }
+        
+        _addAchievementEntries(scrollContainerLeft, -3, achievementsLeft);
+        _addAchievementEntries(scrollContainerRight, 3, achievementsRight);
+    }
+}
+
+//void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset) {
+//void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset) {
+void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite,
+                                                    int rotationOffset,
+                                                    std::vector<LootsieAchievement *> inputLootsieAchievments)
+{
+    std::cout << "PopUpAchievementsLayer: _addAchievementEntries: " << lootsieAchievments.size() << std::endl;
+    
+//    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+//    CCPoint visibleOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
 //    CCPoint origin = ccp(visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height* 0.5f);
 
-    for (int i = 0; i < 10; i++) {
+
+    
+    for (int i = 0; i < inputLootsieAchievments.size(); i++) {
+        LootsieAchievement *achievementSource = inputLootsieAchievments[i];
+        
         AchievementLine *achievementEntry = new AchievementLine();
         
         achievementEntries.push_back(achievementEntry);
-        //achievementEntries[i] = achievementEntry;
+
         
         float w = bgSprite->getContentSize().width;
         float h = bgSprite->getContentSize().height;
 //        CCPoint o = ccp(w * 0.5f, h * 0.5f);
         
-        std::ostringstream os;
-        os << "Achievment " << i;
-        std::string achievementStr = os.str();
-        const char *testAchievementsStr = achievementStr.c_str();
+//        std::ostringstream os;
+//        os << "Achievment " << i;
+//        std::string achievementStr = os.str();
+//        const char *testAchievementsStr = achievementStr.c_str();
 //        char testAchievementsStr[] = "Achievement 1";
+        const char *testAchievementsStr = achievementSource->name.c_str();
         
         achievementEntry->_lblAchievement1 = CCLabelTTF::create(testAchievementsStr, FONT_GAME, SIZE_RATE_END, CCSizeMake(w * 0.5f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
 //        achievementEntry->_lblAchievement1->setPosition(ccp(0 + achievementEntry->_lblAchievement1->getContentSize().width,
@@ -175,10 +220,12 @@ void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite, i
         bgSprite->addChild(achievementEntry->_spTrophy);
         
         std::ostringstream os2;
-        os2 << (i*10 + 1) << " LP";
+        // os2 << (i*10 + 1) << " LP";
+        os2 << achievementSource->lp << " LP";
         std::string pointsStr = os2.str();
         const char *testPointsStr = pointsStr.c_str();
         //char testPointsStr[] = "10 LP";
+
         
         achievementEntry->_lblAchievementPoints1 = CCLabelTTF::create(testPointsStr, FONT_GAME, SIZE_TUT_INST, CCSizeMake(w * 0.25f, h * 0.15f), kCCTextAlignmentLeft, kCCVerticalTextAlignmentCenter);
         achievementEntry->_lblAchievementPoints1->setPosition(ccp(0 + achievementEntry->_lblAchievement1->getContentSize().width +

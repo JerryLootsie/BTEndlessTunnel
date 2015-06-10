@@ -13,6 +13,7 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 //#include "HomeLayer.h"
+#include "LootsieManager.h"
 
 class HomeLayer;
 
@@ -50,13 +51,23 @@ public:
     cocos2d::CCLayer *scrollContainerLeft;
     cocos2d::CCLayer *scrollContainerRight;
     
+    void _setAchievments(std::vector<LootsieAchievement*> lootsieAchievments);
+    
 private:
+    std::vector<LootsieAchievement*> lootsieAchievments;
+    
     void _onOptionPressed(cocos2d::CCObject* pSender);
     void _finishHideLayer();
     
     void _createAchievementScreens();
+    
 //    void _addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset);
-    void _addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset);
+//    void _addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset);
+    void _addAchievementEntries(cocos2d::CCNode* bgSprite,
+                                int rotationOffset,
+                                std::vector<LootsieAchievement *> inputLootsieAchievments);
+    
+    
     void _createScrollView();
     void _createScrollView2();
     cocos2d::CCLayer* _createScrollView3(AchievmentsOrientation orientation);
