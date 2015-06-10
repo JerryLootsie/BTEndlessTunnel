@@ -1034,6 +1034,7 @@
 		520ABDB71B1920D400FAEAE0 /* LootsieSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LootsieSDKResources.bundle; path = "Build/Products/Debug-iphonesimulator/LootsieSDKResources.bundle"; sourceTree = "<group>"; };
 		520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		521428791B28D77700B13E65 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "../../../bitbucket/ios-sdk4-dev/ios-sdk4/External/RestKit-0.20.3/Build/Products/Debug-iphoneos/libRestKit.a"; sourceTree = "<group>"; };
+		521428811B28DDCC00B13E65 /* BTLootsieAchievement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BTLootsieAchievement.h; path = Classes/BTLootsieAchievement.h; sourceTree = "<group>"; };
 		52FE7ABB1B22480D000B5530 /* PopUpAchievementsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpAchievementsLayer.cpp; path = Classes/PopUpAchievementsLayer.cpp; sourceTree = "<group>"; };
 		52FE7ABC1B22480D000B5530 /* PopUpAchievementsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpAchievementsLayer.h; path = Classes/PopUpAchievementsLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2407,6 +2408,7 @@
 				07EC9E1218EB442C00E2C037 /* PauseLayer.h */,
 				07AC273918E500DA00F6AEA0 /* HudLayer.cpp */,
 				07AC273A18E500DA00F6AEA0 /* HudLayer.h */,
+				521428811B28DDCC00B13E65 /* BTLootsieAchievement.h */,
 			);
 			name = Layers;
 			sourceTree = "<group>";

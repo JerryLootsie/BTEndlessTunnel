@@ -12,15 +12,7 @@
 #include <vector.h>
 #include <stdio.h>
 
-class BTLootsieAchievement
-{
-public:
-    std::string name = "";
-    bool is_achieved = false;
-    std::string description = "";
-    int lp = 0;
-    
-};
+#include "BTLootsieAchievement.h"
 
 class LootsieManager
 {

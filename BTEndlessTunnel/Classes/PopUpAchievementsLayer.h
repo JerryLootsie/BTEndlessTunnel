@@ -13,7 +13,8 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 //#include "HomeLayer.h"
-#include "LootsieManager.h"
+
+#include "BTLootsieAchievement.h"
 
 class HomeLayer;
 

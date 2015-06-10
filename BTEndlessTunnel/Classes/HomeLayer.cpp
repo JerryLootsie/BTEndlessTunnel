@@ -283,12 +283,13 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
             //NativeUtils::showAchievements();
             NativeUtils::getAchievements();
             
-            // this happens in AppController.mm in init callback now
+            // this can also happen in AppController.mm in init callback
             
             // classes/layers/HomeLayer.cpp (kTagAchievements) ->
-            // classes/helpers/ NativeUtils::showAchievements() ->
-            // PlayGameSingleton::sharedInstance().showAchievements() ->
-            // LootsieManager::showAchievements();
+            // classes/helpers/ NativeUtils::getAchievements() ->
+            // PlayGameSingleton::sharedInstance().getAchievements() ->
+            // LootsieManager::getAchievements(); ->
+            // HomeLayer::sharedInstance()->_showPopUpAchievementsLayer
 
             //_showPopUpAchievementsLayer();
 

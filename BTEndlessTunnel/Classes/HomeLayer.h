@@ -14,8 +14,6 @@
 #include "SettingsLayer.h"
 #include "PopUpAchievementsLayer.h"
 
-#include "LootsieManager.h"
-
 enum HomeButtons
 {
     kTagEasyMode = 0,
