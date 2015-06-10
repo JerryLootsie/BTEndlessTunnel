@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include "LootsieManager.h"
-#include "LootsieEngine.h"
+//#include "LootsieEngine.h"
 #include "Lootsie.h"
 
 #include "HomeLayer.h"
@@ -53,7 +53,7 @@ void LootsieManager::getAchievements() {
             lootsieAchievments.clear();
             
             //NSMutableArray *achievementNames = [NSMutableArray array];
-            for (AchievementResponse *achievement in achievements) {
+            for (LootsieAchievement *achievement in achievements) {
                 NSString *achievmentName = achievement.name;
                 NSString *achievementDescr = achievement.description;
                 NSString *achievementId = achievement.achievement_id;
@@ -62,7 +62,7 @@ void LootsieManager::getAchievements() {
                 NSLog(@"LootsieManager: achievement: %@", achievementId);
                 
                 // copy this stuff to a cpp data structure
-                LootsieAchievement *lootsieAchievment = new LootsieAchievement();
+                BTLootsieAchievement *lootsieAchievment = new BTLootsieAchievement();
                 lootsieAchievment->name = std::string([achievmentName UTF8String]);
                 lootsieAchievment->description = std::string([achievementDescr UTF8String]);
                 lootsieAchievment->lp = achievement.lp;

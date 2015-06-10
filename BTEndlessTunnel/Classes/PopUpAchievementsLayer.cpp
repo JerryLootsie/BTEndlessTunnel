@@ -135,7 +135,7 @@ void PopUpAchievementsLayer::_createAchievementScreens() {
     
 }
 
-void PopUpAchievementsLayer::_setAchievments(std::vector<LootsieAchievement *> inputLootsieAchievments) {
+void PopUpAchievementsLayer::_setAchievments(std::vector<BTLootsieAchievement *> inputLootsieAchievments) {
     std::cout << "PopUpAchievementsLayer: _setAchievements: " << inputLootsieAchievments.size() << std::endl;
     
     lootsieAchievments = inputLootsieAchievments;
@@ -154,8 +154,8 @@ void PopUpAchievementsLayer::_setAchievments(std::vector<LootsieAchievement *> i
         }
         
         // split the achievements into 2 lists
-        std::vector<LootsieAchievement *> achievementsLeft;
-        std::vector<LootsieAchievement *> achievementsRight;
+        std::vector<BTLootsieAchievement *> achievementsLeft;
+        std::vector<BTLootsieAchievement *> achievementsRight;
         
         int halfwayIndex = lootsieAchievments.size()/2;
         for (int i = 0; i < halfwayIndex; i++) {
@@ -174,7 +174,7 @@ void PopUpAchievementsLayer::_setAchievments(std::vector<LootsieAchievement *> i
 //void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset) {
 void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite,
                                                     int rotationOffset,
-                                                    std::vector<LootsieAchievement *> inputLootsieAchievments)
+                                                    std::vector<BTLootsieAchievement *> inputLootsieAchievments)
 {
     std::cout << "PopUpAchievementsLayer: _addAchievementEntries: " << lootsieAchievments.size() << std::endl;
     
@@ -185,7 +185,7 @@ void PopUpAchievementsLayer::_addAchievementEntries(cocos2d::CCNode* bgSprite,
 
     
     for (int i = 0; i < inputLootsieAchievments.size(); i++) {
-        LootsieAchievement *achievementSource = inputLootsieAchievments[i];
+        BTLootsieAchievement *achievementSource = inputLootsieAchievments[i];
         
         AchievementLine *achievementEntry = new AchievementLine();
         

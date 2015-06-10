@@ -317,7 +317,7 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
     
 }
 
-void HomeLayer::_showPopUpAchievementsLayer(std::vector<LootsieAchievement*> lootsieAchievments)
+void HomeLayer::_showPopUpAchievementsLayer(std::vector<BTLootsieAchievement*> lootsieAchievments)
 {
     std::cout << "HomeLayer: _showPopUpAchievementsLayer: " << lootsieAchievments.size() << std::endl;
     

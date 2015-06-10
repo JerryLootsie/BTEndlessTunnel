@@ -40,7 +40,7 @@ public:
     
     void _showLayer();
     
-    void _showPopUpAchievementsLayer(std::vector<LootsieAchievement*> lootsieAchievments);
+    void _showPopUpAchievementsLayer(std::vector<BTLootsieAchievement*> lootsieAchievments);
     
 private:
     static HomeLayer* instance;

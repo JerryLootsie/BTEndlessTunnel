@@ -12,7 +12,7 @@
 #include <vector.h>
 #include <stdio.h>
 
-class LootsieAchievement
+class BTLootsieAchievement
 {
 public:
     std::string name = "";
@@ -33,7 +33,7 @@ public:
     void getAchievements();
     
 
-    std::vector<LootsieAchievement*> lootsieAchievments;
+    std::vector<BTLootsieAchievement*> lootsieAchievments;
 };
 
 #endif

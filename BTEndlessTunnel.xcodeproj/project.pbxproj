@@ -324,11 +324,11 @@
 		07EC9E1018EB204000E2C037 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9E0E18EB204000E2C037 /* Utils.cpp */; };
 		07EC9E1318EB442C00E2C037 /* PauseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EC9E1118EB442C00E2C037 /* PauseLayer.cpp */; };
 		520ABD8D1B191CDD00FAEAE0 /* LootsieManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 520ABD8C1B191CDD00FAEAE0 /* LootsieManager.mm */; };
-		520ABDB41B1920C400FAEAE0 /* libLootsie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB31B1920C400FAEAE0 /* libLootsie.a */; };
 		520ABDB81B1920D400FAEAE0 /* LootsieSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 520ABDB71B1920D400FAEAE0 /* LootsieSDKResources.bundle */; };
-		520ABDB91B19231600FAEAE0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB51B1920C700FAEAE0 /* libRestKit.a */; };
 		520ABDBA1B1926A400FAEAE0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E8781318F465C3002E38F1 /* CoreText.framework */; };
 		520ABDBC1B1926D200FAEAE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */; };
+		5214287B1B28D78E00B13E65 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB51B1920C700FAEAE0 /* libRestKit.a */; };
+		5214287C1B28D78E00B13E65 /* libLootsie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB31B1920C400FAEAE0 /* libLootsie.a */; };
 		52FE7ABD1B22480D000B5530 /* PopUpAchievementsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FE7ABB1B22480D000B5530 /* PopUpAchievementsLayer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -1033,6 +1033,7 @@
 		520ABDB51B1920C700FAEAE0 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "Build/Products/Debug-iphonesimulator/libRestKit.a"; sourceTree = "<group>"; };
 		520ABDB71B1920D400FAEAE0 /* LootsieSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LootsieSDKResources.bundle; path = "Build/Products/Debug-iphonesimulator/LootsieSDKResources.bundle"; sourceTree = "<group>"; };
 		520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		521428791B28D77700B13E65 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "../../../bitbucket/ios-sdk4-dev/ios-sdk4/External/RestKit-0.20.3/Build/Products/Debug-iphoneos/libRestKit.a"; sourceTree = "<group>"; };
 		52FE7ABB1B22480D000B5530 /* PopUpAchievementsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpAchievementsLayer.cpp; path = Classes/PopUpAchievementsLayer.cpp; sourceTree = "<group>"; };
 		52FE7ABC1B22480D000B5530 /* PopUpAchievementsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpAchievementsLayer.h; path = Classes/PopUpAchievementsLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1059,8 +1060,8 @@
 				07CBA3F318DCAFBC004E8B35 /* libcurl.a in Frameworks */,
 				07CBA28018DCAFB8004E8B35 /* OpenGLES.framework in Frameworks */,
 				07CBA28A18DCAFB9004E8B35 /* Foundation.framework in Frameworks */,
-				520ABDB41B1920C400FAEAE0 /* libLootsie.a in Frameworks */,
-				520ABDB91B19231600FAEAE0 /* libRestKit.a in Frameworks */,
+				5214287B1B28D78E00B13E65 /* libRestKit.a in Frameworks */,
+				5214287C1B28D78E00B13E65 /* libLootsie.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,6 +1117,7 @@
 		07CBA27C18DCAFB8004E8B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				521428791B28D77700B13E65 /* libRestKit.a */,
 				520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */,
 				520ABDB51B1920C700FAEAE0 /* libRestKit.a */,
 				520ABDB31B1920C400FAEAE0 /* libLootsie.a */,
@@ -2936,8 +2938,7 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/include\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
-					"$(BUILT_PRODUCTS_DIR)/**",
-					"$(BUILT_PRODUCTS_DIR)/../../Headers/**",
+					"$(TARGET_BUILD_DIR)/include/**",
 				);
 				INFOPLIST_FILE = BTEndlessTunnel/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
@@ -2956,6 +2957,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3d08f5e9-9e9d-413a-8178-b3fe6f9d9798";
 				USER_HEADER_SEARCH_PATHS = "\"BTEndlessTunnel/libs/Chipmunk/include/chipmunk\"";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2982,8 +2984,7 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/include\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
-					"$(BUILT_PRODUCTS_DIR)/**",
-					"$(BUILT_PRODUCTS_DIR)/../../Headers/**",
+					"$(TARGET_BUILD_DIR)/include/**",
 				);
 				INFOPLIST_FILE = BTEndlessTunnel/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
@@ -3003,6 +3004,7 @@
 				PROVISIONING_PROFILE = "3d08f5e9-9e9d-413a-8178-b3fe6f9d9798";
 				USER_HEADER_SEARCH_PATHS = "\"BTEndlessTunnel/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

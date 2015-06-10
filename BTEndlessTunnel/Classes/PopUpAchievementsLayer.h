@@ -51,10 +51,10 @@ public:
     cocos2d::CCLayer *scrollContainerLeft;
     cocos2d::CCLayer *scrollContainerRight;
     
-    void _setAchievments(std::vector<LootsieAchievement*> lootsieAchievments);
+    void _setAchievments(std::vector<BTLootsieAchievement*> lootsieAchievments);
     
 private:
-    std::vector<LootsieAchievement*> lootsieAchievments;
+    std::vector<BTLootsieAchievement*> lootsieAchievments;
     
     void _onOptionPressed(cocos2d::CCObject* pSender);
     void _finishHideLayer();
@@ -65,7 +65,7 @@ private:
 //    void _addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset);
     void _addAchievementEntries(cocos2d::CCNode* bgSprite,
                                 int rotationOffset,
-                                std::vector<LootsieAchievement *> inputLootsieAchievments);
+                                std::vector<BTLootsieAchievement *> inputLootsieAchievments);
     
     
     void _createScrollView();
