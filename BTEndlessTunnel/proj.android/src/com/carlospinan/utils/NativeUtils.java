@@ -1,9 +1,12 @@
 package com.carlospinan.utils;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
 
@@ -13,6 +16,7 @@ import com.lootsie.turborace.R;
 import com.lootsie.sdk.callbacks.IAchievementReached;
 import com.lootsie.sdk.lootsiehybrid.Lootsie;
 import com.lootsie.sdk.lootsiehybrid.LootsieEngine;
+import com.lootsie.sdk.model.Achievement;
 import com.lootsie.sdk.utils.Logs;
 
 /**
@@ -192,6 +196,27 @@ public class NativeUtils {
 	}
 
 	/**
+	 * Show all achievements.
+	 */
+	public static void getAchievements() {
+		Log.v(TAG,"NativeUtils: getAchievements 9/10/2015");
+		
+//		app.runOnUiThread(new Runnable() {
+//
+//			@Override
+//			public void run() {		
+//				Lootsie.showAchievementsPage(app);
+//			}
+//		});
+		
+		ArrayList<Achievement> testAchievments = new ArrayList<Achievement>();
+		
+		//nativeMono("test from Android", testAchievments);
+		nativeMono("test from Android");
+		
+	}	
+	
+	/**
 	 * Show all leaderboard.
 	 */
 	public static void showLeaderboards() {
@@ -276,4 +301,7 @@ public class NativeUtils {
 
 	public static native void notifyInCloudLoad();
 
+	//public static native void nativeMono(String testStr, ArrayList<Achievement> lootsieAchievements);
+	//public static native void nativeMono(String testStr);
+	static native void nativeMono(String testStr);
 }

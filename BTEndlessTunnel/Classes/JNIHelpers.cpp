@@ -1,6 +1,8 @@
 //
 //  JniHelpers.cpp
 #include "JniHelpers.h"
+
+
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include <jni.h>
 #include "platform/android/jni/JniHelper.h"
@@ -24,6 +26,53 @@
 //#endif
 //}
 
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//extern "C" JNIEXPORT void JNICALL
+//Java_com_carlospinan_utils_NativeUtils_nativeMono(JNIEnv * env,
+//                                                   jclass,
+//                                                   jstring testStr,
+//                                                   jobject testObj
+//                                                   )
+#include <jni.h>
+#include <android/log.h>
+
+#include "HomeLayer.h"
+
+#define  LOG_TAG    "JNIHelpers"
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+
+extern "C" {
+    
+/*
+ * Class:     com_carlospinan_utils_NativeUtils
+ * Method:    nativeMono
+ * Signature: (Ljava/lang/String;)V
+ */
+//JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeMono
+//(JNIEnv *, jclass, jstring);
+
+JNIEXPORT void JNICALL
+Java_com_carlospinan_utils_NativeUtils_nativeMono(JNIEnv * env,
+                                                  jobject testObj,
+                                                  jstring testStr
+                                                  )
+{
+    const char *testMesg = env->GetStringUTFChars(testStr, NULL);
+    
+    // std::cout doesn't show up on Android
+//    std::cout << "JNIHelpers: nativeMono \n";
+//    std::cout << "testMesg: " << testMesg << "\n";
+    
+    LOGE("JNIHelpers: nativeMono");
+    
+    std::vector<BTLootsieAchievement*> lootsieAchievments;
+    HomeLayer::sharedInstance()->_showPopUpAchievementsLayer(lootsieAchievments);
+    
+}
+    
+} // extern "C"
+#endif
 
 unsigned int JniHelpers::jniCommonIntCall(const char* methodName, const char* classPath, const char* arg0)
 {
