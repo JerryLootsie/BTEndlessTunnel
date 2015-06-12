@@ -15,6 +15,13 @@
 
 class HomeLayer;
 
+enum RewardButtons
+{
+    kTagTOS = 9,
+    kTagDetails = 10,
+    kTagRedeem = 11
+};
+
 class PopUpRewardsLayer : public cocos2d::CCLayerColor
 {
 public:
@@ -27,7 +34,7 @@ private:
     
     // link back to parent layer
     HomeLayer *_homeLayer;
-
+    cocos2d::CCLabelTTF* _lblTitle;
     
     bool disable;    
 };
