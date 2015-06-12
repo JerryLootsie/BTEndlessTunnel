@@ -12,10 +12,17 @@
 class BTLootsieAchievement
 {
 public:
-    std::string name = "";
-    bool is_achieved = false;
-    std::string description = "";
-    int lp = 0;
+    std::string id;
+    std::string name;
+    bool is_achieved;
+    std::string description;
+    int lp;
+    std::string date;
+    
+//    std::string name = "";
+//    bool is_achieved = false;
+//    std::string description = "";
+//    int lp = 0;
     
 };
 

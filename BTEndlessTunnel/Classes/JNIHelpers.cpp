@@ -41,6 +41,7 @@
 #define  LOG_TAG    "JNIHelpers"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_VERBOSE,LOG_TAG,__VA_ARGS__)
 
 extern "C" {
     
@@ -52,11 +53,19 @@ extern "C" {
 //JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeMono
 //(JNIEnv *, jclass, jstring);
 
-JNIEXPORT void JNICALL
-Java_com_carlospinan_utils_NativeUtils_nativeMono(JNIEnv * env,
-                                                  jobject testObj,
-                                                  jstring testStr
-                                                  )
+//JNIEXPORT void JNICALL
+//Java_com_carlospinan_utils_NativeUtils_nativeMono(JNIEnv * env,
+//                                                  jobject testObj,
+//                                                  jstring testStr
+//                                                  )
+
+/*
+ * Class:     com_carlospinan_utils_NativeUtils
+ * Method:    nativeMono
+ * Signature: (Ljava/lang/String;Ljava/util/ArrayList;)V
+ */
+JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeMono
+(JNIEnv *env, jclass testClass, jstring testStr, jobject testObj)
 {
     const char *testMesg = env->GetStringUTFChars(testStr, NULL);
     
@@ -66,7 +75,101 @@ Java_com_carlospinan_utils_NativeUtils_nativeMono(JNIEnv * env,
     
     LOGE("JNIHelpers: nativeMono");
     
+    // convert ArrayList<Achievement> from testObj
+
+    // retrieve the java.util.List interface class
+    jclass cList = env->FindClass("java/util/ArrayList");
+    
+    // retrieve the size and the get method
+    jmethodID mSize = env->GetMethodID(cList, "size", "()I");
+    jmethodID mGet = env->GetMethodID(cList, "get", "(I)Ljava/lang/Object;");
+    
+    
     std::vector<BTLootsieAchievement*> lootsieAchievments;
+    
+    
+    if ((mSize != NULL) && (mGet != NULL)) {
+        
+        // get the size of the list
+        jint arraySize = env->CallIntMethod(testObj, mSize);
+        //__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "JNIHelpers: nativeMono: Achievements: %d", arraySize);
+        LOGD("JNIHelpers: nativeMono: Achievements: %d", arraySize);
+        
+//        std::ostringstream os;
+//        os << "JNIHelpers: nativeMono: Achievements: " << arraySize;
+//        std::string mesgStr = os.str();
+//        const char *charStr = mesgStr.c_str();
+//        jstring jstrBuf = env->NewStringUTF(charStr);
+        
+        
+        //std::vector<std::string> sVector;
+        
+        jclass cAchievement = env->FindClass("com/lootsie/sdk/model/Achievement");
+        
+        // walk through and fill the vector
+        for(jint i=0; i<arraySize; i++) {
+            jobject achievementObj = (jobject) env->CallObjectMethod(testObj, mGet, i);
+ 
+            jfieldID fid = env->GetFieldID(cAchievement, "id", "Ljava/lang/String;");
+            jstring jstrId = (jstring) env->GetObjectField(achievementObj, fid);
+            const char *strId = env->GetStringUTFChars(jstrId, JNI_FALSE);
+            LOGD("JNIHelpers: nativeMono: Achievement[%d] id: %s", i, strId);
+            
+            jfieldID fname = env->GetFieldID(cAchievement, "name", "Ljava/lang/String;");
+            jstring jstrName = (jstring) env->GetObjectField(achievementObj, fname);
+            const char *strName = env->GetStringUTFChars(jstrName, JNI_FALSE);
+            LOGD("JNIHelpers: nativeMono: Achievement[%d] name: %s", i, strName);
+            
+            jfieldID fdescription = env->GetFieldID(cAchievement, "description", "Ljava/lang/String;");
+            jstring jstrDescription = (jstring) env->GetObjectField(achievementObj, fdescription);
+            const char *strDescription = env->GetStringUTFChars(jstrDescription, JNI_FALSE);
+            LOGD("JNIHelpers: nativeMono: Achievement[%d] description: %s", i, strDescription);
+            
+            jfieldID fdate = env->GetFieldID(cAchievement, "date", "Ljava/lang/String;");
+            jstring jstrDate = (jstring) env->GetObjectField(achievementObj, fdate);
+            const char *strDate = NULL;
+            if (jstrDate != NULL) {
+                strDate = env->GetStringUTFChars(jstrDate, NULL);
+            }
+            LOGD("JNIHelpers: nativeMono: Achievement[%d] date: %s", i, strDate);
+            
+            jfieldID fLP = env->GetFieldID(cAchievement, "lp", "I");
+            jint jintLP = (jint) env->GetIntField(achievementObj, fLP);
+            int intLP = (int) jintLP;
+            LOGD("JNIHelpers: nativeMono: Achievement[%d] lp: %d", i, intLP);
+            
+//            jstring strObj = (jstring)env->CallObjectMethod(jList, mGet, i);
+//            const char * chr = env->GetStringUTFChars(strObj, JNI_FALSE);
+//            sVector.insert(sVector.end(), chr);
+//            env->ReleaseStringUTFChars(strObj, chr);
+            
+            BTLootsieAchievement *btLootsieAchievement = new BTLootsieAchievement();
+            btLootsieAchievement->id = std::string(strId);
+            btLootsieAchievement->name = std::string(strName);
+//            btLootsieAchievement->description = std::string(strDescription);
+//            btLootsieAchievement->date = std::string(strDate);
+            btLootsieAchievement->lp = intLP;
+
+            
+//            btLootsieAchievement->id = strId;
+//            btLootsieAchievement->name = strName;
+//            btLootsieAchievement->description = strDescription;
+//            btLootsieAchievement->date = strDate;
+//            btLootsieAchievement->lp = intLP;
+            
+//            //lootsieAchievments.push_back(btLootsieAchievement);
+            lootsieAchievments.insert(lootsieAchievments.end(), btLootsieAchievement);
+            
+        }
+        
+        
+    } else {
+        LOGE("JNIHelpers: methods are missing!");
+    }
+    
+    
+    
+
     HomeLayer::sharedInstance()->_showPopUpAchievementsLayer(lootsieAchievments);
     
 }

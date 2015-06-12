@@ -209,10 +209,15 @@ public class NativeUtils {
 //			}
 //		});
 		
-		ArrayList<Achievement> testAchievments = new ArrayList<Achievement>();
+		//ArrayList<Achievement> testAchievments = new ArrayList<Achievement>();
 		
-		//nativeMono("test from Android", testAchievments);
-		nativeMono("test from Android");
+		ArrayList<Achievement> testAchievments = Lootsie.getAppAchievements();
+		if (testAchievments != null) {
+			Log.v(TAG,"NativeUtils: getAchievements: " + testAchievments.size());
+		}
+		
+		nativeMono("test from Android", testAchievments);
+		//nativeMono("test from Android");
 		
 	}	
 	
@@ -301,7 +306,9 @@ public class NativeUtils {
 
 	public static native void notifyInCloudLoad();
 
-	//public static native void nativeMono(String testStr, ArrayList<Achievement> lootsieAchievements);
+	static native void nativeMono(String testStr, ArrayList<Achievement> lootsieAchievements);
 	//public static native void nativeMono(String testStr);
-	static native void nativeMono(String testStr);
+	//static native void nativeMono(String testStr);
+	
+	static native void nativeMonoAchievement(Achievement testAchievement);
 }

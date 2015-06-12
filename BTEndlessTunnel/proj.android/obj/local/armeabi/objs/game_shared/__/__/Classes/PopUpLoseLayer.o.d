@@ -211,7 +211,270 @@ obj/local/armeabi/objs/game_shared/__/__/Classes/PopUpLoseLayer.o: \
  jni/../../Classes/SneakyInputCocos2dx/SneakyJoystickSkinnedBase.h \
  jni/../../Classes/SneakyInputCocos2dx/SneakyJoystick.h \
  jni/../../Classes/PauseLayer.h jni/../../Classes/BaseObstacle.h \
- jni/../../Classes/HomeLayer.h jni/../../Classes/SettingsLayer.h \
+ jni/../../Classes/PopUpAchievementsLayer.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/cocos-ext.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionMacros.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionExport.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBFileLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/../../ExtensionMacros.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBReader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionMacros.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequence.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequenceProperty.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBKeyframe.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControl.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCInvocation.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlUtils.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/../../ExtensionMacros.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBValue.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBMemberVariableAssigner.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBReader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSelectorResolver.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCControlButtonLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCControlLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCControl.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCControlButton.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCControl.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCControlLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLabelBMFontLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLabelTTFLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerColorLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerGradientLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuItemImageLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuItemLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuItemLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoaderLibrary.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoaderListener.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCParticleSystemQuadLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCScale9SpriteLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCScale9SpriteLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCScrollViewLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCScrollView/CCScrollView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCSpriteLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBAnimationManager.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBKeyframe.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequence.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequenceProperty.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBValue.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCData.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNode+CCBRelativePositioning.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlExtensions.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCScale9Sprite.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControl.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlButton.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlColourPicker.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlHuePicker.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlPotentiometer.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlSlider.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlStepper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlSwitch.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCScrollView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCTableView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCScrollView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCTableViewCell.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCSorting.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCEditBox/CCEditBox.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCEditBox/../CCControlExtension/CCControlExtensions.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpRequest.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpResponse.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpRequest.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpResponse.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/CCArmature.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCArmatureDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/CCBone.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/CCDatas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/../utils/CCTweenFunction.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCTween.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCProcessBase.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/../utils/CCArmatureDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/../datas/CCDatas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/../utils/CCTweenFunction.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../utils/CCArmatureDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDisplayFactory.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../datas/CCDatas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../physics/CCColliderDetector.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../physics/../utils/CCArmatureDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../physics/../datas/CCDatas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDisplayManager.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../display/CCDecorativeDisplay.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCBatchNode.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h \
+ /Users/jerrylootsie/Downloads/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/queue \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/CCBone.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/CCDatas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCBatchNode.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDisplayManager.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCSkin.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../CCBone.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/physics/CCColliderDetector.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCArmatureDataManager.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCArmatureDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../datas/CCDatas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCDataReaderHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../CCArmature.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/DictionaryHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/reader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/rapidjson.h \
+ /Users/jerrylootsie/Downloads/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cassert \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/pow10.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/stack.h \
+ /Users/jerrylootsie/Downloads/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/setjmp.h \
+ /Users/jerrylootsie/Downloads/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/machine/setjmp.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/strfunc.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/CocoLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/../Json/rapidjson/rapidjson.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/../Json/rapidjson/document.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCTweenFunction.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/external_tool/sigslot.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCActionTimeline.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimeLine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCFrame.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimelineMacro.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionExport.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCActionTimelineCache.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/../Json/DictionaryHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCFrame.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCNodeReader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimeLine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimelineMacro.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/TriggerBase.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/ObjectFactory.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/TriggerObj.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/../Json/DictionaryHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/../Json/CocoLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/TriggerMng.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/../Armature/CCArmature.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComBase.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/../Trigger/ObjectFactory.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/../Json/DictionaryHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/../Json/CocoLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComAttribute.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComBase.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComAudio.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComController.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCInputDelegate.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComRender.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/CocosGUI.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/UIWidget.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutParameter.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../System/GUIDefine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../System/../../Trigger/ObjectFactory.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../Layouts/UILayout.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../Layouts/../BaseClasses/UIWidget.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UIButton.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/../BaseClasses/UIWidget.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UICheckBox.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UIImageView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILabel.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILabelAtlas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILoadingBar.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../Layouts/UILayout.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollInterface.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../BaseClasses/UIWidget.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UISlider.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UITextField.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIListView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILabelBMFont.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIPageView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/UIHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/GUIReader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../GUI/BaseClasses/UIWidget.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../Json/rapidjson/document.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/WidgetReader/WidgetReaderProtocol.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/WidgetReader/../../Json/DictionaryHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../Trigger/ObjectFactory.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../Json/CocoLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/UITouchGroup.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/CompatibleClasses.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../../BaseClasses/UIWidget.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIButton.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UICheckBox.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIImageView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabel.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelAtlas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelBMFont.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILoadingBar.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UISlider.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UITextField.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../../Layouts/UILayout.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIListView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIPageView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIScrollView.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UIRichText.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Json/DictionaryHelper.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Json/CocoLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Reader/SceneReader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Reader/../Json/CocoLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Action/CCActionManager.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Action/CCActionObject.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Action/../Json/rapidjson/document.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/physics_nodes/CCPhysicsDebugNode.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/chipmunk.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/chipmunk_types.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpVect.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpBB.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpSpatialIndex.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpBody.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpShape.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpPolyShape.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpArbiter.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpConstraint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpPinJoint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpSlideJoint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpPivotJoint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpGrooveJoint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpDampedSpring.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpDampedRotarySpring.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpRotaryLimitJoint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpRatchetJoint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpGearJoint.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpSimpleMotor.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpSpace.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/physics_nodes/CCPhysicsSprite.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/spine-cocos2dx.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/spine.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Animation.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AnimationState.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AnimationStateData.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/SkeletonData.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/BoneData.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/SlotData.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Skin.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Attachment.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Atlas.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AtlasAttachmentLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AttachmentLoader.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Bone.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/RegionAttachment.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Slot.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Skeleton.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/SkeletonJson.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeleton.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeletonAnimation.h \
+ jni/../../Classes/BTLootsieAchievement.h jni/../../Classes/HomeLayer.h \
+ jni/../../Classes/SettingsLayer.h \
  jni/../../Classes/LocalStorageManager.h jni/../../Classes/Utils.h \
  jni/../../Classes/NativeUtils.h jni/../../Classes/JNIHelpers.h \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/CocosDenshion/android/../include/SimpleAudioEngine.h \
@@ -648,6 +911,532 @@ jni/../../Classes/SneakyInputCocos2dx/SneakyJoystick.h:
 jni/../../Classes/PauseLayer.h:
 
 jni/../../Classes/BaseObstacle.h:
+
+jni/../../Classes/PopUpAchievementsLayer.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/cocos-ext.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionMacros.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionExport.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBFileLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/../../ExtensionMacros.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBReader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionMacros.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequence.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequenceProperty.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBKeyframe.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControl.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCInvocation.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlUtils.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/../../ExtensionMacros.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBValue.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBMemberVariableAssigner.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBReader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSelectorResolver.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCControlButtonLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCControlLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCControl.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCControlButton.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCControl.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCControlLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLabelBMFontLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLabelTTFLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerColorLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerGradientLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCLayerLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuItemImageLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuItemLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuItemLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCMenuLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoaderLibrary.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNodeLoaderListener.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCParticleSystemQuadLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCScale9SpriteLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCScale9SpriteLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCControlExtension/CCScale9Sprite.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCScrollViewLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/../GUI/CCScrollView/CCScrollView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCSpriteLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBAnimationManager.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBKeyframe.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequence.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBSequenceProperty.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCBValue.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCData.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CCBReader/CCNode+CCBRelativePositioning.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlExtensions.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCScale9Sprite.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControl.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlButton.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlColourPicker.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlHuePicker.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlPotentiometer.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlSlider.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlStepper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCControlExtension/CCControlSwitch.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCScrollView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCTableView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCScrollView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCTableViewCell.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCScrollView/CCSorting.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCEditBox/CCEditBox.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/GUI/CCEditBox/../CCControlExtension/CCControlExtensions.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpRequest.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpResponse.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpRequest.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpResponse.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/CCArmature.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCArmatureDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/CCBone.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/CCDatas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/../utils/CCTweenFunction.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/../utils/CCArmatureDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCTween.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCProcessBase.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/../utils/CCArmatureDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/../datas/CCDatas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/../utils/CCTweenFunction.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../utils/CCArmatureDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDisplayFactory.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../datas/CCDatas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../physics/CCColliderDetector.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../physics/../utils/CCArmatureDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../physics/../datas/CCDatas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDisplayManager.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../display/CCDecorativeDisplay.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCBatchNode.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h:
+
+/Users/jerrylootsie/Downloads/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/queue:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/CCBone.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/animation/CCArmatureAnimation.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/datas/CCDatas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCBatchNode.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDecorativeDisplay.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCDisplayManager.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/CCSkin.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/display/../CCBone.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/physics/CCColliderDetector.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCArmatureDataManager.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCArmatureDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../datas/CCDatas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCDataReaderHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../CCArmature.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/DictionaryHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/reader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/rapidjson.h:
+
+/Users/jerrylootsie/Downloads/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/cassert:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/pow10.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/stack.h:
+
+/Users/jerrylootsie/Downloads/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/setjmp.h:
+
+/Users/jerrylootsie/Downloads/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/machine/setjmp.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/internal/strfunc.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/rapidjson/document.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/CocoLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/../Json/rapidjson/rapidjson.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/../../Json/../Json/rapidjson/document.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/utils/CCTweenFunction.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Armature/external_tool/sigslot.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCActionTimeline.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimeLine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCFrame.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimelineMacro.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/ExtensionExport.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCActionTimelineCache.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/../Json/DictionaryHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCFrame.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCNodeReader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimeLine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/ActionTimeline/CCTimelineMacro.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/TriggerBase.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/ObjectFactory.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/TriggerObj.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/../Json/DictionaryHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/../Json/CocoLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/TriggerMng.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Trigger/../Armature/CCArmature.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComBase.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/../Trigger/ObjectFactory.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/../Json/DictionaryHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/../Json/CocoLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComAttribute.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComBase.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComAudio.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComController.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCInputDelegate.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Components/CCComRender.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/CocosGUI.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/UIWidget.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutParameter.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../Layouts/UILayoutDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../System/GUIDefine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../BaseClasses/../System/../../Trigger/ObjectFactory.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../Layouts/UILayout.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../Layouts/../BaseClasses/UIWidget.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UIButton.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/../BaseClasses/UIWidget.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UICheckBox.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UIImageView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILabel.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILabelAtlas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILoadingBar.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../Layouts/UILayout.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollInterface.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/../../BaseClasses/UIWidget.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UISlider.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UITextField.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIListView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIScrollView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UILabelBMFont.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/ScrollWidget/UIPageView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/UIHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/GUIReader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../GUI/BaseClasses/UIWidget.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../Json/rapidjson/document.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/WidgetReader/WidgetReaderProtocol.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/WidgetReader/../../Json/DictionaryHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../Trigger/ObjectFactory.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../../Reader/../Json/CocoLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/UITouchGroup.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/CompatibleClasses.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../../BaseClasses/UIWidget.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIButton.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UICheckBox.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UIImageView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabel.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelAtlas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILabelBMFont.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UILoadingBar.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UISlider.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../UITextField.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../../Layouts/UILayout.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIListView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIPageView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/Compatible/../ScrollWidget/UIScrollView.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/GUI/System/../UIWidgets/UIRichText.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Json/DictionaryHelper.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Json/CocoLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Reader/SceneReader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Reader/../Json/CocoLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Action/CCActionManager.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Action/CCActionObject.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/CocoStudio/Action/../Json/rapidjson/document.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/physics_nodes/CCPhysicsDebugNode.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/chipmunk.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/chipmunk_types.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpVect.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpBB.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpSpatialIndex.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpBody.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpShape.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpPolyShape.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpArbiter.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpConstraint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpPinJoint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpSlideJoint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpPivotJoint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpGrooveJoint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpDampedSpring.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpDampedRotarySpring.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpRotaryLimitJoint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpRatchetJoint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpGearJoint.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/constraints/cpSimpleMotor.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/external/chipmunk/include/chipmunk/cpSpace.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/physics_nodes/CCPhysicsSprite.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/spine-cocos2dx.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/spine.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Animation.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AnimationState.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AnimationStateData.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/SkeletonData.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/BoneData.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/SlotData.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Skin.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Attachment.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Atlas.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AtlasAttachmentLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/AttachmentLoader.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Bone.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/RegionAttachment.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Slot.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/Skeleton.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/SkeletonJson.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeleton.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeletonAnimation.h:
+
+jni/../../Classes/BTLootsieAchievement.h:
 
 jni/../../Classes/HomeLayer.h:
 
