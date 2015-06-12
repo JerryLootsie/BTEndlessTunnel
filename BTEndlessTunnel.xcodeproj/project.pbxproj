@@ -329,6 +329,7 @@
 		520ABDBC1B1926D200FAEAE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */; };
 		5214287B1B28D78E00B13E65 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB51B1920C700FAEAE0 /* libRestKit.a */; };
 		5214287C1B28D78E00B13E65 /* libLootsie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB31B1920C400FAEAE0 /* libLootsie.a */; };
+		524E11991B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524E11981B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp */; };
 		52FE7ABD1B22480D000B5530 /* PopUpAchievementsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FE7ABB1B22480D000B5530 /* PopUpAchievementsLayer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -1035,6 +1036,8 @@
 		520ABDBB1B1926D200FAEAE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		521428791B28D77700B13E65 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "../../../bitbucket/ios-sdk4-dev/ios-sdk4/External/RestKit-0.20.3/Build/Products/Debug-iphoneos/libRestKit.a"; sourceTree = "<group>"; };
 		521428811B28DDCC00B13E65 /* BTLootsieAchievement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BTLootsieAchievement.h; path = Classes/BTLootsieAchievement.h; sourceTree = "<group>"; };
+		524E11941B2B7CD100FDF554 /* PopUpRewardsLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PopUpRewardsLayer.h; path = Classes/PopUpRewardsLayer.h; sourceTree = "<group>"; };
+		524E11981B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpRewardsLayer.cpp; path = Classes/PopUpRewardsLayer.cpp; sourceTree = "<group>"; };
 		52FE7ABB1B22480D000B5530 /* PopUpAchievementsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpAchievementsLayer.cpp; path = Classes/PopUpAchievementsLayer.cpp; sourceTree = "<group>"; };
 		52FE7ABC1B22480D000B5530 /* PopUpAchievementsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpAchievementsLayer.h; path = Classes/PopUpAchievementsLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2404,6 +2407,8 @@
 				52FE7ABC1B22480D000B5530 /* PopUpAchievementsLayer.h */,
 				07EC9E0418EB1E4000E2C037 /* PopUpLoseLayer.cpp */,
 				07EC9E0518EB1E4000E2C037 /* PopUpLoseLayer.h */,
+				524E11981B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp */,
+				524E11941B2B7CD100FDF554 /* PopUpRewardsLayer.h */,
 				07EC9E1118EB442C00E2C037 /* PauseLayer.cpp */,
 				07EC9E1218EB442C00E2C037 /* PauseLayer.h */,
 				07AC273918E500DA00F6AEA0 /* HudLayer.cpp */,
@@ -2617,6 +2622,7 @@
 				07AC274B18E5017100F6AEA0 /* SneakyButtonSkinnedBase.cpp in Sources */,
 				07CBA3E318DCAFBB004E8B35 /* platform.cpp in Sources */,
 				07CBA44918DCAFBD004E8B35 /* CCComponentContainer.cpp in Sources */,
+				524E11991B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp in Sources */,
 				07CBA42318DCAFBC004E8B35 /* CCSprite.cpp in Sources */,
 				07CBA49B18DCAFBD004E8B35 /* CCTouchDispatcher.cpp in Sources */,
 				07EC9E0D18EB203500E2C037 /* LocalStorageManager.cpp in Sources */,

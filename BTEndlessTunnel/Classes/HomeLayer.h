@@ -13,6 +13,7 @@
 #include "GameLayer.h"
 #include "SettingsLayer.h"
 #include "PopUpAchievementsLayer.h"
+#include "PopUpRewardsLayer.h"
 
 enum HomeButtons
 {
@@ -23,7 +24,8 @@ enum HomeButtons
     kTagLeaderboard = 4,
     kTagAchievements = 5,
     kTagSettings = 6,
-    kTagHowToPlay = 7
+    kTagHowToPlay = 7,
+    kTagRewards = 8
 };
 
 class HomeLayer : public cocos2d::CCLayer
@@ -39,6 +41,7 @@ public:
     void _showLayer();
     
     void _showPopUpAchievementsLayer(std::vector<BTLootsieAchievement*> lootsieAchievments);
+    void _showPopUpRewardsLayer();
     
 private:
     static HomeLayer* instance;
@@ -50,7 +53,8 @@ private:
     cocos2d::CCMenuItemImage* menuItemNormal;
     cocos2d::CCMenuItemImage* menuItemHard;
     cocos2d::CCMenuItemImage* menuItemAchievements;
-    cocos2d::CCMenuItemImage* menuItemLeaderboard;
+//    cocos2d::CCMenuItemImage* menuItemLeaderboard;
+    cocos2d::CCMenuItemImage* menuItemRewards;
     cocos2d::CCMenuItemImage* menuItemSettings;
     cocos2d::CCMenuItemLabel* menuRateApp;
     cocos2d::CCMenuItemLabel* menuHowToPlay;
@@ -84,6 +88,7 @@ private:
     
 //    PopUpLoseLayer* _popUpLoseLayer;
     PopUpAchievementsLayer* _popUpAchievementsLayer;
+    PopUpRewardsLayer* _popUpRewardsLayer;
     
     cocos2d::CCMenu* menu;
 };

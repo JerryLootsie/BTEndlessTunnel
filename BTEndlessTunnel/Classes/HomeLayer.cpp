@@ -80,10 +80,17 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     menuItemAchievements->setPositionY(visibleOrigin.y + menuItemAchievements->getContentSize().height * 0.75f);
     
     // Leaderboards
-    menuItemLeaderboard = CCMenuItemImage::create("chart_off.png", "chart.png", this, menu_selector(HomeLayer::_onOptionPressed));
-    menuItemLeaderboard->setTag(kTagLeaderboard);
-    menuItemLeaderboard->setPositionX(menuItemAchievements->getPositionX() + menuItemAchievements->getContentSize().width * 1.2f);
-    menuItemLeaderboard->setPositionY(menuItemAchievements->getPositionY());
+//    menuItemLeaderboard = CCMenuItemImage::create("chart_off.png", "chart.png", this, menu_selector(HomeLayer::_onOptionPressed));
+//    menuItemLeaderboard->setTag(kTagLeaderboard);
+//    menuItemLeaderboard->setPositionX(menuItemAchievements->getPositionX() + menuItemAchievements->getContentSize().width * 1.2f);
+//    menuItemLeaderboard->setPositionY(menuItemAchievements->getPositionY());
+
+
+    // Leaderboards
+    menuItemRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(HomeLayer::_onOptionPressed));
+    menuItemRewards->setTag(kTagRewards);
+    menuItemRewards->setPositionX(menuItemAchievements->getPositionX() + menuItemAchievements->getContentSize().width * 1.2f);
+    menuItemRewards->setPositionY(menuItemAchievements->getPositionY());
     
     float scale = 1.05f;
     float time_dt = 1.3f;
@@ -152,8 +159,11 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     CCMenuItemImage* menuSoundOff = CCMenuItemImage::create("sound_off_off.png", "sound_off.png", NULL, NULL);
     
     menuSound = CCMenuItemToggle::createWithTarget(this, menu_selector(HomeLayer::_manageMusic), menuSoundOn, menuSoundOff, NULL);
-    menuSound->setPositionX(menuItemLeaderboard->getPositionX() + menuItemAchievements->getContentSize().width * 1.2f);
-    menuSound->setPositionY(menuItemLeaderboard->getPositionY());
+//    menuSound->setPositionX(menuItemLeaderboard->getPositionX() + menuItemAchievements->getContentSize().width * 1.2f);
+//    menuSound->setPositionY(menuItemLeaderboard->getPositionY());
+    menuSound->setPositionX(menuItemRewards->getPositionX() + menuItemAchievements->getContentSize().width * 1.2f);
+    menuSound->setPositionY(menuItemRewards->getPositionY());
+    
     
     if(LocalStorageManager::isMute())
         menuSound->setSelectedIndex(1);
@@ -164,7 +174,8 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     menu->addChild(menuItemEasy);
     menu->addChild(menuItemNormal);
     menu->addChild(menuItemHard);
-    menu->addChild(menuItemLeaderboard);
+    //menu->addChild(menuItemLeaderboard);
+    menu->addChild(menuItemRewards);
     menu->addChild(menuItemAchievements);
     menu->addChild(menuItemSettings);
     menu->addChild(menuSound);
@@ -186,13 +197,22 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
 //    _popUpLoseLayer->autorelease();
 //    addChild(_popUpLoseLayer, 10000);
     
-    // testing _popUpAchievementsLayer
+    // PopUpAchievementsLayer
     _popUpAchievementsLayer = new PopUpAchievementsLayer();
     _popUpAchievementsLayer->setPositionY(0);
     _popUpAchievementsLayer->setVisible(false);
     _popUpAchievementsLayer->autorelease();
     _popUpAchievementsLayer->_setHomeLayer(this);
     addChild(_popUpAchievementsLayer, 10000);
+    
+    // PopUpRewardsLayer
+    _popUpRewardsLayer = new PopUpRewardsLayer();
+    _popUpRewardsLayer->setPositionY(0);
+    _popUpRewardsLayer->setVisible(false);
+    _popUpRewardsLayer->autorelease();
+    _popUpRewardsLayer->_setHomeLayer(this);
+    addChild(_popUpRewardsLayer, 10001);
+    
     
     NativeUtils::showAd();
     
@@ -277,6 +297,14 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
             NativeUtils::showLeaderboards();
             break;
             
+        case kTagRewards:
+            std::cout << "HomeLayer: show Rewards Page\n";
+//            NativeUtils::sendAnalytics("Show Leaderboards");
+//            NativeUtils::showLeaderboards();
+            
+            _showPopUpRewardsLayer();
+            break;
+            
         case kTagAchievements:
             std::cout << "HomeLayer: show achievments\n";
             
@@ -335,6 +363,23 @@ void HomeLayer::_showPopUpAchievementsLayer(std::vector<BTLootsieAchievement*> l
     
 }
 
+void HomeLayer::_showPopUpRewardsLayer()
+{
+    std::cout << "HomeLayer: _showPopUpRewardsLayer: " << std::endl;
+    
+    // normally setting runGame to true => will kick off finish and hide layer
+    _disableButtons();
+    disable = true;
+    _hideToLeft();
+    _hideToRight();
+    
+    scheduleOnce(schedule_selector(HomeLayer::_finishHideLayerDontStartGame), HIDE_TIME + 0.1f);
+    
+    //_popUpAchievementsLayer->_setAchievments(lootsieAchievments);
+    _popUpRewardsLayer->setVisible(true);
+    
+}
+
 void HomeLayer::_hideToLeft()
 {
     CCMoveBy* move = CCMoveBy::create(HIDE_TIME, ccp(-WIN_SIZE.width * 0.8f, 0));
@@ -343,7 +388,8 @@ void HomeLayer::_hideToLeft()
     menuItemNormal->runAction((CCAction*) move->copy()->autorelease());
     menuItemHard->runAction((CCAction*) move->copy()->autorelease());
     menuItemAchievements->runAction((CCAction*) move->copy()->autorelease());
-    menuItemLeaderboard->runAction((CCAction*) move->copy()->autorelease());
+    //menuItemLeaderboard->runAction((CCAction*) move->copy()->autorelease());
+    menuItemRewards->runAction((CCAction*) move->copy()->autorelease());
     menuSound->runAction((CCAction*) move->copy()->autorelease());
 }
 
@@ -355,7 +401,8 @@ void HomeLayer::_unhideFromLeft()
     menuItemNormal->runAction((CCAction*) move->copy()->autorelease());
     menuItemHard->runAction((CCAction*) move->copy()->autorelease());
     menuItemAchievements->runAction((CCAction*) move->copy()->autorelease());
-    menuItemLeaderboard->runAction((CCAction*) move->copy()->autorelease());
+//    menuItemLeaderboard->runAction((CCAction*) move->copy()->autorelease());
+    menuItemRewards->runAction((CCAction*) move->copy()->autorelease());
     menuSound->runAction((CCAction*) move->copy()->autorelease());
 }
 

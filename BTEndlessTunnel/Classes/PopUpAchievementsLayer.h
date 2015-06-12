@@ -43,12 +43,9 @@ class PopUpAchievementsLayer : public cocos2d::CCLayerColor
 {
 public:
     PopUpAchievementsLayer();
-//    void updateScore(int level, float score, int obstaclesAvoided);
+
     void _setHomeLayer(HomeLayer *inputLayer);
     
-//    cocos2d::extension::CCScrollView *scrollView;
-//    cocos2d::CCLayer *scrollContainer;
-
     cocos2d::CCLayer *scrollContainerLeft;
     cocos2d::CCLayer *scrollContainerRight;
     
@@ -62,8 +59,6 @@ private:
     
     void _createAchievementScreens();
     
-//    void _addAchievementEntries(cocos2d::CCSprite* bgSprite, int rotationOffset);
-//    void _addAchievementEntries(cocos2d::CCNode* bgSprite, int rotationOffset);
     void _addAchievementEntries(cocos2d::CCNode* bgSprite,
                                 int rotationOffset,
                                 std::vector<BTLootsieAchievement *> inputLootsieAchievments);
@@ -80,21 +75,13 @@ private:
     int _level;
     long _score;
 
+    // link back to parent layer
     HomeLayer *_homeLayer;
     
     cocos2d::CCLabelTTF* _lblTitle;
     
-    //AchievementLine *achievementEntries;
-    //AchievementLine **achievementEntries;
     std::vector<AchievementLine*> achievementEntries;
-    
-    //std::vector< std::vector< AchievementLine > > AchievementLineVector;
 
-    
-    
-//    cocos2d::CCLabelTTF* _lblScore;
-//    cocos2d::CCLabelTTF* _lblMaxScore;
-//    cocos2d::CCSprite* spBadge;
     bool disable;
 };
 #endif /* defined(__BTEndlessTunnel__PopUpAchievementsLayer__) */
