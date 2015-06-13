@@ -18,12 +18,7 @@ public:
     std::string description;
     int lp;
     std::string date;
-    
-//    std::string name = "";
-//    bool is_achieved = false;
-//    std::string description = "";
-//    int lp = 0;
-    
+
 };
 
 #endif

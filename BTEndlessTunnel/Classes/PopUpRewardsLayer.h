@@ -13,6 +13,8 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 
+#include "BTLootsieReward.h"
+
 class HomeLayer;
 
 enum RewardButtons
@@ -28,6 +30,8 @@ public:
     PopUpRewardsLayer();
     
     void _setHomeLayer(HomeLayer *inputLayer);
+    void _setRewards(std::vector<BTLootsieReward*> lootsieRewards);
+    
     
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
@@ -35,6 +39,12 @@ private:
     // link back to parent layer
     HomeLayer *_homeLayer;
     cocos2d::CCLabelTTF* _lblTitle;
+    cocos2d::CCMenu* _menu;
+    
+    
+    std::vector<BTLootsieReward*> lootsieRewards;
+    
+    void _createRewardGUI(BTLootsieReward *lootsieReward);
     
     bool disable;    
 };

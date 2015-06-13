@@ -140,7 +140,6 @@ void NativeUtils::showLeaderboards()
 
 void NativeUtils::getAchievements()
 {
-    // not yet implemented!
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	JniHelpers::jniCommonVoidCall(
 		"getAchievements",
@@ -152,6 +151,22 @@ void NativeUtils::getAchievements()
 #endif
     
 }
+
+
+void NativeUtils::getRewards()
+{
+    // not yet implemented!
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//    JniHelpers::jniCommonVoidCall(
+//                                  "getRewards",
+//                                  CLASS_NAME);
+#endif
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    PlayGameSingleton::sharedInstance().getRewards();
+#endif
+}
+
 
 void NativeUtils::showLeaderboard(const char* leaderboardID)
 {

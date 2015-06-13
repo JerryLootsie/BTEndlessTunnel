@@ -41,7 +41,7 @@ public:
     void _showLayer();
     
     void _showPopUpAchievementsLayer(std::vector<BTLootsieAchievement*> lootsieAchievments);
-    void _showPopUpRewardsLayer();
+    void _showPopUpRewardsLayer(std::vector<BTLootsieReward*> lootsieRewards);
     
 private:
     static HomeLayer* instance;

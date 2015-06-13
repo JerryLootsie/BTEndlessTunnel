@@ -215,11 +215,15 @@ void PlayGameSingleton::shareOnFacebook(long score, int level, int obstacles)
 
 void PlayGameSingleton::getAchievements()
 {
-    
     std::cout << "PlayGameSingleton: getAchievements\n";
-
     LootsieManager::sharedInstance().getAchievements();
-    //LootsieManager::getAchievements();
-    
 }
+
+void PlayGameSingleton::getRewards()
+{
+    std::cout << "PlayGameSingleton: getRewards\n";
+    LootsieManager::sharedInstance().getRewards();
+}
+
+
 

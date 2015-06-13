@@ -41,8 +41,6 @@ void LootsieManager::getAchievements() {
     
     NSLog(@"LootsieManager: getUserAchievements");
     
-    // TODO: get these achievements to show up in Lootsie.h without restkit
-    
     ServiceCallback callback = ^(BOOL success, id result, NSString* errorMessage, NSInteger statusCode) {
         if (errorMessage != nil) {
             NSLog(@"LootsieManager: getUserAchievements callback: %@", errorMessage);
@@ -61,7 +59,7 @@ void LootsieManager::getAchievements() {
                 
                 NSLog(@"LootsieManager: achievement: %@", achievementId);
                 
-                // copy this stuff to a cpp data structure
+                // copy this stuff from objective C to a cpp data structure
                 BTLootsieAchievement *lootsieAchievment = new BTLootsieAchievement();
                 lootsieAchievment->name = std::string([achievmentName UTF8String]);
                 lootsieAchievment->description = std::string([achievementDescr UTF8String]);
@@ -71,11 +69,7 @@ void LootsieManager::getAchievements() {
                 lootsieAchievments.push_back(lootsieAchievment);
             }
             
-            
-            //HomeLayer::_showPopUpAchievementsLayer();
             HomeLayer::sharedInstance()->_showPopUpAchievementsLayer(lootsieAchievments);
-            
-            //achievementIndex = 0;
         }
     };
     
@@ -83,3 +77,63 @@ void LootsieManager::getAchievements() {
     
     
 }
+
+void LootsieManager::getRewards() {
+    
+    NSLog(@"LootsieManager: getRewards");
+    
+    ServiceCallback callback = ^(BOOL success, id result, NSString* errorMessage, NSInteger statusCode) {
+        if (errorMessage != nil) {
+            NSLog(@"LootsieManager: onGetRewards: %@", errorMessage);
+            
+            // parse result into an array of reward names
+            NSArray* rewards = result;
+            
+            //NSMutableArray *rewardIds = [[NSMutableArray alloc] init];
+
+            for (LootsieReward *reward in rewards) {
+                NSString *rewardDescr = reward.reward_description;
+                NSString *rewardId = reward.reward_id;
+                //[rewardIds addObject:rewardId];
+                
+                NSLog(@"LootsieManager: reward: %@ %@", rewardDescr, rewardId);
+                
+                // copy this stuff from objective C to a cpp data structure
+                BTLootsieReward *lootsieReward = new BTLootsieReward();
+                
+                if (reward.brand_name) lootsieReward->brand_name = std::string([reward.brand_name UTF8String]);
+                if (reward.reward_description) lootsieReward->reward_description = std::string([reward.reward_description UTF8String]);
+                if (reward.reward_id) lootsieReward->reward_id = std::string([reward.reward_id UTF8String]);
+                
+                // engagements
+                
+                if (reward.image_urls != NULL) {
+                    // image_urls
+                    if (reward.image_urls.DETAIL) lootsieReward->imageURL_DETAIL = std::string([reward.image_urls.DETAIL UTF8String]);
+                    if (reward.image_urls.L) lootsieReward->imageURL_L = std::string([reward.image_urls.L UTF8String]);
+                    if (reward.image_urls.M) lootsieReward->imageURL_M = std::string([reward.image_urls.M UTF8String]);
+                    if (reward.image_urls.S) lootsieReward->imageURL_S = std::string([reward.image_urls.S UTF8String]);
+                    if (reward.image_urls.XL) lootsieReward->imageURL_XL = std::string([reward.image_urls.XL UTF8String]);
+                }
+                
+                lootsieReward->is_limited_time = reward.is_limited_time;
+                lootsieReward->is_new = reward.is_new;
+                lootsieReward->lp = reward.lp;
+                if (reward.name) lootsieReward->name = std::string([reward.name UTF8String]);
+                lootsieReward->redemptions_remaining = reward.redemptions_remaining;
+                
+                if (reward.text_to_share) lootsieReward->text_to_share = std::string([reward.text_to_share UTF8String]);
+                if (reward.tos_text) lootsieReward->tos_text = std::string([reward.tos_text UTF8String]);
+                if (reward.tos_url) lootsieReward->tos_url = std::string([reward.tos_url UTF8String]);
+                
+                lootsieRewards.push_back(lootsieReward);
+            }
+            
+
+            HomeLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
+        }
+    };
+    
+    [[Lootsie sharedInstance] getUserRewards:callback];
+}
+

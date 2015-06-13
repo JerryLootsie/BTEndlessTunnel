@@ -13,6 +13,7 @@
 #include <stdio.h>
 
 #include "BTLootsieAchievement.h"
+#include "BTLootsieReward.h"
 
 class LootsieManager
 {
@@ -23,9 +24,11 @@ public:
     static void achievementReached(char*);
     static void showAchievements();
     void getAchievements();
+    void getRewards();
     
 
     std::vector<BTLootsieAchievement*> lootsieAchievments;
+    std::vector<BTLootsieReward*> lootsieRewards;
 };
 
 #endif

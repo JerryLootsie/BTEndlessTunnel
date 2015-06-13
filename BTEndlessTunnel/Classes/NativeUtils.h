@@ -37,12 +37,18 @@ public:
 	static bool isSignedIn();
 	static void signIn();
 	static void signOut();
-	static void submitScore(const char* leaderboardID, long score);
-	static void unlockAchievement(const char* achievementID);
+	
+    static void submitScore(const char* leaderboardID, long score);
+	
+    static void unlockAchievement(const char* achievementID);
 	static void incrementAchievement(const char* achievementID, int numSteps);
     static void incrementPercentageAchievement(const char *achievementID, float percentage);
-	static void showAchievements();
+	
+    static void showAchievements();
     static void getAchievements();
+    
+    static void getRewards();
+    
 	static void showLeaderboards();
 	static void showLeaderboard(const char* leaderboardID);
     

@@ -299,10 +299,17 @@ void HomeLayer::_onOptionPressed(CCObject *pSender)
             
         case kTagRewards:
             std::cout << "HomeLayer: show Rewards Page\n";
-//            NativeUtils::sendAnalytics("Show Leaderboards");
-//            NativeUtils::showLeaderboards();
             
-            _showPopUpRewardsLayer();
+            NativeUtils::getRewards();
+            
+            // classes/layers/HomeLayer.cpp (kTagAchievements) ->
+            // classes/helpers/ NativeUtils::getAchievements() ->
+            // PlayGameSingleton::sharedInstance().getAchievements() ->
+            // LootsieManager::getAchievements(); ->
+            // HomeLayer::sharedInstance()->_showPopUpAchievementsLayer
+
+            
+            //_showPopUpRewardsLayer();
             break;
             
         case kTagAchievements:
@@ -363,7 +370,7 @@ void HomeLayer::_showPopUpAchievementsLayer(std::vector<BTLootsieAchievement*> l
     
 }
 
-void HomeLayer::_showPopUpRewardsLayer()
+void HomeLayer::_showPopUpRewardsLayer(std::vector<BTLootsieReward*> lootsieRewards)
 {
     std::cout << "HomeLayer: _showPopUpRewardsLayer: " << std::endl;
     
@@ -375,7 +382,7 @@ void HomeLayer::_showPopUpRewardsLayer()
     
     scheduleOnce(schedule_selector(HomeLayer::_finishHideLayerDontStartGame), HIDE_TIME + 0.1f);
     
-    //_popUpAchievementsLayer->_setAchievments(lootsieAchievments);
+    _popUpRewardsLayer->_setRewards(lootsieRewards);
     _popUpRewardsLayer->setVisible(true);
     
 }

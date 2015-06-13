@@ -68,6 +68,8 @@ public:
     
     void getAchievements();
     
+    void getRewards();
+    
 private:
     void* rootController;
 };
