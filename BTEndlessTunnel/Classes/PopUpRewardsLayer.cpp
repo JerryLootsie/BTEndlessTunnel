@@ -93,14 +93,14 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
     if (lootsieRewards.size() > 0) {
         lootsieReward = lootsieRewards[0];
         
-        _createRewardGUI(lootsieReward);
+        _createRewardGUI(0, lootsieReward);
     }
     
 
     
 }
 
-void PopUpRewardsLayer::_createRewardGUI(BTLootsieReward *lootsieReward) {
+void PopUpRewardsLayer::_createRewardGUI(int rewardIndex, BTLootsieReward *lootsieReward) {
     
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint visibleOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
@@ -118,18 +118,43 @@ void PopUpRewardsLayer::_createRewardGUI(BTLootsieReward *lootsieReward) {
     // title
     if (lootsieReward != NULL) {
         std::cout << "PopUpRewardsLayer: reward: " << lootsieReward->name << std::endl;
+        
+        // reward title
         cocos2d::CCLabelTTF *rewardTitle = CCLabelTTF::create(lootsieReward->name.c_str(), FONT_GAME, SIZE_RATE_APP, CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * 0.035f), kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
         //rewardTitle->setPosition(ccp(origin.x,  (winSize.height/2)));
         //rewardTitle->setPosition(ccp(0, 0));
         rewardTitle->setPosition(ccp((rewardBg->getContentSize().width/2), (rewardBg->getContentSize().height - (rewardTitle->getContentSize().height/2))));
         rewardTitle->setColor(ccWHITE);
         rewardBg->addChild(rewardTitle);
+
+        
+        // reward cost string
+        std::ostringstream os;
+        os << "Cost: " << lootsieReward->lp << "LP";
+        std::string mesgStr = os.str();
+        const char *rewardCostStr = mesgStr.c_str();
+        
+        // reward cost label
+        cocos2d::CCLabelTTF *rewardCost = CCLabelTTF::create(rewardCostStr, FONT_GAME, SIZE_RATE_APP, CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * 0.035f), kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
+        rewardCost->setPosition(ccp((rewardBg->getContentSize().width/2), (rewardBg->getContentSize().height * 0.5f)
+                                    - (rewardCost->getContentSize().height) ));
+        rewardCost->setColor(ccWHITE);
+        rewardBg->addChild(rewardCost);
+        
+        
+
+        if (lootsieReward->imageURL_M.size() > 0) {
+            downLoadImage((char *)lootsieReward->imageURL_M.c_str(), rewardBg);
+        }
+        
     }
     
     
+    
     // tos button
-    CCMenuItem *tosItem  = CCMenuItemImage::create("tos_btn_pristine.png", "tos_btn_hit.png", this, menu_selector(PopUpRewardsLayer::_onOptionPressed));
-    tosItem->setTag(kTagTOS);
+    CCMenuItem *tosItem  = CCMenuItemImage::create("tos_btn_pristine.png", "tos_btn_hit.png", this, menu_selector(PopUpRewardsLayer::_onOptionPressed_TOS));
+    //int rewardIdHash = createStringHash(lootsieReward->reward_id);
+    tosItem->setTag(rewardIndex);
     //tosItem->setAnchorPoint(ccp(0, 0));
     tosItem->setAnchorPoint(ccp(0.5, 0.5));
     tosItem->setPosition(ccp((winSize.width/2) - (rewardBg->getContentSize().width/2) + (tosItem->getContentSize().width),
@@ -147,8 +172,8 @@ void PopUpRewardsLayer::_createRewardGUI(BTLootsieReward *lootsieReward) {
     
     
     // details button
-    CCMenuItem *detailsItem  = CCMenuItemImage::create("details_btn_pristine.png", "details_btn_hit.png", this, menu_selector(PopUpRewardsLayer::_onOptionPressed));
-    detailsItem->setTag(kTagDetails);
+    CCMenuItem *detailsItem  = CCMenuItemImage::create("details_btn_pristine.png", "details_btn_hit.png", this, menu_selector(PopUpRewardsLayer::_onOptionPressed_Details));
+    detailsItem->setTag(rewardIndex);
     //        detailsItem->setAnchorPoint(ccp(0, 0));
     detailsItem->setAnchorPoint(ccp(0.5, 0));
     detailsItem->setPosition(ccp((winSize.width/2) + (rewardBg->getContentSize().width/2) - (detailsItem->getContentSize().width),
@@ -196,6 +221,99 @@ void PopUpRewardsLayer::_createRewardGUI(BTLootsieReward *lootsieReward) {
     
 }
 
+int PopUpRewardsLayer::createStringHash(std::string s) {
+    
+    int hash = 0;
+    int offset = 'a' - 1;
+    for(std::string::const_iterator it=s.begin(); it!=s.end(); ++it) {
+        hash = hash << 1 | (*it - offset);
+    }
+    
+    return hash;
+}
+
+
+void PopUpRewardsLayer::downLoadImage(char *imageURL, cocos2d::CCSprite *rewardBg)
+{
+    //download->setString("downloading.....");
+    std::cout << "PopUpRewardsLayer: downLoadImage: " << imageURL << std::endl;
+    
+    std::string strImage = "img.png";
+    cocos2d::extension::CCHttpRequest* request = new cocos2d::extension::CCHttpRequest();
+    request->setUrl(imageURL);
+    //request->setUrl(URL);
+    request->setRequestType(cocos2d::extension::CCHttpRequest::kHttpGet);
+    request->setResponseCallback(this, httpresponse_selector(PopUpRewardsLayer::onImageDownLoaded));
+    
+    // save sprite in hashmap, and reference it later using the tag string
+    request->setTag(strImage.c_str());
+    
+    urlToSpriteMap[strImage] = rewardBg;
+    
+    cocos2d::extension::CCHttpClient::getInstance()->send(request);
+    request->release();
+}
+
+
+void PopUpRewardsLayer::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
+                                          cocos2d::extension::CCHttpResponse* pResponse)
+{
+    CCSize winSize=CCDirector::sharedDirector()->getWinSize();
+    cocos2d::extension::CCHttpResponse* response = pResponse;
+    
+    if (!response)
+    {
+        CCLog("No Response");
+        return;
+    }
+    int statusCode = response->getResponseCode();
+    
+    char statusString[64] = {};
+    sprintf(statusString, "HTTP Status Code: %d, tag = %s", statusCode, response->getHttpRequest()->getTag());
+    CCLog("response code: %d", statusCode);
+    
+    if (!response->isSucceed())
+    {
+        CCLog("response failed");
+        CCLog("error buffer: %s", response->getErrorBuffer());
+        CCMessageBox("error in downloaded", "Image");
+        return;
+    }
+    std::vector<char>*buffer = response->getResponseData();
+    
+    CCImage * img=new CCImage();
+    img->initWithImageData(&(buffer->front()), buffer->size());
+    
+    //CCMessageBox("Image downloaded", "Image");
+    
+    // Save image file to device.
+    std::string writablePath = CCFileUtils::sharedFileUtils()->getWritablePath();
+    writablePath.append(response->getHttpRequest()->getTag());
+    img->saveToFile(writablePath.c_str());
+    
+    // get bg sprite to draw sprite on top of
+    if (urlToSpriteMap.find(response->getHttpRequest()->getTag()) != urlToSpriteMap.end()) {
+        std::cout << "map contains key URL!\n";
+
+        CCSprite *rewardBg = urlToSpriteMap[response->getHttpRequest()->getTag()];
+        
+        //Now create Sprite from downloaded image
+        CCSprite* pSprite = CCSprite::create(writablePath.c_str());
+        float scale = (rewardBg->getContentSize().width * 0.8f)/ pSprite->getContentSize().width;
+        pSprite->setScale(scale);
+        pSprite->setPosition(ccp(rewardBg->getContentSize().width/2, rewardBg->getContentSize().height * 0.70f));
+        rewardBg->cocos2d::CCNode::addChild(pSprite);
+        
+    } else {
+    
+        //Now create Sprite from downloaded image
+        CCSprite* pSprite = CCSprite::create(writablePath.c_str());
+        pSprite->setPosition(ccp(winSize.width/2,winSize.height/2));
+        addChild(pSprite);
+    }
+}
+
+
 
 void PopUpRewardsLayer::_onOptionPressed(CCObject *pSender)
 {
@@ -206,18 +324,11 @@ void PopUpRewardsLayer::_onOptionPressed(CCObject *pSender)
     SimpleAudioEngine::sharedEngine()->playEffect(SFX_BUTTON);
     
     switch (item->getTag()) {
-//        case kTagPlayAgain:
-//            NativeUtils::sendAnalytics("Game Over - Play Again");
-//            //            CCNotificationCenter::sharedNotificationCenter()->postNotification(NOTIFICATION_PLAY_AGAIN);
-//            break;
-            
-//        case kTagSendScore:
-//            NativeUtils::sendAnalytics("Game Over - Share Facebook");
-//            NativeUtils::shareOnFacebook(_score, _level, _obstaclesAvoided);
-//            break;
-            
+
         case kTagTOS:
             std::cout << "PopUpAchievementsLayer: kTagTOS\n";
+            CCMessageBox("Terms Of Service", "terms");
+            
             
             break;
             
@@ -247,9 +358,46 @@ void PopUpRewardsLayer::_onOptionPressed(CCObject *pSender)
             break;
             
     }
+}
+
+void PopUpRewardsLayer::_onOptionPressed_TOS(CCObject *pSender)
+{
+    if(disable)
+        return;
+    
+    CCMenuItem* item = (CCMenuItem*) pSender;
+    SimpleAudioEngine::sharedEngine()->playEffect(SFX_BUTTON);
+    
+    // tag contains a lookup to reward id in rewards set
+    int rewardIndex = item->getTag();
+    
+    BTLootsieReward *lootsieReward = NULL;
+    lootsieReward = lootsieRewards[rewardIndex];
+            
+    std::cout << "PopUpAchievementsLayer: kTagTOS\n";
+    CCMessageBox(lootsieReward->tos_text.c_str(), "Terms Of Service");
+    
+            
+}
+
+void PopUpRewardsLayer::_onOptionPressed_Details(CCObject *pSender)
+{
+    if(disable)
+        return;
+    
+    CCMenuItem* item = (CCMenuItem*) pSender;
+    SimpleAudioEngine::sharedEngine()->playEffect(SFX_BUTTON);
+    
+    // tag contains a lookup to reward id in rewards set
+    int rewardIndex = item->getTag();
+    
+    BTLootsieReward *lootsieReward = NULL;
+    lootsieReward = lootsieRewards[rewardIndex];
+    
+    std::cout << "PopUpAchievementsLayer: kTagDetails\n";
+    CCMessageBox(lootsieReward->reward_description.c_str(), "Details");
     
     
 }
-
 
 
