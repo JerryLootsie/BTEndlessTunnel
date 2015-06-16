@@ -23,14 +23,15 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-RewardDisplay::RewardDisplay(cocos2d::CCLayerColor *inputLayer, BTLootsieReward *inputLootsieReward, int inputRewardIndex)
+//RewardDisplay::RewardDisplay(cocos2d::CCLayerColor *inputLayer, BTLootsieReward *inputLootsieReward, int inputRewardIndex)
+RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inputLootsieReward, int inputRewardIndex)
 {
     std::cout << "RewardDisplay: " << inputRewardIndex << std::endl;
     
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint visibleOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
-    CCPoint origin = ccp(visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height* 0.5f);
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+//    CCPoint origin = ccp(visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height* 0.5f);
+//    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
     rewardIndex = inputRewardIndex;
     
@@ -39,10 +40,10 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayerColor *inputLayer, BTLootsieReward 
     
     // cover up the background behind the scrollable area
     rewardBg = CCSprite::create("reward_bg.png");
-//    rewardBg->setPosition(ccp((winSize.width/2) + (rewardBg->getContentSize().width * rewardIndex),
-//                                             visibleOrigin.y + visibleSize.height* 0.5f));
+//    rewardBg->setPosition(ccp((rewardBg->getContentSize().width * 0.5f) + (rewardBg->getContentSize().width * rewardIndex),
+//                              rewardBg->getContentSize().height* 0.5f));
     rewardBg->setPosition(ccp((rewardBg->getContentSize().width * 0.5f) + (rewardBg->getContentSize().width * rewardIndex),
-                              visibleOrigin.y + visibleSize.height* 0.5f));
+                              rewardBg->getContentSize().height* 0.7f));
     rewardBg->retain();
 
     
@@ -100,11 +101,12 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayerColor *inputLayer, BTLootsieReward 
     tosItem->setTag(rewardIndex);
     //tosItem->setAnchorPoint(ccp(0, 0));
     tosItem->setAnchorPoint(ccp(0.5, 0.5));
-//    tosItem->setPosition(ccp((winSize.width/2) - (rewardBg->getContentSize().width/2) + (tosItem->getContentSize().width),
-//                                            (winSize.height/2) - (rewardBg->getContentSize().height/2) + (tosItem->getContentSize().height*1.2)));
-    tosItem->setPosition(ccp((rewardBg->getContentSize().width/2) + (tosItem->getContentSize().width),
-                            (tosItem->getContentSize().height*1.2)));
+//    tosItem->setPosition(ccp((rewardBg->getContentSize().width/2) + (tosItem->getContentSize().width),
+//                            (tosItem->getContentSize().height*1.2)));
+    tosItem->setPosition(ccp((rewardBg->getContentSize().width/2) - (tosItem->getContentSize().width),
+                             (tosItem->getContentSize().height*1.2)));
 
+    
     tosItem->retain();
     
     
@@ -121,9 +123,9 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayerColor *inputLayer, BTLootsieReward 
     detailsItem->setTag(rewardIndex);
     //        detailsItem->setAnchorPoint(ccp(0, 0));
     detailsItem->setAnchorPoint(ccp(0.5, 0));
-//    detailsItem->setPosition(ccp((winSize.width/2) + (rewardBg->getContentSize().width/2) - (detailsItem->getContentSize().width),
-//                                                (winSize.height/2) - (rewardBg->getContentSize().height/2) + (detailsItem->getContentSize().height*1.2)));
-    detailsItem->setPosition(ccp((rewardBg->getContentSize().width/2) - (detailsItem->getContentSize().width),
+//    detailsItem->setPosition(ccp((rewardBg->getContentSize().width/2) - (detailsItem->getContentSize().width),
+//                                 (detailsItem->getContentSize().height*1.2)));
+    detailsItem->setPosition(ccp((rewardBg->getContentSize().width/2) + (detailsItem->getContentSize().width),
                                  (detailsItem->getContentSize().height*1.2)));
     detailsItem->retain();
     
@@ -140,10 +142,6 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayerColor *inputLayer, BTLootsieReward 
     redeemItem = CCMenuItemImage::create("redeem_btn_small.png", "redeem_btn_small_off.png", layer, menu_selector(RewardDisplay::_onOptionPressed_Redeem));
     redeemItem->setTag(rewardIndex);
     redeemItem->setAnchorPoint(ccp(0, 0));
-//    redeemItem->setAnchorPoint(ccp(0.5, 0));
-//    redeemItem->setPosition(ccp((winSize.width/2),
-//                                (winSize.height/2) - (rewardBg->getContentSize().height/2) - (detailsItem->getContentSize().height*.25)
-//                                ));
     redeemItem->setPosition(ccp((rewardBg->getContentSize().width/2) - (redeemItem->getContentSize().width/2),
                                 (detailsItem->getContentSize().height* -0.25f)
                                 ));
@@ -199,7 +197,7 @@ void RewardDisplay::downLoadImage(char *imageURL, cocos2d::CCSprite *rewardBg, s
 void RewardDisplay::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
                                           cocos2d::extension::CCHttpResponse* pResponse)
 {
-    CCSize winSize=CCDirector::sharedDirector()->getWinSize();
+//    CCSize winSize=CCDirector::sharedDirector()->getWinSize();
     cocos2d::extension::CCHttpResponse* response = pResponse;
     
     if (!response)
@@ -234,21 +232,30 @@ void RewardDisplay::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
     img->saveToFile(writablePath.c_str());
     
     // get bg sprite to draw sprite on top of
-    std::cout << "response tag: " << response->getHttpRequest()->getTag() << std::endl;
+    std::cout << "onImageDownLoaded: response tag: " << response->getHttpRequest()->getTag() << std::endl;
     if (PopUpRewardsLayer::sharedInstance().urlToSpriteMap.find(response->getHttpRequest()->getTag()) != PopUpRewardsLayer::sharedInstance().urlToSpriteMap.end()) {
-        std::cout << "map contains key URL!\n";
+        //std::cout << "onImageDownLoaded: map contains key URL!\n";
         
         CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance().urlToSpriteMap[response->getHttpRequest()->getTag()];
         
         //Now create Sprite from downloaded image
         CCSprite* pSprite = CCSprite::create(writablePath.c_str());
-        float scale = (rewardBg->getContentSize().width * 0.8f)/ pSprite->getContentSize().width;
+        
+        std::cout << "onImageDownLoaded: rewardImage: " << pSprite->getContentSize().width << "x" << pSprite->getContentSize().height << std::endl;
+        std::cout << "onImageDownLoaded: rewardBg: " << rewardBg->getContentSize().width << "x" << rewardBg->getContentSize().height << std::endl;
+
+        // calculate scale to make reward image fit
+        float scale = 1.0f;
+        float scaleWidth = (rewardBg->getContentSize().width * 0.8f)/ pSprite->getContentSize().width;
+        float scaleHeight = (rewardBg->getContentSize().height * 0.43f)/ pSprite->getContentSize().height;
+        scale = MIN(scaleWidth, scaleHeight);
         pSprite->setScale(scale);
+        
         pSprite->setPosition(ccp(rewardBg->getContentSize().width/2, rewardBg->getContentSize().height * 0.70f));
         rewardBg->cocos2d::CCNode::addChild(pSprite);
         
     } else {
-        std::cout << "map can't find background sprite to place downloaded image!" << std::endl;
+        std::cout << "onImageDownLoaded: map can't find background sprite to place downloaded image!" << std::endl;
         //Now create Sprite from downloaded image
 //        CCSprite* pSprite = CCSprite::create(writablePath.c_str());
 //        pSprite->setPosition(ccp(winSize.width/2,winSize.height/2));
@@ -270,7 +277,7 @@ void RewardDisplay::_onOptionPressed_TOS(CCObject *pSender)
     int rewardIndex = item->getTag();
     lootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
     
-    std::cout << "PopUpAchievementsLayer: kTagTOS\n";
+    std::cout << "RewardDisplay: TOS\n";
     CCMessageBox(lootsieReward->tos_text.c_str(), "Terms Of Service");
     
     
@@ -288,7 +295,7 @@ void RewardDisplay::_onOptionPressed_Details(CCObject *pSender)
     int rewardIndex = item->getTag();
     lootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
     
-    std::cout << "PopUpAchievementsLayer: kTagDetails\n";
+    std::cout << "RewardDisplay: Details\n";
     CCMessageBox(lootsieReward->reward_description.c_str(), "Details");
     
     
@@ -306,7 +313,7 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
     int rewardIndex = item->getTag();
     lootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
     
-    std::cout << "PopUpAchievementsLayer: redeem\n";
+    std::cout << "RewardDisplay: redeem\n";
     //CCMessageBox(lootsieReward->reward_description.c_str(), "Redeem");
     
     
@@ -334,7 +341,7 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
         
         
     } else {
-        std::cout << "map missing key URL!\n";
+        std::cout << "RewardDisplay: redeem: map missing key URL!\n";
         
     }
     

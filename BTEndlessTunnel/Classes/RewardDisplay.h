@@ -22,9 +22,11 @@ class RewardDisplay : public cocos2d::extension::CCEditBoxDelegate
 {
 public:
     //RewardDisplay(BTLootsieReward *lootsieReward);
-    RewardDisplay(cocos2d::CCLayerColor *layer, BTLootsieReward *lootsieReward, int rewardIndex);
+    RewardDisplay(cocos2d::CCLayer *layer, BTLootsieReward *lootsieReward, int rewardIndex);
+//    RewardDisplay(cocos2d::CCLayerColor *layer, BTLootsieReward *lootsieReward, int rewardIndex);
     
-    cocos2d::CCLayerColor *layer;
+//    cocos2d::CCLayerColor *layer;
+    cocos2d::CCLayer *layer;
     
     cocos2d::CCSprite *rewardBg;
     

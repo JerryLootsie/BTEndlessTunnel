@@ -97,16 +97,81 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
     CCPoint origin = ccp(visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height* 0.5f);
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
-    BTLootsieReward *lootsieReward = NULL;
-    //if (lootsieRewards.size() > 0) {
-    //for (int i=0; i<lootsieRewards.size(); i++) {
-    //for (int i=0; i<lootsieRewards.size() && (i<2); i++) {
-    for (int i=0; i<lootsieRewards.size() && (i<3); i++) {
-        lootsieReward = lootsieRewards[i];
+
+    if (lootsieRewards.size() > 0) {
+        //RewardDisplay *rewardDisplay = rewardDisplays[0];
+        CCSprite *tempBg = CCSprite::create("reward_bg.png");
         
-        RewardDisplay *rewardDisplay = new RewardDisplay(this, lootsieReward, i);
-        rewardDisplays.push_back(rewardDisplay);
+        int maxRewards = 3;
+        //float displayRewards = 2;
+        float displayRewards = winSize.width / tempBg->getContentSize().width;
+        
+        float horizOffset = 0;
+        //float vertOffset = (winSize.height/2) - (tempBg->getContentSize().height * 0.5f);
+        float vertOffset = (winSize.height/2) - (tempBg->getContentSize().height * 0.7f);
+        float contentWidth = (tempBg->getContentSize().width * displayRewards);
+        float contentHeight = tempBg->getContentSize().height * 1.2;
+        
+//        cocos2d::CCPoint vertices[4] = {ccp(horizOffset, vertOffset),
+//            ccp(horizOffset, vertOffset + contentHeight),
+//            ccp(horizOffset + contentWidth, vertOffset + contentHeight),
+//            ccp(horizOffset + contentWidth, vertOffset)};
+//        
+//        CCDrawNode *polyNode = CCDrawNode::create();
+//        ccColor4F color = (ccColor4F){1,0,0,1.f};
+//        //    ccColor4F colorbg = (ccColor4F){0,0,0,1.0f};
+//        ccColor4F colorfg = (ccColor4F){0,0,0,0.0f};
+//        polyNode->drawPolygon(vertices, 4, colorfg, 5.0f, color);
+//        addChild(polyNode);
+        
+        
+        
+        // create scrollview, scrollcontent
+        cocos2d::extension::CCScrollView *scrollView;
+        cocos2d::CCLayer *scrollContainer;
+        
+        // setup scroll container
+        scrollContainer = CCLayer::create();
+        scrollContainer->setAnchorPoint(CCPointZero);
+        
+
+
+        
+        //if (lootsieRewards.size() > 0) {
+        //for (int i=0; i<lootsieRewards.size(); i++) {
+        //for (int i=0; i<lootsieRewards.size() && (i<2); i++) {
+        maxRewards = lootsieRewards.size();
+        //for (int i=0; i<lootsieRewards.size() && (i<maxRewards); i++) {
+        for (int i=0; i<lootsieRewards.size(); i++) {
+            BTLootsieReward *lootsieReward = NULL;
+            lootsieReward = lootsieRewards[i];
+            
+            RewardDisplay *rewardDisplay = new RewardDisplay(scrollContainer, lootsieReward, i);
+            rewardDisplays.push_back(rewardDisplay);
+        }
+        
+        
+        scrollContainer->setPosition(CCPointZero);
+        CCSize csize = CCSizeMake(tempBg->getContentSize().width * maxRewards,
+                                  contentHeight);
+        
+        scrollContainer->setContentSize(csize);
+        
+        //SETUP SCROLL VIEW
+        CCSize viewsize = CCSizeMake(tempBg->getContentSize().width * displayRewards,
+                                     contentHeight);
+        scrollView = cocos2d::extension::CCScrollView::create(viewsize, scrollContainer);
+        scrollView->setPosition(CCPoint(horizOffset, vertOffset));
+        scrollView->setDirection(cocos2d::extension::kCCScrollViewDirectionHorizontal);
+        scrollView->setContentOffset(ccp(0.f, 0.f), false);
+        scrollView->setAnchorPoint(CCPointZero);
+        
+        addChild(scrollView);
     }
+    
+    
+    
+
     
 
     
