@@ -26,7 +26,7 @@ enum RewardButtons
     kTagRedeem = 11
 };
 
-class PopUpRewardsLayer : public cocos2d::CCLayerColor
+class PopUpRewardsLayer : public cocos2d::CCLayerColor, public cocos2d::extension::CCEditBoxDelegate
 {
 public:
     PopUpRewardsLayer();
@@ -34,11 +34,17 @@ public:
     void _setHomeLayer(HomeLayer *inputLayer);
     void _setRewards(std::vector<BTLootsieReward*> lootsieRewards);
     
+    void editBoxEditingDidBegin(cocos2d::extension::CCEditBox *editBox);
+    void editBoxEditingDidEnd(cocos2d::extension::CCEditBox *editBox);
+    void editBoxTextChanged(cocos2d::extension::CCEditBox *editBox, std::string &text);    
+    void editBoxReturn(cocos2d::extension::CCEditBox *editBox);
     
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
     void _onOptionPressed_TOS(CCObject *pSender);
     void _onOptionPressed_Details(CCObject *pSender);
+    void _onOptionPressed_Redeem(CCObject *pSender);
+    
     
     // link back to parent layer
     HomeLayer *_homeLayer;

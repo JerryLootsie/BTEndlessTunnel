@@ -119,6 +119,8 @@ void PopUpRewardsLayer::_createRewardGUI(int rewardIndex, BTLootsieReward *loots
     if (lootsieReward != NULL) {
         std::cout << "PopUpRewardsLayer: reward: " << lootsieReward->name << std::endl;
         
+        
+        
         // reward title
         cocos2d::CCLabelTTF *rewardTitle = CCLabelTTF::create(lootsieReward->name.c_str(), FONT_GAME, SIZE_RATE_APP, CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * 0.035f), kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
         //rewardTitle->setPosition(ccp(origin.x,  (winSize.height/2)));
@@ -144,6 +146,8 @@ void PopUpRewardsLayer::_createRewardGUI(int rewardIndex, BTLootsieReward *loots
         
 
         if (lootsieReward->imageURL_M.size() > 0) {
+            urlToSpriteMap[lootsieReward->imageURL_M] = rewardBg;
+            
             downLoadImage((char *)lootsieReward->imageURL_M.c_str(), rewardBg);
         }
         
@@ -191,8 +195,8 @@ void PopUpRewardsLayer::_createRewardGUI(int rewardIndex, BTLootsieReward *loots
     
     
     // redeem button
-    CCMenuItem *redeemItem  = CCMenuItemImage::create("redeem_btn_small.png", "redeem_btn_small_off.png", this, menu_selector(PopUpRewardsLayer::_onOptionPressed));
-    redeemItem->setTag(kTagRedeem);
+    CCMenuItem *redeemItem  = CCMenuItemImage::create("redeem_btn_small.png", "redeem_btn_small_off.png", this, menu_selector(PopUpRewardsLayer::_onOptionPressed_Redeem));
+    redeemItem->setTag(rewardIndex);
     //        redeemItem->setAnchorPoint(ccp(0, 0));
     redeemItem->setAnchorPoint(ccp(0.5, 0));
     redeemItem->setPosition(ccp((winSize.width/2),
@@ -399,5 +403,77 @@ void PopUpRewardsLayer::_onOptionPressed_Details(CCObject *pSender)
     
     
 }
+
+void PopUpRewardsLayer::_onOptionPressed_Redeem(CCObject *pSender)
+{
+    if(disable)
+        return;
+    
+    CCMenuItem* item = (CCMenuItem*) pSender;
+    SimpleAudioEngine::sharedEngine()->playEffect(SFX_BUTTON);
+    
+    // tag contains a lookup to reward id in rewards set
+    int rewardIndex = item->getTag();
+    
+    BTLootsieReward *lootsieReward = NULL;
+    lootsieReward = lootsieRewards[rewardIndex];
+    
+    std::cout << "PopUpAchievementsLayer: redeem\n";
+    //CCMessageBox(lootsieReward->reward_description.c_str(), "Redeem");
+    
+    
+    // get bg sprite to draw sprite on top of
+    if (urlToSpriteMap.find(lootsieReward->imageURL_M) != urlToSpriteMap.end()) {
+        std::cout << "map contains key URL!\n";
+        
+        CCSprite *rewardBg = urlToSpriteMap[lootsieReward->imageURL_M];
+        
+        // CCScale9Sprite
+        cocos2d::extension::CCEditBox *_editEmail = cocos2d::extension::CCEditBox::create(CCSize(rewardBg->getContentSize().width,
+                                                                                               rewardBg->getContentSize().height * .20f),
+                                                                                          cocos2d::extension::CCScale9Sprite::create("tos_btn_hit.png"));
+
+        _editEmail->setPosition(ccp(rewardBg->getContentSize().width/2,
+                                    rewardBg->getContentSize().height/2));
+        _editEmail->setPlaceHolder("Email:");
+        _editEmail->setFontSize(SIZE_RATE_APP);
+        _editEmail->setFontColor(ccWHITE);
+        _editEmail->setMaxLength(80);
+        
+        _editEmail->setDelegate(this);
+        rewardBg->addChild(_editEmail);
+        
+        
+    } else {
+        std::cout << "map missing key URL!\n";
+
+    }
+    
+
+}
+
+void PopUpRewardsLayer::editBoxEditingDidBegin(cocos2d::extension::CCEditBox *editBox) {
+}
+
+void PopUpRewardsLayer::editBoxEditingDidEnd(cocos2d::extension::CCEditBox *editBox) {
+    std::cout << "editBoxEditingDidEnd: " << editBox->getText() << std::endl;
+}
+
+void PopUpRewardsLayer::editBoxTextChanged(cocos2d::extension::CCEditBox *editBox, std::string &text) {
+    
+}
+
+void PopUpRewardsLayer::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
+    std::cout << "editBoxReturn: " << editBox->getText() << std::endl;
+    
+    editBox->setVisible(false);
+    
+//    editBox->onExit();
+    //editBox->onExit();
+    //editBox->removeFromParent();
+    
+//    editBox->getParent()->removeChild(editBox);
+}
+
 
 
