@@ -18,6 +18,7 @@
 #include "BTLootsieReward.h"
 
 class HomeLayer;
+class RewardDisplay;
 
 enum RewardButtons
 {
@@ -26,24 +27,21 @@ enum RewardButtons
     kTagRedeem = 11
 };
 
-class PopUpRewardsLayer : public cocos2d::CCLayerColor, public cocos2d::extension::CCEditBoxDelegate
+class PopUpRewardsLayer : public cocos2d::CCLayerColor
 {
 public:
+    static PopUpRewardsLayer& sharedInstance();
     PopUpRewardsLayer();
     
     void _setHomeLayer(HomeLayer *inputLayer);
     void _setRewards(std::vector<BTLootsieReward*> lootsieRewards);
     
-    void editBoxEditingDidBegin(cocos2d::extension::CCEditBox *editBox);
-    void editBoxEditingDidEnd(cocos2d::extension::CCEditBox *editBox);
-    void editBoxTextChanged(cocos2d::extension::CCEditBox *editBox, std::string &text);    
-    void editBoxReturn(cocos2d::extension::CCEditBox *editBox);
-    
+    std::map<std::string, cocos2d::CCSprite*> urlToSpriteMap;
+    std::vector<BTLootsieReward*> lootsieRewards;
+    std::vector<RewardDisplay*> rewardDisplays;
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
-    void _onOptionPressed_TOS(CCObject *pSender);
-    void _onOptionPressed_Details(CCObject *pSender);
-    void _onOptionPressed_Redeem(CCObject *pSender);
+
     
     
     // link back to parent layer
@@ -52,17 +50,15 @@ private:
     cocos2d::CCMenu* _menu;
     
     
-    std::vector<BTLootsieReward*> lootsieRewards;
+
     
-    void _createRewardGUI(int rewardIndex, BTLootsieReward *lootsieReward);
+    //void _createRewardGUI(int rewardIndex, BTLootsieReward *lootsieReward);
     
-    
-    std::map<std::string, cocos2d::CCSprite*> urlToSpriteMap;
+    // keep a link to this
+    //RewardDisplay *rewardDisplay;
+
     
     int createStringHash(std::string s);
-    void downLoadImage(char *imageURL, cocos2d::CCSprite* rewardBg);
-    void onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender, cocos2d::extension::CCHttpResponse* pResponse);
-//    void onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender, cocos2d::extension::CCHttpResponse* pResponse, cocos2d::CCSprite* rewardBg);
 
     
     bool disable;    

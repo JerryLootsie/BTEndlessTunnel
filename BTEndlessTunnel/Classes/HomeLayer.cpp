@@ -206,7 +206,8 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     addChild(_popUpAchievementsLayer, 10000);
     
     // PopUpRewardsLayer
-    _popUpRewardsLayer = new PopUpRewardsLayer();
+    //_popUpRewardsLayer = new PopUpRewardsLayer();
+    _popUpRewardsLayer = &PopUpRewardsLayer::sharedInstance(); // initialize with a singleton instead
     _popUpRewardsLayer->setPositionY(0);
     _popUpRewardsLayer->setVisible(false);
     _popUpRewardsLayer->autorelease();
