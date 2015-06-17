@@ -225,5 +225,11 @@ void PlayGameSingleton::getRewards()
     LootsieManager::sharedInstance().getRewards();
 }
 
+void PlayGameSingleton::redeemReward(const char* emailStr, long rewardId)
+{
+    std::cout << "PlayGameSingleton: redeemReward\n";
+    
+    LootsieManager::sharedInstance().redeemReward((char *)emailStr, rewardId);
+}
 
 

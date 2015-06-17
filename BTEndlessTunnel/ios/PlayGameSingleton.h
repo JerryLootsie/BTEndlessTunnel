@@ -69,6 +69,7 @@ public:
     void getAchievements();
     
     void getRewards();
+    void redeemReward(const char* emailStr, long rewardId);
     
 private:
     void* rootController;

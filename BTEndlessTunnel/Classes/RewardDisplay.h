@@ -25,10 +25,14 @@ public:
     RewardDisplay(cocos2d::CCLayer *layer, BTLootsieReward *lootsieReward, int rewardIndex);
 //    RewardDisplay(cocos2d::CCLayerColor *layer, BTLootsieReward *lootsieReward, int rewardIndex);
     
+    // destructor
+    void cleanup();
+    
 //    cocos2d::CCLayerColor *layer;
     cocos2d::CCLayer *layer;
     
     cocos2d::CCSprite *rewardBg;
+    cocos2d::CCSprite *rewardImage;
     
     cocos2d::CCLabelTTF *rewardTitle;
     cocos2d::CCLabelTTF *rewardCost;
@@ -62,6 +66,11 @@ private:
     void _onOptionPressed_TOS(cocos2d::CCObject *pSender);
     void _onOptionPressed_Details(cocos2d::CCObject *pSender);
     void _onOptionPressed_Redeem(cocos2d::CCObject *pSender);
+  
+    
+    bool isCharacter(const char Character);
+    bool isNumber(const char Character);
+    bool isValidEmailAddress(const char * email);
     
 };
 

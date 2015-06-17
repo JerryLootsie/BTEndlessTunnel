@@ -127,8 +127,7 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
         
         
         // create scrollview, scrollcontent
-        cocos2d::extension::CCScrollView *scrollView;
-        cocos2d::CCLayer *scrollContainer;
+
         
         // setup scroll container
         scrollContainer = CCLayer::create();
@@ -136,6 +135,7 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
         
 
 
+        rewardDisplays.clear();
         
         //if (lootsieRewards.size() > 0) {
         //for (int i=0; i<lootsieRewards.size(); i++) {
@@ -168,12 +168,6 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
         
         addChild(scrollView);
     }
-    
-    
-    
-
-    
-
     
 }
 
@@ -223,6 +217,14 @@ void PopUpRewardsLayer::_onOptionPressed(CCObject *pSender)
             
             NativeUtils::sendAnalytics("Game Over - Home Button");
             this->setVisible(false);
+            
+            
+            for (int i = 0; i<rewardDisplays.size(); i++) {
+                std::cout << "PopUpAchievementsLayer: cleanup reward Display: " << i << std::endl;
+                
+                RewardDisplay *rewardDisplay = rewardDisplays[i];
+                rewardDisplay->cleanup();
+            }
             
             _homeLayer->_showLayer();
             //            scheduleOnce(schedule_selector(HomeLayer::_showLayer), 1.0 + 0.1f);

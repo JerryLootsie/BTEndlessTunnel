@@ -167,6 +167,20 @@ void NativeUtils::getRewards()
 #endif
 }
 
+void NativeUtils::redeemReward(std::string emailStr, long rewardId)
+{
+    // not yet implemented!
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    //    JniHelpers::jniCommonVoidCall(
+    //                                  "getRewards",
+    //                                  CLASS_NAME);
+#endif
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    PlayGameSingleton::sharedInstance().redeemReward(emailStr.c_str(), rewardId);
+#endif
+}
+
 
 void NativeUtils::showLeaderboard(const char* leaderboardID)
 {

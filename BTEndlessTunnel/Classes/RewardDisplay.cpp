@@ -46,7 +46,7 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inpu
                               rewardBg->getContentSize().height* 0.7f));
     rewardBg->retain();
 
-    
+    rewardImage = NULL;
     
     // title
     if (lootsieReward != NULL) {
@@ -171,6 +171,27 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inpu
     
 }
 
+void RewardDisplay::cleanup() {
+    if (rewardImage != NULL) {
+        rewardImage->removeFromParentAndCleanup(false);
+    }
+    
+    rewardTitle->removeFromParentAndCleanup(true);
+    rewardCost->removeFromParentAndCleanup(true);
+    
+    tosLabel->removeFromParentAndCleanup(true);
+    tosItem->removeFromParentAndCleanup(true);
+    
+    detailsLabel->removeFromParentAndCleanup(true);
+    detailsItem->removeFromParentAndCleanup(true);
+    
+    redeemLabel->removeFromParentAndCleanup(true);
+    redeemItem->removeFromParentAndCleanup(true);
+    
+    rewardMenu->removeFromParentAndCleanup(true);
+    rewardBg->removeFromParentAndCleanup(true);
+    
+}
 
 void RewardDisplay::downLoadImage(char *imageURL, cocos2d::CCSprite *rewardBg, std::string strImage)
 {
@@ -239,20 +260,20 @@ void RewardDisplay::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
         CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance().urlToSpriteMap[response->getHttpRequest()->getTag()];
         
         //Now create Sprite from downloaded image
-        CCSprite* pSprite = CCSprite::create(writablePath.c_str());
+        rewardImage = CCSprite::create(writablePath.c_str());
         
-        std::cout << "onImageDownLoaded: rewardImage: " << pSprite->getContentSize().width << "x" << pSprite->getContentSize().height << std::endl;
+        std::cout << "onImageDownLoaded: rewardImage: " << rewardImage->getContentSize().width << "x" << rewardImage->getContentSize().height << std::endl;
         std::cout << "onImageDownLoaded: rewardBg: " << rewardBg->getContentSize().width << "x" << rewardBg->getContentSize().height << std::endl;
 
         // calculate scale to make reward image fit
         float scale = 1.0f;
-        float scaleWidth = (rewardBg->getContentSize().width * 0.8f)/ pSprite->getContentSize().width;
-        float scaleHeight = (rewardBg->getContentSize().height * 0.43f)/ pSprite->getContentSize().height;
+        float scaleWidth = (rewardBg->getContentSize().width * 0.8f)/ rewardImage->getContentSize().width;
+        float scaleHeight = (rewardBg->getContentSize().height * 0.43f)/ rewardImage->getContentSize().height;
         scale = MIN(scaleWidth, scaleHeight);
-        pSprite->setScale(scale);
+        rewardImage->setScale(scale);
         
-        pSprite->setPosition(ccp(rewardBg->getContentSize().width/2, rewardBg->getContentSize().height * 0.70f));
-        rewardBg->cocos2d::CCNode::addChild(pSprite);
+        rewardImage->setPosition(ccp(rewardBg->getContentSize().width/2, rewardBg->getContentSize().height * 0.70f));
+        rewardBg->cocos2d::CCNode::addChild(rewardImage);
         
     } else {
         std::cout << "onImageDownLoaded: map can't find background sprite to place downloaded image!" << std::endl;
@@ -323,17 +344,27 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
         
         CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance().urlToSpriteMap[lootsieReward->imageURL_M];
         
+        // hide other buttons
+        RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+        rewardDisplay->tosItem->setVisible(false);
+        rewardDisplay->detailsItem->setVisible(false);
+        rewardDisplay->redeemItem->setVisible(false);
+        
+        
+        
         // CCScale9Sprite
         cocos2d::extension::CCEditBox *_editEmail = cocos2d::extension::CCEditBox::create(CCSize(rewardBg->getContentSize().width,
                                                                                                  rewardBg->getContentSize().height * .20f),
                                                                                           cocos2d::extension::CCScale9Sprite::create("tos_btn_hit.png"));
         
         _editEmail->setPosition(ccp(rewardBg->getContentSize().width/2,
-                                    rewardBg->getContentSize().height/2));
+                                    rewardBg->getContentSize().height * 0.40));
         _editEmail->setPlaceHolder("Email:");
         _editEmail->setFontSize(SIZE_RATE_APP);
         _editEmail->setFontColor(ccWHITE);
         _editEmail->setMaxLength(80);
+        
+        _editEmail->setTag(rewardIndex);
         
         RewardDisplay *localRewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
         _editEmail->setDelegate(localRewardDisplay);
@@ -347,6 +378,8 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
     
     
 }
+
+# pragma - editbox
 
 void RewardDisplay::editBoxEditingDidBegin(cocos2d::extension::CCEditBox *editBox) {
 }
@@ -364,9 +397,69 @@ void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     
     editBox->setVisible(false);
     
+    
+    std::string emailStr = editBox->getText();
+    
+    // show other buttons
+    rewardIndex = editBox->getTag();
+    
+    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+    rewardDisplay->tosItem->setVisible(true);
+    rewardDisplay->detailsItem->setVisible(true);
+    rewardDisplay->redeemItem->setVisible(true);
+    
+    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
+    long rewardId = std::atol(btLootsieReward->reward_id.c_str());
+    std::cout << "redeem reward:" << rewardId << std::endl;
+    
+    if (isValidEmailAddress(emailStr.c_str())) {
+        NativeUtils::redeemReward(emailStr, rewardId);
+    } else {
+        CCMessageBox("Invalid Email Address!", "Email Address Check");
+    }
+
+    
+    
     //    editBox->onExit();
     //editBox->onExit();
     //editBox->removeFromParent();
     
     //    editBox->getParent()->removeChild(editBox);
+}
+
+bool RewardDisplay::isCharacter(const char Character)
+{
+    return ( (Character >= 'a' && Character <= 'z') || (Character >= 'A' && Character <= 'Z'));
+    //Checks if a Character is a Valid A-Z, a-z Character, based on the ascii value
+}
+
+bool RewardDisplay::isNumber(const char Character)
+{
+    return ( Character >= '0' && Character <= '9');
+}
+
+bool RewardDisplay::isValidEmailAddress(const char * email)
+{
+    if(!email)
+        return 0;
+    if(!isCharacter(email[0]))
+        return 0;
+    int AtOffset = -1;
+    int DotOffset = -1;
+    unsigned int Length = strlen(email);
+    
+    for(unsigned int i = 0; i < Length; i++)
+    {
+        if(email[i] == '@')
+            AtOffset = (int)i;
+        else if(email[i] == '.')
+            DotOffset = (int)i;
+    }
+    
+    if(AtOffset == -1 || DotOffset == -1)
+        return 0;
+    if(AtOffset > DotOffset)
+        return 0;
+    return !(DotOffset >= ((int)Length-1));
+    
 }

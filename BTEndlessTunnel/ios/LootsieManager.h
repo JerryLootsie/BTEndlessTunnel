@@ -25,6 +25,7 @@ public:
     static void showAchievements();
     void getAchievements();
     void getRewards();
+    void redeemReward(char *emailStr, long rewardId);
     
 
     std::vector<BTLootsieAchievement*> lootsieAchievments;

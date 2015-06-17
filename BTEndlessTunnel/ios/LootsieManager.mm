@@ -91,6 +91,8 @@ void LootsieManager::getRewards() {
             
             //NSMutableArray *rewardIds = [[NSMutableArray alloc] init];
 
+            lootsieRewards.clear();
+            
             for (LootsieReward *reward in rewards) {
                 NSString *rewardDescr = reward.reward_description;
                 NSString *rewardId = reward.reward_id;
@@ -135,5 +137,25 @@ void LootsieManager::getRewards() {
     };
     
     [[Lootsie sharedInstance] getUserRewards:callback];
+}
+
+void LootsieManager::redeemReward(char *emailStr, long rewardId)
+{
+    NSLog(@"LootsieManager: redeemReward");
+    
+    NSString *rewardIdNSStr = [NSString stringWithFormat:@"%ld", rewardId];
+    NSString *emailNSStr = [[NSString alloc] initWithCString:emailStr encoding:NSASCIIStringEncoding];
+    
+    ServiceCallback callback = ^(BOOL success, id result, NSString* errorMessage, NSInteger statusCode) {
+        if (errorMessage != nil) {
+            NSLog(@"LootsieManager: redeemReward: %@", errorMessage);
+            
+            char *messageStr = (char*) [errorMessage UTF8String];
+            cocos2d::CCMessageBox(messageStr, "Message");
+        }
+    };
+    
+    [[Lootsie sharedInstance] redeemReward:rewardIdNSStr email:emailNSStr callback:callback];
+    
 }
 

@@ -49,8 +49,9 @@ private:
     cocos2d::CCLabelTTF* _lblTitle;
     cocos2d::CCMenu* _menu;
     
-    
-
+    // scrollview, scrollcontainer for showing rewards
+    cocos2d::extension::CCScrollView *scrollView;
+    cocos2d::CCLayer *scrollContainer;
     
     //void _createRewardGUI(int rewardIndex, BTLootsieReward *lootsieReward);
     
