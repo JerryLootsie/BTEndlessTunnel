@@ -30,8 +30,11 @@ enum RewardButtons
 class PopUpRewardsLayer : public cocos2d::CCLayerColor
 {
 public:
-    static PopUpRewardsLayer& sharedInstance();
+    //static PopUpRewardsLayer& sharedInstance();
+    static PopUpRewardsLayer* sharedInstance();
     PopUpRewardsLayer();
+    
+    static void cleanupSharedInstance();
     
     void _setHomeLayer(HomeLayer *inputLayer);
     void _setRewards(std::vector<BTLootsieReward*> lootsieRewards);

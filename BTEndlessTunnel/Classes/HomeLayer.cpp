@@ -207,7 +207,8 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     
     // PopUpRewardsLayer
     //_popUpRewardsLayer = new PopUpRewardsLayer();
-    _popUpRewardsLayer = &PopUpRewardsLayer::sharedInstance(); // initialize with a singleton instead
+    //_popUpRewardsLayer = &PopUpRewardsLayer::sharedInstance(); // initialize with a singleton instead
+    _popUpRewardsLayer = PopUpRewardsLayer::sharedInstance(); // initialize with a singleton instead
     _popUpRewardsLayer->setPositionY(0);
     _popUpRewardsLayer->setVisible(false);
     _popUpRewardsLayer->autorelease();
@@ -437,6 +438,11 @@ void HomeLayer::_finishHideLayer()
 {
     this->setVisible(false);
     _gameLayer->playGame();
+    
+    // don't remvoe singletons!?
+    //_popUpRewardsLayer = NULL;
+    _popUpRewardsLayer->cleanupSharedInstance();
+    
     this->removeFromParent();    
 }
 

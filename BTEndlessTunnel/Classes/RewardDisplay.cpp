@@ -52,10 +52,13 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inpu
     if (lootsieReward != NULL) {
         std::cout << "PopUpRewardsLayer: reward: " << lootsieReward->name << std::endl;
         
-        
+        //float textHeightMultiplier = 0.035f;
+        float textHeightMultiplier = 0.05f;
         
         // reward title
-        rewardTitle = CCLabelTTF::create(lootsieReward->name.c_str(), FONT_GAME, SIZE_RATE_APP, CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * 0.035f), kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
+        rewardTitle = CCLabelTTF::create(lootsieReward->name.c_str(), FONT_GAME, SIZE_RATE_APP,
+                                         CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * textHeightMultiplier),
+                                         kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
         //rewardTitle->setPosition(ccp(origin.x,  (winSize.height/2)));
         //rewardTitle->setPosition(ccp(0, 0));
         rewardTitle->setPosition(ccp((rewardBg->getContentSize().width/2), (rewardBg->getContentSize().height - (rewardTitle->getContentSize().height/2))));
@@ -70,7 +73,9 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inpu
         const char *rewardCostStr = mesgStr.c_str();
         
         // reward cost label
-        rewardCost = CCLabelTTF::create(rewardCostStr, FONT_GAME, SIZE_RATE_APP, CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * 0.035f), kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
+        rewardCost = CCLabelTTF::create(rewardCostStr, FONT_GAME, SIZE_RATE_APP,
+                                        CCSizeMake(visibleSize.width * 0.5f, visibleSize.height * textHeightMultiplier),
+                                        kCCTextAlignmentCenter, kCCVerticalTextAlignmentCenter);
         rewardCost->setPosition(ccp((rewardBg->getContentSize().width/2), (rewardBg->getContentSize().height * 0.5f)
                                                    - (rewardCost->getContentSize().height) ));
         rewardCost->setColor(ccWHITE);
@@ -79,7 +84,7 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inpu
         
         
         if (lootsieReward->imageURL_M.size() > 0) {
-            PopUpRewardsLayer::sharedInstance().urlToSpriteMap[lootsieReward->imageURL_M] = rewardBg;
+            PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M] = rewardBg;
             
             
             // reward cost string
@@ -208,7 +213,7 @@ void RewardDisplay::downLoadImage(char *imageURL, cocos2d::CCSprite *rewardBg, s
     // save sprite in hashmap, and reference it later using the tag string
     request->setTag(strImage.c_str());
     
-    PopUpRewardsLayer::sharedInstance().urlToSpriteMap[strImage] = rewardBg;
+    PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[strImage] = rewardBg;
     
     cocos2d::extension::CCHttpClient::getInstance()->send(request);
     request->release();
@@ -254,10 +259,10 @@ void RewardDisplay::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
     
     // get bg sprite to draw sprite on top of
     std::cout << "onImageDownLoaded: response tag: " << response->getHttpRequest()->getTag() << std::endl;
-    if (PopUpRewardsLayer::sharedInstance().urlToSpriteMap.find(response->getHttpRequest()->getTag()) != PopUpRewardsLayer::sharedInstance().urlToSpriteMap.end()) {
+    if (PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.find(response->getHttpRequest()->getTag()) != PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.end()) {
         //std::cout << "onImageDownLoaded: map contains key URL!\n";
         
-        CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance().urlToSpriteMap[response->getHttpRequest()->getTag()];
+        CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[response->getHttpRequest()->getTag()];
         
         //Now create Sprite from downloaded image
         rewardImage = CCSprite::create(writablePath.c_str());
@@ -296,7 +301,7 @@ void RewardDisplay::_onOptionPressed_TOS(CCObject *pSender)
     
     // tag contains a lookup to reward id in rewards set
     int rewardIndex = item->getTag();
-    lootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
+    lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     
     std::cout << "RewardDisplay: TOS\n";
     CCMessageBox(lootsieReward->tos_text.c_str(), "Terms Of Service");
@@ -314,7 +319,7 @@ void RewardDisplay::_onOptionPressed_Details(CCObject *pSender)
     
     // tag contains a lookup to reward id in rewards set
     int rewardIndex = item->getTag();
-    lootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
+    lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     
     std::cout << "RewardDisplay: Details\n";
     CCMessageBox(lootsieReward->reward_description.c_str(), "Details");
@@ -332,26 +337,26 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
     
     // tag contains a lookup to reward id in rewards set
     int rewardIndex = item->getTag();
-    lootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
+    lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     
     std::cout << "RewardDisplay: redeem\n";
     //CCMessageBox(lootsieReward->reward_description.c_str(), "Redeem");
     
     
     // get bg sprite to draw sprite on top of
-    if (PopUpRewardsLayer::sharedInstance().urlToSpriteMap.find(lootsieReward->imageURL_M) != PopUpRewardsLayer::sharedInstance().urlToSpriteMap.end()) {
+    if (PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.find(lootsieReward->imageURL_M) != PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.end()) {
         std::cout << "map contains key URL!\n";
         
-        CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance().urlToSpriteMap[lootsieReward->imageURL_M];
+        CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M];
         
         // hide other buttons
-        RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+        RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
         rewardDisplay->tosItem->setVisible(false);
         rewardDisplay->detailsItem->setVisible(false);
         rewardDisplay->redeemItem->setVisible(false);
         
         
-        RewardDisplay *localRewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+        RewardDisplay *localRewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
         
         // CCScale9Sprite
         _editEmail = cocos2d::extension::CCEditBox::create(CCSize(rewardBg->getContentSize().width,
@@ -420,7 +425,7 @@ void RewardDisplay::_onOptionPressed_Submit(CCObject *pSender)
     std::cout << "RewardDisplay: Submit rewardIndex: " << rewardIndex << "\n";
     
     // show other buttons
-    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
     rewardDisplay->tosItem->setVisible(true);
     rewardDisplay->detailsItem->setVisible(true);
     rewardDisplay->redeemItem->setVisible(true);
@@ -430,7 +435,7 @@ void RewardDisplay::_onOptionPressed_Submit(CCObject *pSender)
     rewardDisplay->sendRewardItem->setVisible(false);
     
     
-    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
+    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     //long rewardId = std::atol(btLootsieReward->reward_id.c_str());
     //std::cout << "redeem reward:" << rewardId << std::endl;
     std::string rewardIdStr = btLootsieReward->reward_id;
@@ -472,7 +477,7 @@ void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     // show other buttons
     rewardIndex = editBox->getTag();
     
-    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
     rewardDisplay->tosItem->setVisible(true);
     rewardDisplay->detailsItem->setVisible(true);
     rewardDisplay->redeemItem->setVisible(true);
@@ -481,7 +486,7 @@ void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     rewardDisplay->_editEmail->setVisible(false);
     rewardDisplay->sendRewardItem->setVisible(false);
     
-    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
+    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     //long rewardId = std::atol(btLootsieReward->reward_id.c_str());
     //std::cout << "redeem reward:" << rewardId << std::endl;
     std::string rewardIdStr = btLootsieReward->reward_id;

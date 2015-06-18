@@ -48,18 +48,29 @@ extern "C" {
     
 /*
  * Class:     com_carlospinan_utils_NativeUtils
- * Method:    nativeMono
- * Signature: (Ljava/lang/String;)V
+ * Method:    nativeRedeemRewardResponse
+ * Signature: (ZLjava/lang/String;)V
  */
-//JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeMono
-//(JNIEnv *, jclass, jstring);
+JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeRedeemRewardResponse
+(JNIEnv *env, jclass testClass, jboolean resultBool, jstring mesgStr)
+{
+    
+    const char *testMesg = env->GetStringUTFChars(mesgStr, NULL);
+    
+    LOGE("JNIHelpers: nativeRedeemRewardResponse: %s", testMesg);
+    // on success:
+    // JNIHelpers: nativeRedeemRewardResponse: {"total_lp": 822, "reward_redemption_id": "25881", "lp": -28}
+    
+    bool resultSuccess = (bool)(resultBool == JNI_TRUE);
+    if (resultSuccess) {
+        cocos2d::CCMessageBox("Reward Redeemed Successfully", "Redeem Reward Success");
+    } else {
+        cocos2d::CCMessageBox(testMesg, "Redeem Reward Failure");
+    }
+    
+}
 
-//JNIEXPORT void JNICALL
-//Java_com_carlospinan_utils_NativeUtils_nativeMono(JNIEnv * env,
-//                                                  jobject testObj,
-//                                                  jstring testStr
-//                                                  )
-
+    
 /*
  * Class:     com_carlospinan_utils_NativeUtils
  * Method:    nativeGetRewards

@@ -25,11 +25,27 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+static PopUpRewardsLayer *instance = NULL;
+
+
 #pragma mark - Singleton
-PopUpRewardsLayer& PopUpRewardsLayer::sharedInstance()
+//PopUpRewardsLayer& PopUpRewardsLayer::sharedInstance()
+//{
+//    static PopUpRewardsLayer instance;
+//    return instance;
+//}
+
+PopUpRewardsLayer* PopUpRewardsLayer::sharedInstance()
 {
-    static PopUpRewardsLayer instance;
+    if (instance == NULL) {
+        instance = new PopUpRewardsLayer();
+    }
     return instance;
+}
+
+void PopUpRewardsLayer::cleanupSharedInstance()
+{
+    instance = NULL;
 }
 
 PopUpRewardsLayer::PopUpRewardsLayer()
