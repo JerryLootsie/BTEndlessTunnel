@@ -139,11 +139,12 @@ void LootsieManager::getRewards() {
     [[Lootsie sharedInstance] getUserRewards:callback];
 }
 
-void LootsieManager::redeemReward(char *emailStr, long rewardId)
+void LootsieManager::redeemReward(char *emailStr, char *rewardIdStr)
 {
     NSLog(@"LootsieManager: redeemReward");
     
-    NSString *rewardIdNSStr = [NSString stringWithFormat:@"%ld", rewardId];
+    //NSString *rewardIdNSStr = [NSString stringWithFormat:@"%ld", rewardId];
+    NSString *rewardIdNSStr = [[NSString alloc] initWithCString:rewardIdStr encoding:NSASCIIStringEncoding];
     NSString *emailNSStr = [[NSString alloc] initWithCString:emailStr encoding:NSASCIIStringEncoding];
     
     ServiceCallback callback = ^(BOOL success, id result, NSString* errorMessage, NSInteger statusCode) {

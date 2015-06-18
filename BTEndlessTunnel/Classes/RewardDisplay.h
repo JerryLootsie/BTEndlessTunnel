@@ -14,7 +14,7 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
-#include "CCMenuItem.h"
+//#include "CCMenuItem.h"
 
 #include "BTLootsieReward.h"
 
@@ -46,9 +46,15 @@ public:
     cocos2d::CCMenuItem *redeemItem;
     cocos2d::CCLabelTTF *redeemLabel;
     
+    cocos2d::CCMenuItem *sendRewardItem;
+    cocos2d::CCLabelTTF *sendRewardLabel;
+    
+    
     cocos2d::CCMenu* rewardMenu;
     
     BTLootsieReward *lootsieReward;
+    
+    cocos2d::extension::CCEditBox *_editEmail;
     
     void editBoxEditingDidBegin(cocos2d::extension::CCEditBox *editBox);
     void editBoxEditingDidEnd(cocos2d::extension::CCEditBox *editBox);
@@ -66,7 +72,7 @@ private:
     void _onOptionPressed_TOS(cocos2d::CCObject *pSender);
     void _onOptionPressed_Details(cocos2d::CCObject *pSender);
     void _onOptionPressed_Redeem(cocos2d::CCObject *pSender);
-  
+    void _onOptionPressed_Submit(cocos2d::CCObject *pSender);
     
     bool isCharacter(const char Character);
     bool isNumber(const char Character);

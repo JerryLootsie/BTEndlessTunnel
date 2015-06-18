@@ -14,6 +14,7 @@ public:
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath);
 
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, const char* arg0);
+	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, const char* arg0, const char* arg1);
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, const char* arg0, bool looping);	
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, const char* arg0, long score);
 	static 			void 		jniCommonVoidCall	(const char* methodName, const char* classPath, const char* arg0, int numSteps);

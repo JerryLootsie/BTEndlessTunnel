@@ -262,8 +262,8 @@ void RewardDisplay::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
         //Now create Sprite from downloaded image
         rewardImage = CCSprite::create(writablePath.c_str());
         
-        std::cout << "onImageDownLoaded: rewardImage: " << rewardImage->getContentSize().width << "x" << rewardImage->getContentSize().height << std::endl;
-        std::cout << "onImageDownLoaded: rewardBg: " << rewardBg->getContentSize().width << "x" << rewardBg->getContentSize().height << std::endl;
+//        std::cout << "onImageDownLoaded: rewardImage: " << rewardImage->getContentSize().width << "x" << rewardImage->getContentSize().height << std::endl;
+//        std::cout << "onImageDownLoaded: rewardBg: " << rewardBg->getContentSize().width << "x" << rewardBg->getContentSize().height << std::endl;
 
         // calculate scale to make reward image fit
         float scale = 1.0f;
@@ -351,25 +351,50 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
         rewardDisplay->redeemItem->setVisible(false);
         
         
+        RewardDisplay *localRewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
         
         // CCScale9Sprite
-        cocos2d::extension::CCEditBox *_editEmail = cocos2d::extension::CCEditBox::create(CCSize(rewardBg->getContentSize().width,
-                                                                                                 rewardBg->getContentSize().height * .20f),
-                                                                                          cocos2d::extension::CCScale9Sprite::create("tos_btn_hit.png"));
+        _editEmail = cocos2d::extension::CCEditBox::create(CCSize(rewardBg->getContentSize().width,
+                                                                  rewardBg->getContentSize().height * .20f),
+                                                            cocos2d::extension::CCScale9Sprite::create("tos_btn_hit.png"));
         
         _editEmail->setPosition(ccp(rewardBg->getContentSize().width/2,
                                     rewardBg->getContentSize().height * 0.40));
         _editEmail->setPlaceHolder("Email:");
         _editEmail->setFontSize(SIZE_RATE_APP);
-        _editEmail->setFontColor(ccWHITE);
+        _editEmail->setFontColor(ccBLACK);
         _editEmail->setMaxLength(80);
-        
+        _editEmail->setInputMode(cocos2d::extension::kEditBoxInputModeEmailAddr);
+        _editEmail->setReturnType(cocos2d::extension::kKeyboardReturnTypeDone);
         _editEmail->setTag(rewardIndex);
         
-        RewardDisplay *localRewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+        
         _editEmail->setDelegate(localRewardDisplay);
         rewardBg->addChild(_editEmail);
         
+        localRewardDisplay->_editEmail = _editEmail;
+        
+        // redeem button
+        sendRewardItem = CCMenuItemImage::create("redeem_btn_small.png", "redeem_btn_small_off.png", layer, menu_selector(RewardDisplay::_onOptionPressed_Submit));
+        sendRewardItem->setTag(rewardIndex);
+        sendRewardItem->setAnchorPoint(ccp(0, 0));
+        sendRewardItem->setPosition(ccp((rewardBg->getContentSize().width/2) - (sendRewardItem->getContentSize().width/2),
+                                    (sendRewardItem->getContentSize().height* -0.25f)
+                                    ));
+        
+        sendRewardLabel = CCLabelTTF::create("Send Reward", FONT_GAME, SIZE_RATE_APP);
+        sendRewardLabel->setAnchorPoint(ccp(0.5, 0.5));
+        sendRewardLabel->setPosition(ccp((sendRewardItem->getContentSize().width/2), (sendRewardItem->getContentSize().height/2)));
+        sendRewardLabel->setColor(ccBLACK);
+        sendRewardItem->addChild(sendRewardLabel);
+        
+        localRewardDisplay->sendRewardItem = sendRewardItem;
+        localRewardDisplay->sendRewardLabel = sendRewardLabel;
+        
+        
+        // can't access local instance of this stuff because of lame menu strucure referencing static stuff in cocos2d
+        //rewardMenu->addChild(sendRewardItem);
+        localRewardDisplay->rewardMenu->addChild(sendRewardItem);
         
     } else {
         std::cout << "RewardDisplay: redeem: map missing key URL!\n";
@@ -378,6 +403,49 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
     
     
 }
+
+
+
+void RewardDisplay::_onOptionPressed_Submit(CCObject *pSender)
+{
+    //    if(disable)
+    //        return;
+    
+    CCMenuItem* item = (CCMenuItem*) pSender;
+    SimpleAudioEngine::sharedEngine()->playEffect(SFX_BUTTON);
+    
+    // tag contains a lookup to reward id in rewards set
+    int rewardIndex = item->getTag();
+    
+    std::cout << "RewardDisplay: Submit rewardIndex: " << rewardIndex << "\n";
+    
+    // show other buttons
+    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance().rewardDisplays[rewardIndex];
+    rewardDisplay->tosItem->setVisible(true);
+    rewardDisplay->detailsItem->setVisible(true);
+    rewardDisplay->redeemItem->setVisible(true);
+
+    // hide submit buttons
+    rewardDisplay->_editEmail->setVisible(false);
+    rewardDisplay->sendRewardItem->setVisible(false);
+    
+    
+    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
+    //long rewardId = std::atol(btLootsieReward->reward_id.c_str());
+    //std::cout << "redeem reward:" << rewardId << std::endl;
+    std::string rewardIdStr = btLootsieReward->reward_id;
+    std::cout << "redeem reward:" << rewardIdStr << std::endl;
+    
+    std::string emailStr = rewardDisplay->_editEmail->getText();
+    
+    if (isValidEmailAddress(emailStr.c_str())) {
+        NativeUtils::redeemReward(emailStr.c_str(), rewardIdStr.c_str());
+    } else {
+        CCMessageBox("Invalid Email Address!", "Email Address Check");
+    }
+    
+}
+
 
 # pragma - editbox
 
@@ -395,6 +463,7 @@ void RewardDisplay::editBoxTextChanged(cocos2d::extension::CCEditBox *editBox, s
 void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     std::cout << "editBoxReturn: " << editBox->getText() << std::endl;
     
+    // hide submit buttons
     editBox->setVisible(false);
     
     
@@ -408,23 +477,29 @@ void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     rewardDisplay->detailsItem->setVisible(true);
     rewardDisplay->redeemItem->setVisible(true);
     
+    // hide submit buttons
+    rewardDisplay->_editEmail->setVisible(false);
+    rewardDisplay->sendRewardItem->setVisible(false);
+    
     BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance().lootsieRewards[rewardIndex];
-    long rewardId = std::atol(btLootsieReward->reward_id.c_str());
-    std::cout << "redeem reward:" << rewardId << std::endl;
+    //long rewardId = std::atol(btLootsieReward->reward_id.c_str());
+    //std::cout << "redeem reward:" << rewardId << std::endl;
+    std::string rewardIdStr = btLootsieReward->reward_id;
+    std::cout << "redeem reward:" << rewardIdStr << std::endl;
+
     
     if (isValidEmailAddress(emailStr.c_str())) {
-        NativeUtils::redeemReward(emailStr, rewardId);
+        NativeUtils::redeemReward(emailStr.c_str(), rewardIdStr.c_str());
     } else {
         CCMessageBox("Invalid Email Address!", "Email Address Check");
     }
 
     
     
-    //    editBox->onExit();
+    //editBox->onExit();
     //editBox->onExit();
     //editBox->removeFromParent();
-    
-    //    editBox->getParent()->removeChild(editBox);
+    //editBox->getParent()->removeChild(editBox);
 }
 
 bool RewardDisplay::isCharacter(const char Character)

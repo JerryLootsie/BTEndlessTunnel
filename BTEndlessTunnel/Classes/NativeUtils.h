@@ -48,7 +48,9 @@ public:
     static void getAchievements();
     
     static void getRewards();
-    static void redeemReward(std::string emailStr, long rewardId);
+    //static void redeemReward(std::string emailStr, long rewardId);
+    //static void redeemReward(std::string emailStr, std::string rewardId);
+    static void redeemReward(const char *emailStr, const char *rewardIdStr);
     
 	static void showLeaderboards();
 	static void showLeaderboard(const char* leaderboardID);
