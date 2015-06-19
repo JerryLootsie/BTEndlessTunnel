@@ -233,15 +233,17 @@ void RewardDisplay::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
     }
     int statusCode = response->getResponseCode();
     
-    char statusString[64] = {};
-    sprintf(statusString, "HTTP Status Code: %d, tag = %s", statusCode, response->getHttpRequest()->getTag());
-    CCLog("response code: %d", statusCode);
-    CCLog("status: %s", statusString);
+//    char statusString[120] = {};
+//    sprintf(statusString, "RewardDisplay: onImageDownLoaded: HTTP Status Code: %d, tag = %s", statusCode, response->getHttpRequest()->getTag());
+//    CCLog("RewardDisplay: onImageDownLoaded: response code: %d", statusCode);
+//    CCLog("RewardDisplay: onImageDownLoaded: status: %s", statusString);
+    
+    std::cout << "RewardDisplay: onImageDownLoaded: HTTP Status Code: " << statusCode << ", tag = " << response->getHttpRequest()->getTag() << std::endl;
     
     if (!response->isSucceed())
     {
-        CCLog("response failed");
-        CCLog("error buffer: %s", response->getErrorBuffer());
+        CCLog("RewardDisplay: onImageDownLoaded: response failed");
+        CCLog("RewardDisplay: onImageDownLoaded: error buffer: %s", response->getErrorBuffer());
         CCMessageBox("error in downloaded", "Image");
         return;
     }

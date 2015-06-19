@@ -111,7 +111,7 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
  
     std::vector<BTLootsieReward*> lootsieRewards;
     
-    int debugLevel = 0;
+    int debugLevel = 1;
     
     // do methods exist on cList class?
     if ((testObj != NULL) && (mSize != NULL) && (mGet != NULL)) {
@@ -124,6 +124,9 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
         
         // walk through and fill the vector
         for(jint i=0; i<arraySize; i++) {
+            // GetStringUTFChars vs NewStringUTF?
+            // To get a C-string (char*) from JNI string (jstring), invoke method const char* GetStringUTFChars(JNIEnv*, jstring, jboolean*).
+            // To get a JNI string (jstring) from a C-string (char*), invoke method jstring NewStringUTF(JNIEnv*, char*).
             
             BTLootsieReward *btLootsieReward = new BTLootsieReward();
             
@@ -131,27 +134,32 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
             
             jfieldID fid = env->GetFieldID(cReward, "id", "Ljava/lang/String;");
             jstring jstrId = (jstring) env->GetObjectField(rewardObj, fid);
-            const char *strId = env->GetStringUTFChars(jstrId, JNI_FALSE);
+            //const char *strId = env->GetStringUTFChars(jstrId, JNI_FALSE);
+            const char *strId = env->GetStringUTFChars(jstrId, NULL);
             DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] id: %s", i, strId);
             
             jfieldID fname = env->GetFieldID(cReward, "name", "Ljava/lang/String;");
             jstring jstrName = (jstring) env->GetObjectField(rewardObj, fname);
-            const char *strName = env->GetStringUTFChars(jstrName, JNI_FALSE);
+            //const char *strName = env->GetStringUTFChars(jstrName, JNI_FALSE);
+            const char *strName = env->GetStringUTFChars(jstrName, NULL);
             DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] name: %s", i, strName);
             
             jfieldID fTextToShare = env->GetFieldID(cReward, "textToShare", "Ljava/lang/String;");
             jstring jstrTextToShare = (jstring) env->GetObjectField(rewardObj, fTextToShare);
-            const char *strTextToShare = env->GetStringUTFChars(jstrTextToShare, JNI_FALSE);
+            //const char *strTextToShare = env->GetStringUTFChars(jstrTextToShare, JNI_FALSE);
+            const char *strTextToShare = env->GetStringUTFChars(jstrTextToShare, NULL);
             DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] textToShare: %s", i, strTextToShare);
             
             jfieldID ftos_text = env->GetFieldID(cReward, "tos_text", "Ljava/lang/String;");
             jstring jstr_tos_text = (jstring) env->GetObjectField(rewardObj, ftos_text);
-            const char *str_tos_text = env->GetStringUTFChars(jstr_tos_text, JNI_FALSE);
+            //const char *str_tos_text = env->GetStringUTFChars(jstr_tos_text, JNI_FALSE);
+            const char *str_tos_text = env->GetStringUTFChars(jstr_tos_text, NULL);
             DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] tos_text: %s", i, str_tos_text);
             
             jfieldID fdescription = env->GetFieldID(cReward, "description", "Ljava/lang/String;");
             jstring jstrDescription = (jstring) env->GetObjectField(rewardObj, fdescription);
-            const char *strDescription = env->GetStringUTFChars(jstrDescription, JNI_FALSE);
+            //const char *strDescription = env->GetStringUTFChars(jstrDescription, JNI_FALSE);
+            const char *strDescription = env->GetStringUTFChars(jstrDescription, NULL);
             DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] description: %s", i, strDescription);
             
             jfieldID fLP = env->GetFieldID(cReward, "lp", "I");
@@ -159,48 +167,98 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
             int intLP = (int) jintLP;
             DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] lp: %d", i, intLP);
       
+            // cast a char* to a string:
+//            btLootsieReward->reward_id = std::string(strId);
+//            btLootsieReward->name = std::string(strName);
+//            btLootsieReward->text_to_share = std::string(strTextToShare);
+//            btLootsieReward->tos_text = std::string(str_tos_text);
+//            btLootsieReward->reward_description = std::string(strDescription);
+
+            // create a new string object for each field - to avoid memory issue on JVM JNI on Android 4.0 device
+            std::string stdStrId(strId);
+            btLootsieReward->reward_id = stdStrId;
             
-            btLootsieReward->reward_id = std::string(strId);
-            btLootsieReward->name = std::string(strName);
-            btLootsieReward->text_to_share = std::string(strTextToShare);
-            btLootsieReward->tos_text = std::string(str_tos_text);
-            btLootsieReward->reward_description = std::string(strDescription);
+            std::string stdStrName(strName);
+            btLootsieReward->name = stdStrName;
             
+            std::string stdStrTextToShare(strTextToShare);
+            btLootsieReward->text_to_share = stdStrTextToShare;
+            
+            std::string stdStr_tos_text(str_tos_text);
+            btLootsieReward->tos_text = stdStr_tos_text;
+            
+            std::string stdStrDescription(strDescription);
+            btLootsieReward->reward_description = stdStrDescription;
+
+            btLootsieReward->lp = intLP;
+            
+            
+
             
             // Icon class in icon field of cReward
             jclass cIcon = env->FindClass("com/lootsie/sdk/model/Icon");
-            jfieldID fIcon = env->GetFieldID(cReward, "icon", "com/lootsie/sdk/model/Icon");
-            jobject iconObj = (jobject) env->GetObjectField(rewardObj, fIcon);
-            if (iconObj != NULL) {
-                
-                jfieldID fS = env->GetFieldID(cIcon, "S", "Ljava/lang/String;");
-                jstring jstrS = (jstring) env->GetObjectField(iconObj, fS);
-                const char *strS = env->GetStringUTFChars(jstrS, JNI_FALSE);
-                DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] icon: S: %s", i, strS);
-                
-                jfieldID fM = env->GetFieldID(cIcon, "M", "Ljava/lang/String;");
-                jstring jstrM = (jstring) env->GetObjectField(iconObj, fM);
-                const char *strM = env->GetStringUTFChars(jstrM, JNI_FALSE);
-                DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] icon: M: %s", i, strM);
-                
-                jfieldID fL = env->GetFieldID(cIcon, "L", "Ljava/lang/String;");
-                jstring jstrL = (jstring) env->GetObjectField(iconObj, fL);
-                const char *strL = env->GetStringUTFChars(jstrL, JNI_FALSE);
-                DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] icon: L: %s", i, strL);
-                
-                btLootsieReward->imageURL_S = std::string(strS);
-                btLootsieReward->imageURL_M = std::string(strM);
-                btLootsieReward->imageURL_L = std::string(strL);
-                
-            }
+            if (cIcon == NULL) {
+                DEBUGLOG("JNIHelpers: nativeGetRewards: Icon class not found!");
+            } else {
+                //jfieldID fIcon = env->GetFieldID(cReward, "icon", "com/lootsie/sdk/model/Icon");
+                jfieldID fIcon = env->GetFieldID(cReward, "icon", "Lcom/lootsie/sdk/model/Icon;");
+                if (fIcon == NULL) {
+                    DEBUGLOG("JNIHelpers: nativeGetRewards: Icon field not found!");
+                } else {
+                    jobject iconObj = (jobject) env->GetObjectField(rewardObj, fIcon);
+                    if (iconObj == NULL) {
+                        DEBUGLOG("JNIHelpers: nativeGetRewards: Icon ObjectField not found!");
+                    } else {
+                        DEBUGLOG("JNIHelpers: nativeGetRewards: iconObj");
+                        
+                        jfieldID fS = env->GetFieldID(cIcon, "S", "Ljava/lang/String;");
+                        jstring jstrS = (jstring) env->GetObjectField(iconObj, fS);
+                        //const char *strS = env->GetStringUTFChars(jstrS, JNI_FALSE);
+                        const char *strS = env->GetStringUTFChars(jstrS, NULL);
+                        DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] icon: S: %s", i, strS);
+                        
+                        jfieldID fM = env->GetFieldID(cIcon, "M", "Ljava/lang/String;");
+                        jstring jstrM = (jstring) env->GetObjectField(iconObj, fM);
+                        //const char *strM = env->GetStringUTFChars(jstrM, JNI_FALSE);
+                        const char *strM = env->GetStringUTFChars(jstrM, NULL);
+                        DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] icon: M: %s", i, strM);
+                        
+                        jfieldID fL = env->GetFieldID(cIcon, "L", "Ljava/lang/String;");
+                        jstring jstrL = (jstring) env->GetObjectField(iconObj, fL);
+                        //const char *strL = env->GetStringUTFChars(jstrL, JNI_FALSE);
+                        const char *strL = env->GetStringUTFChars(jstrL, NULL);
+                        DEBUGLOG("JNIHelpers: nativeGetRewards: Reward[%d] icon: L: %s", i, strL);
+
+//                        btLootsieReward->imageURL_S = std::string(strS);
+//                        btLootsieReward->imageURL_M = std::string(strM);
+//                        btLootsieReward->imageURL_L = std::string(strL);
+
+                        std::string stdStrS(strS);
+                        btLootsieReward->imageURL_S = stdStrS;
+                        std::string stdStrM(strM);
+                        btLootsieReward->imageURL_M = stdStrM;
+                        std::string stdStrL(strL);
+                        btLootsieReward->imageURL_L = stdStrL;
+                        
+                    } // Icon Object
+                } // Icon field
+            } // Icon class
             
+            
+            DEBUGLOG("JNIHelpers: nativeGetRewards: insert into std::vector<BTLootsieReward*> ");
             lootsieRewards.insert(lootsieRewards.end(), btLootsieReward);
+            
+            //need to release this string when done with it in
+            //order to avoid memory leak??
+            //env->ReleaseStringUTFChars(jstrDescription, strDescription);
         }
         
     } else {
         LOGE("JNIHelpers: methods are missing!");
     }
     
+    DEBUGLOG("JNIHelpers: nativeGetRewards: finished scanning rewards into lootsieRewards");
+              
     if (HomeLayer::sharedInstance() != NULL) {
         HomeLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
     } else if (GameLayer::sharedInstance() != NULL) {

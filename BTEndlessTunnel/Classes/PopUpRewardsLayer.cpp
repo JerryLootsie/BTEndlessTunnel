@@ -51,6 +51,8 @@ void PopUpRewardsLayer::cleanupSharedInstance()
 PopUpRewardsLayer::PopUpRewardsLayer()
 {
     
+    std::cout << "PopUpRewardsLayer: PopUpRewardsLayer: " << std::endl;
+    
     if(initWithColor(ccc4BFromccc4F(ccc4f(0, 0, 0, 100.0f / 255.0f))))
     {
         disable = false;
