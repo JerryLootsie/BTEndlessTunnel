@@ -10,13 +10,16 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
 
+
 //import com.carlospinan.turborace.R;
 import com.lootsie.turborace.R;
 //import com.google.android.gms.games.Games;
 import com.lootsie.sdk.callbacks.IAchievementReached;
+import com.lootsie.sdk.callbacks.IRedeemReward;
 import com.lootsie.sdk.lootsiehybrid.Lootsie;
 import com.lootsie.sdk.lootsiehybrid.LootsieEngine;
 import com.lootsie.sdk.model.Achievement;
+import com.lootsie.sdk.model.Reward;
 import com.lootsie.sdk.utils.Logs;
 
 /**
@@ -43,6 +46,30 @@ public class NativeUtils {
 	private static final int REQUEST_LEADERBOARDS = 10001;
 	private static final int REQUEST_LEADERBOARD = 10002;
 
+    class RedeemRewardCallback implements IRedeemReward {
+
+		@Override
+		public void onRedeemFailed(String arg0) {
+			Logs.v(TAG, "NativeUtils: onRedeemFailed: " + arg0);
+			
+			// be careful we don't return null, or JNI runtime check will barf			
+			String returnMesg = arg0 == null ? "" : arg0;
+			nativeRedeemRewardResponse(false, returnMesg);
+		}
+
+		@Override
+		public void onRedeemSuccess(String arg0) {
+			Logs.v(TAG, "NativeUtils: onRedeemSuccess: " + arg0);
+			
+			// be careful we don't return null, or JNI runtime check will barf
+			String returnMesg = arg0 == null ? "" : arg0;
+			nativeRedeemRewardResponse(true, returnMesg);
+		}
+    	
+    }
+    
+    RedeemRewardCallback redeemRewardCallback = new RedeemRewardCallback();
+    
 	class AchievementReachedCallback implements IAchievementReached {
 
 		public AchievementReachedCallback() {
@@ -52,13 +79,19 @@ public class NativeUtils {
         @Override
         public void onLootsieBarClosed() {
             Log.v(TAG, "NativeUtils: onLootsieBarClosed");
-            app.onResume();
+            
+            // if we let Lootsie handle the rewards page, we need to suspend and then resume cocos2d
+            //app.onResume();
         }
 
         @Override
         public void onLootsieBarExpanded() {
             Log.v(TAG, "NativeUtils: onLootsieBarExpanded");
-            app.onPause();
+            
+            // if we let Lootsie handle the rewards page, we need to suspend and then resume cocos2d
+            //app.onPause();
+            
+            nativeAchievementReachedIANClicked("test from Android");
         }
 
         @Override
@@ -168,6 +201,16 @@ public class NativeUtils {
 		NativeUtils utils = NativeUtils.sharedInstance();
 		Lootsie.AchievementReached(app,achievementID, LootsieEngine.DEFAULT_POSITION, utils.achievementReachedCallback);		
 	}
+	
+	public static void redeemReward(final String emailStr, final String rewardIdStr) {
+		Log.d(TAG, "NativeUtils: redeemReward: email: " + emailStr + " rewardId: " + rewardIdStr );
+		
+		//Lootsie.redeemReward(emailStr, rewardIdStr);
+		
+		NativeUtils utils = NativeUtils.sharedInstance();
+		Lootsie.redeemReward(emailStr, rewardIdStr, utils.redeemRewardCallback);
+	}
+	
 
 	/**
 	 * Increment the achievement in numSteps.
@@ -220,6 +263,17 @@ public class NativeUtils {
 		//nativeMono("test from Android");
 		
 	}	
+	
+	public static void getRewards() {
+		Log.v(TAG, "NativeUtils: getRewards");
+		
+		ArrayList<Reward> testRewards = Lootsie.getUserRewards();
+		if (testRewards != null) {
+			Log.v(TAG,"NativeUtils: getRewards: " + testRewards.size());
+		}
+		
+		nativeGetRewards("test from Android", testRewards);
+	}
 	
 	/**
 	 * Show all leaderboard.
@@ -307,8 +361,7 @@ public class NativeUtils {
 	public static native void notifyInCloudLoad();
 
 	static native void nativeMono(String testStr, ArrayList<Achievement> lootsieAchievements);
-	//public static native void nativeMono(String testStr);
-	//static native void nativeMono(String testStr);
-	
-	static native void nativeMonoAchievement(Achievement testAchievement);
+	static native void nativeGetRewards(String testStr, ArrayList<Reward> lootsieRewards);
+	static native void nativeRedeemRewardResponse(boolean result, String testStr);
+	static native void nativeAchievementReachedIANClicked(String testStr);
 }

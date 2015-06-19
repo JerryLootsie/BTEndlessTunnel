@@ -131,8 +131,14 @@ void LootsieManager::getRewards() {
                 lootsieRewards.push_back(lootsieReward);
             }
             
-
-            HomeLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
+            // send it back to homelayer or gamelayer
+            if (HomeLayer::sharedInstance() != NULL) {
+                HomeLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
+            } else if (GameLayer::sharedInstance() != NULL) {
+                GameLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
+            } else {
+                NSLog(@"LootsieManager: getRewards: no layer to return lootsieRewards to!");
+            }
         }
     };
     

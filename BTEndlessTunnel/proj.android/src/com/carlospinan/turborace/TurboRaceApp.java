@@ -21,8 +21,12 @@ public class TurboRaceApp extends Application {
         
         Lootsie.setLogLevel(LootsieGlobals.LOOTSIE_LOGGING_LEVEL.VERBOSE);
         
+        //Lootsie.setNotificationConfiguration(LOOTSIE_NOTIFICATION_CONFIGURATION.notify_to_disabled);  // no ian
+        Lootsie.setNotificationConfiguration(LOOTSIE_NOTIFICATION_CONFIGURATION.notify_to_customPage);
+        
         // turbo race android - on live AC254671B2752EF9BF4F8ACA24F9F717B17B5BC900A233C4AE49DE215B6E8FE3
-        Lootsie.init(this, "AC254671B2752EF9BF4F8ACA24F9F717B17B5BC900A233C4AE49DE215B6E8FE3", null);
+     // turbo race android - on staging CAC2B728A0FEDFA4CEA2E098982D3840A317C595D59D8613B3DF0821664D04DD
+        Lootsie.init(this, "CAC2B728A0FEDFA4CEA2E098982D3840A317C595D59D8613B3DF0821664D04DD", null);
  
     }
 }

@@ -118,7 +118,7 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
         //RewardDisplay *rewardDisplay = rewardDisplays[0];
         CCSprite *tempBg = CCSprite::create("reward_bg.png");
         
-        int maxRewards = 3;
+        int maxRewards = 5;
         //float displayRewards = 2;
         float displayRewards = winSize.width / tempBg->getContentSize().width;
         
@@ -156,9 +156,9 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
         //if (lootsieRewards.size() > 0) {
         //for (int i=0; i<lootsieRewards.size(); i++) {
         //for (int i=0; i<lootsieRewards.size() && (i<2); i++) {
-        maxRewards = lootsieRewards.size();
-        //for (int i=0; i<lootsieRewards.size() && (i<maxRewards); i++) {
-        for (int i=0; i<lootsieRewards.size(); i++) {
+        //maxRewards = lootsieRewards.size();
+        for (int i=0; i<lootsieRewards.size() && (i<maxRewards); i++) {
+        //for (int i=0; i<lootsieRewards.size(); i++) {
             BTLootsieReward *lootsieReward = NULL;
             lootsieReward = lootsieRewards[i];
             
@@ -242,7 +242,13 @@ void PopUpRewardsLayer::_onOptionPressed(CCObject *pSender)
                 rewardDisplay->cleanup();
             }
             
-            _homeLayer->_showLayer();
+            if (_homeLayer != NULL) {
+                _homeLayer->_showLayer();
+            } else {
+                // running in game mode
+                GameLayer::sharedInstance()->resumeGame();
+            }
+            
             //            scheduleOnce(schedule_selector(HomeLayer::_showLayer), 1.0 + 0.1f);
             
             //            SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();

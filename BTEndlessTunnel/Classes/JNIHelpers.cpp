@@ -48,6 +48,25 @@ extern "C" {
     
 /*
  * Class:     com_carlospinan_utils_NativeUtils
+ * Method:    nativeAchievementReachedIANClicked
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeAchievementReachedIANClicked
+(JNIEnv *env, jclass testClass, jstring mesgStr) {
+    
+    const char *testMesg = env->GetStringUTFChars(mesgStr, NULL);
+    
+    LOGE("JNIHelpers: nativeAchievementReachedIANClicked: %s", testMesg);
+
+    //GameLayer::sharedInstance()->pauseGame();
+    GameLayer::sharedInstance()->pauseGameAndShowRewards();
+    
+}
+    
+    
+    
+/*
+ * Class:     com_carlospinan_utils_NativeUtils
  * Method:    nativeRedeemRewardResponse
  * Signature: (ZLjava/lang/String;)V
  */
@@ -182,7 +201,14 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
         LOGE("JNIHelpers: methods are missing!");
     }
     
-    HomeLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
+    if (HomeLayer::sharedInstance() != NULL) {
+        HomeLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
+    } else if (GameLayer::sharedInstance() != NULL) {
+        GameLayer::sharedInstance()->_showPopUpRewardsLayer(lootsieRewards);
+    } else {
+        LOGD("JNIHelpers: nativeGetRewards: no layer to return lootsieRewards to!");
+    }
+
     
 }
 

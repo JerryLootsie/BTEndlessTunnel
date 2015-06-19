@@ -331,6 +331,7 @@
 		5214287C1B28D78E00B13E65 /* libLootsie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520ABDB31B1920C400FAEAE0 /* libLootsie.a */; };
 		522687B61B3096AF0090F358 /* RewardDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 522687B51B3096AF0090F358 /* RewardDisplay.cpp */; };
 		524E11991B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524E11981B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp */; };
+		528CA4721B33932700435C9A /* PopUpRewardsGameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 528CA4701B33932700435C9A /* PopUpRewardsGameLayer.cpp */; };
 		52FE7ABD1B22480D000B5530 /* PopUpAchievementsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52FE7ABB1B22480D000B5530 /* PopUpAchievementsLayer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -1042,6 +1043,8 @@
 		524E11941B2B7CD100FDF554 /* PopUpRewardsLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PopUpRewardsLayer.h; path = Classes/PopUpRewardsLayer.h; sourceTree = "<group>"; };
 		524E11981B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpRewardsLayer.cpp; path = Classes/PopUpRewardsLayer.cpp; sourceTree = "<group>"; };
 		524E119B1B2B9E7400FDF554 /* BTLootsieReward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BTLootsieReward.h; path = Classes/BTLootsieReward.h; sourceTree = "<group>"; };
+		528CA4701B33932700435C9A /* PopUpRewardsGameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpRewardsGameLayer.cpp; path = Classes/PopUpRewardsGameLayer.cpp; sourceTree = "<group>"; };
+		528CA4711B33932700435C9A /* PopUpRewardsGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpRewardsGameLayer.h; path = Classes/PopUpRewardsGameLayer.h; sourceTree = "<group>"; };
 		52FE7ABB1B22480D000B5530 /* PopUpAchievementsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpAchievementsLayer.cpp; path = Classes/PopUpAchievementsLayer.cpp; sourceTree = "<group>"; };
 		52FE7ABC1B22480D000B5530 /* PopUpAchievementsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpAchievementsLayer.h; path = Classes/PopUpAchievementsLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2411,6 +2414,8 @@
 				52FE7ABC1B22480D000B5530 /* PopUpAchievementsLayer.h */,
 				07EC9E0418EB1E4000E2C037 /* PopUpLoseLayer.cpp */,
 				07EC9E0518EB1E4000E2C037 /* PopUpLoseLayer.h */,
+				528CA4701B33932700435C9A /* PopUpRewardsGameLayer.cpp */,
+				528CA4711B33932700435C9A /* PopUpRewardsGameLayer.h */,
 				524E11981B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp */,
 				524E11941B2B7CD100FDF554 /* PopUpRewardsLayer.h */,
 				522687B51B3096AF0090F358 /* RewardDisplay.cpp */,
@@ -2753,6 +2758,7 @@
 				07CBA53818DCAFBE004E8B35 /* CCControlUtils.cpp in Sources */,
 				07AC274D18E5017100F6AEA0 /* SneakyJoystickSkinnedBase.cpp in Sources */,
 				07CBA43918DCAFBC004E8B35 /* CCProfiling.cpp in Sources */,
+				528CA4721B33932700435C9A /* PopUpRewardsGameLayer.cpp in Sources */,
 				07CD155618E4D65600589C27 /* BaseVehicle.cpp in Sources */,
 				07AC273B18E500DA00F6AEA0 /* HudLayer.cpp in Sources */,
 				07CBA3BB18DCAFBB004E8B35 /* CCAccelerometer.mm in Sources */,

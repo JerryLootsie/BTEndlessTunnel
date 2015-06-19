@@ -62,7 +62,8 @@ enum GameDeep
     kDeepScore = 1000,
     kDeepPauseLayer = 2500,
     kDeepPopUpLoseLayer = 3500,
-    kDeepTutorial = 2200
+    kDeepTutorial = 2200,
+    kDeepPopUpRewardsLayer = 5000
 };
 
 #define kScoreFactor 100.0f
@@ -76,19 +77,26 @@ enum GameDeep
 #include "PopUpLoseLayer.h"
 #include "BaseObstacle.h"
 #include "PopUpAchievementsLayer.h"
+//#include "PopUpRewardsLayer.h"
+#include "PopUpRewardsGameLayer.h"
 
 class GameLayer : public cocos2d::CCLayer
 {
 public:
+    
+    static GameLayer* sharedInstance();
     
     GameLayer(HudLayer* hudLayer, GameMode gameMode = kGameModeHome, GameLevel = kGameLevelNone);
     virtual ~GameLayer();
     
     void configureGame(GameLevel gameLevel = kGameLevelEasy);
     void pauseGame();
+    void pauseGameAndShowRewards();
     void resumeGame();
     void playGame();
     void runGame();
+    
+    
     
     void update(float dt);
     
@@ -101,6 +109,8 @@ public:
     void ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
     
     void keyBackClicked();
+    
+    void _showPopUpRewardsLayer(std::vector<BTLootsieReward*> lootsieRewards);
     
 private:
     void _createMap();
@@ -140,6 +150,8 @@ private:
     HudLayer* _hudLayer;
     PauseLayer* _pauseLayer;
     PopUpLoseLayer* _popUpLoseLayer;
+    //PopUpRewardsLayer* _popUpRewardsLayer;
+    PopUpRewardsGameLayer* _popUpRewardsGameLayer;
     
     GameState _gameState;
     GameState _previousGameState;
@@ -158,6 +170,8 @@ private:
     cocos2d::CCArray* _arrayObstacles;
     
     cocos2d::CCMenuItemImage* _menuPause;
+    cocos2d::CCMenuItemImage* _menuRewards;
+    
     
     bool _pause;
     bool _gameOver;

@@ -206,14 +206,12 @@ HomeLayer::HomeLayer(GameLayer* gameLayer, bool showAds) : _gameLayer(gameLayer)
     addChild(_popUpAchievementsLayer, 10000);
     
     // PopUpRewardsLayer
-    //_popUpRewardsLayer = new PopUpRewardsLayer();
-    //_popUpRewardsLayer = &PopUpRewardsLayer::sharedInstance(); // initialize with a singleton instead
     _popUpRewardsLayer = PopUpRewardsLayer::sharedInstance(); // initialize with a singleton instead
     _popUpRewardsLayer->setPositionY(0);
     _popUpRewardsLayer->setVisible(false);
     _popUpRewardsLayer->autorelease();
     _popUpRewardsLayer->_setHomeLayer(this);
-    addChild(_popUpRewardsLayer, 10001);
+    addChild(_popUpRewardsLayer, kDeepPopUpRewardsLayer);
     
     
     NativeUtils::showAd();
@@ -241,6 +239,8 @@ void HomeLayer::_manageMusic(cocos2d::CCObject* pSender)
 
 HomeLayer::~HomeLayer()
 {
+    HomeLayer::instance = NULL;
+    
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, NOTIFICATION_ENABLE_BUTTONS);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, NOTIFICATION_HOW_TO_PLAY);
 }
@@ -441,7 +441,10 @@ void HomeLayer::_finishHideLayer()
     
     // don't remvoe singletons!?
     //_popUpRewardsLayer = NULL;
-    _popUpRewardsLayer->cleanupSharedInstance();
+    //_popUpRewardsLayer->cleanupSharedInstance();
+    PopUpRewardsLayer::sharedInstance()->cleanupSharedInstance();
+    _popUpRewardsLayer = NULL;
+    instance = NULL;
     
     this->removeFromParent();    
 }

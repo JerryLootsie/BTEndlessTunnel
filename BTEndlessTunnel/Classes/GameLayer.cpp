@@ -106,6 +106,17 @@ MusicPlaying _music;
 
 // End Level definition
 
+static GameLayer *instance = NULL;
+#pragma mark - Singleton
+
+GameLayer* GameLayer::sharedInstance()
+{
+    if (instance == NULL) {
+        //instance = new GameLayer();
+    }
+    return instance;
+}
+
 GameLayer::GameLayer(HudLayer* hudLayer, GameMode gameMode, GameLevel gameLevel) : _hudLayer(hudLayer), _gameMode(gameMode)
 {
     srand(time(0));
@@ -183,6 +194,7 @@ GameLayer::GameLayer(HudLayer* hudLayer, GameMode gameMode, GameLevel gameLevel)
     
     this->setKeypadEnabled(true);
     
+    instance = this;
 }
 
 
@@ -377,6 +389,12 @@ void GameLayer::configureGame(GameLevel gameLevel)
     CCPoint visOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
     CCSize visSize = CCDirector::sharedDirector()->getVisibleSize();
     
+    
+    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(GameLayer::pauseGameAndShowRewards));
+    _menuRewards->setVisible(false);
+    _menuRewards->setPositionX(visOrigin.x + _menuRewards->getContentSize().width * 2.0f);
+    _menuRewards->setPositionY(visOrigin.y + visSize.height - _menuRewards->getContentSize().width * 0.6f);
+    
     _menuPause = CCMenuItemImage::create("pause_off.png", "pause.png", this, menu_selector(GameLayer::pauseGame));
     _menuPause->setVisible(false);
     _menuPause->setPositionX(visOrigin.x + _menuPause->getContentSize().width * 0.9f);
@@ -386,6 +404,8 @@ void GameLayer::configureGame(GameLevel gameLevel)
     menu->setAnchorPoint(ccp(0, 0));
     menu->setPosition(CCPointZero);
     menu->addChild(_menuPause);
+    menu->addChild(_menuRewards);
+    
     addChild(menu, kDeepPauseLayer);
     
     setTouchEnabled(true);
@@ -449,6 +469,13 @@ void GameLayer::_initLayers()
     // _popUpLoseLayer->setPositionY(0);
     _popUpLoseLayer->autorelease();
     addChild(_popUpLoseLayer, kDeepPopUpLoseLayer);
+    
+    _popUpRewardsGameLayer = PopUpRewardsGameLayer::sharedInstance(); // initialize with a singleton instead
+    _popUpRewardsGameLayer->setPositionY(0);
+    _popUpRewardsGameLayer->setVisible(false);
+    _popUpRewardsGameLayer->autorelease();
+//    _popUpRewardsGameLayer->_setHomeLayer(this);
+    addChild(_popUpRewardsGameLayer, kDeepPopUpRewardsLayer);
     
 }
 
@@ -746,6 +773,8 @@ void GameLayer::runGame()
 
 void GameLayer::pauseGame()
 {
+    std::cout << "GameLayer: pauseGame" << std::endl;
+    
     if(_gameState == kGameFinish)
         return;
     
@@ -763,6 +792,8 @@ void GameLayer::pauseGame()
             _pauseAllActions();
             
             _menuPause->setVisible(false);
+            _menuRewards->setVisible(false);
+            
             _hudLayer->setVisible(false);
             _pauseLayer->setVisible(true);
             
@@ -771,8 +802,59 @@ void GameLayer::pauseGame()
     }
 }
 
+void GameLayer::pauseGameAndShowRewards()
+{
+    
+    std::cout << "GameLayer: pauseGameAndShowRewards" << std::endl;
+    
+    if(_gameState == kGameFinish)
+        return;
+    
+    if(_gameMode == kGameModePlay || _gameMode == kGameModePlayAgain || _gameMode == kGameModeReplayView)
+    {
+        if(!_pause)
+        {
+            SimpleAudioEngine::sharedEngine()->playEffect(SFX_BUTTON);
+            
+            _pause = true;
+            _previousGameState = _gameState;
+            _gameState = kGamePause;
+            
+            pauseSchedulerAndActions();
+            _pauseAllActions();
+            
+            _menuPause->setVisible(false);
+            _menuRewards->setVisible(false);
+            
+            _hudLayer->setVisible(false);
+            _pauseLayer->setVisible(false);
+            
+            _popUpRewardsGameLayer->setVisible(true);
+            NativeUtils::getRewards();
+            
+            NativeUtils::showAd();
+        }
+    }
+}
+
+// callback from ios/LootsieManager : getRewards or JNIHelpers.cpp : nativeGetRewards
+void GameLayer::_showPopUpRewardsLayer(std::vector<BTLootsieReward*> lootsieRewards)
+{
+    std::cout << "GameLayer: _showPopUpRewardsLayer: " << std::endl;
+    
+    // normally setting runGame to true => will kick off finish and hide layer
+    _popUpRewardsGameLayer->_setRewards(lootsieRewards);
+    _popUpRewardsGameLayer->setVisible(true);
+
+    
+}
+
+
 void GameLayer::resumeGame()
 {
+    
+    std::cout << "GameLayer: resumeGame" << std::endl;
+    
     if(_gameState == kGameFinish)
         return;
     
@@ -786,6 +868,8 @@ void GameLayer::resumeGame()
             _hudLayer->setVisible(true);
             _pauseLayer->setVisible(false);
             _menuPause->setVisible(true);
+            _menuRewards->setVisible(true);
+            
             _resumeEvents();
         }
     }
@@ -984,6 +1068,8 @@ void GameLayer::_gameLogic(float dt)
                 
                 _lblScore->setVisible(false);
                 _menuPause->setVisible(false);
+                _menuRewards->setVisible(false);
+                
                 _player->dead();
                 this->reorderChild(_player, kDeepGameFinish);
                 _gameOver = true;
@@ -1093,6 +1179,12 @@ void GameLayer::update(float dt)
         if(_player->numberOfRunningActions() == 0)
         {
             CCLog("kGameFinish");
+            
+            // cleanup of singletons
+            instance = NULL;
+            PopUpRewardsGameLayer::sharedInstance()->cleanupSharedInstance();
+            _popUpRewardsGameLayer = NULL;
+            
             _gameState = kGameEnd;
             SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
             
@@ -1103,6 +1195,8 @@ void GameLayer::update(float dt)
                 setAccelerometerEnabled(false);
             _hudLayer->setVisible(false);
             _menuPause->setVisible(false);
+            _menuRewards->setVisible(false);
+            
             _popUpLoseLayer->updateScore(_gameLevel, _obstaclesAvoided * kScoreFactor, _obstaclesAvoided);
             _popUpLoseLayer->runAction(CCMoveBy::create(0.25f, ccp(0, WIN_SIZE.height)));
             this->runAction(CCSequence::create(CCDelayTime::create(0.25f), CCCallFunc::create(this, callfunc_selector(GameLayer::_showAds)), NULL));
@@ -1129,6 +1223,7 @@ void GameLayer::_gameIsReady()
     _gameState = kGameReady;
     setTouchEnabled(true);
     _menuPause->setVisible(true);
+    _menuRewards->setVisible(true);
     
     if(_hudLayer->isVisible())
         _hudLayer->joypad->setEnabled(true);
@@ -1547,6 +1642,12 @@ void GameLayer::draw()
 
 void GameLayer::_playAgain()
 {
+    std::cout << "GameLayer: _playAgain" << std::endl;
+    
+    // cleanup of singletons
+    PopUpRewardsGameLayer::sharedInstance()->cleanupSharedInstance();
+    _popUpRewardsGameLayer = NULL;
+    
     NativeUtils::hideAd();
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     CCScene* scene = HomeScene::scene(kGameModePlayAgain, _gameLevel);
@@ -1555,6 +1656,13 @@ void GameLayer::_playAgain()
 
 void GameLayer::_goHome()
 {
+    std::cout << "GameLayer: _goHome" << std::endl;
+    
+    // cleanup of singletons
+    instance = NULL;
+    PopUpRewardsGameLayer::sharedInstance()->cleanupSharedInstance();
+    _popUpRewardsGameLayer = NULL;
+    
     SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     CCScene* scene = HomeScene::scene(kGameModeHome, kGameLevelNone, true);
     CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, scene));

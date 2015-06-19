@@ -43,6 +43,8 @@ public:
     void _showPopUpAchievementsLayer(std::vector<BTLootsieAchievement*> lootsieAchievments);
     void _showPopUpRewardsLayer(std::vector<BTLootsieReward*> lootsieRewards);
     
+    PopUpRewardsLayer* _popUpRewardsLayer;
+    
 private:
     static HomeLayer* instance;
     //static HomeLayer instance;
@@ -59,6 +61,8 @@ private:
     cocos2d::CCMenuItemLabel* menuRateApp;
     cocos2d::CCMenuItemLabel* menuHowToPlay;
     cocos2d::CCMenuItemToggle* menuSound;
+    
+
     
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
@@ -80,6 +84,8 @@ private:
     
     void _manageHowToPlay();
     
+
+    
 private:
     bool _showAds;
     bool disable;
@@ -88,7 +94,7 @@ private:
     
 //    PopUpLoseLayer* _popUpLoseLayer;
     PopUpAchievementsLayer* _popUpAchievementsLayer;
-    PopUpRewardsLayer* _popUpRewardsLayer;
+    
     
     cocos2d::CCMenu* menu;
 };
