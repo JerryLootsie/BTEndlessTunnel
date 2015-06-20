@@ -1040,6 +1040,16 @@
 		521428811B28DDCC00B13E65 /* BTLootsieAchievement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BTLootsieAchievement.h; path = Classes/BTLootsieAchievement.h; sourceTree = "<group>"; };
 		522687B11B30960C0090F358 /* RewardDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RewardDisplay.h; path = Classes/RewardDisplay.h; sourceTree = "<group>"; };
 		522687B51B3096AF0090F358 /* RewardDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RewardDisplay.cpp; path = Classes/RewardDisplay.cpp; sourceTree = "<group>"; };
+		5246D7901B34F72900D782F3 /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
+		5246D7911B34F72900D782F3 /* filestream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filestream.h; sourceTree = "<group>"; };
+		5246D7931B34F72900D782F3 /* pow10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pow10.h; sourceTree = "<group>"; };
+		5246D7941B34F72900D782F3 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		5246D7951B34F72900D782F3 /* strfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strfunc.h; sourceTree = "<group>"; };
+		5246D7961B34F72900D782F3 /* prettywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prettywriter.h; sourceTree = "<group>"; };
+		5246D7971B34F72900D782F3 /* rapidjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rapidjson.h; sourceTree = "<group>"; };
+		5246D7981B34F72900D782F3 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		5246D7991B34F72900D782F3 /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
+		5246D79A1B34F72900D782F3 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
 		524E11941B2B7CD100FDF554 /* PopUpRewardsLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PopUpRewardsLayer.h; path = Classes/PopUpRewardsLayer.h; sourceTree = "<group>"; };
 		524E11981B2B7CFE00FDF554 /* PopUpRewardsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopUpRewardsLayer.cpp; path = Classes/PopUpRewardsLayer.cpp; sourceTree = "<group>"; };
 		524E119B1B2B9E7400FDF554 /* BTLootsieReward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BTLootsieReward.h; path = Classes/BTLootsieReward.h; sourceTree = "<group>"; };
@@ -2341,6 +2351,7 @@
 		07CBA61E18DCAFC0004E8B35 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5246D78E1B34F72900D782F3 /* include */,
 				07AC274118E5017100F6AEA0 /* SneakyInputCocos2dx */,
 				07CBA62E18DCB00B004E8B35 /* Layers */,
 				07CBA62C18DCAFF3004E8B35 /* Models */,
@@ -2453,6 +2464,40 @@
 				520ABDA71B191E7500FAEAE0 /* LootsieSDKResources.bundle */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5246D78E1B34F72900D782F3 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				5246D78F1B34F72900D782F3 /* rapidjson */,
+			);
+			name = include;
+			path = Classes/include;
+			sourceTree = "<group>";
+		};
+		5246D78F1B34F72900D782F3 /* rapidjson */ = {
+			isa = PBXGroup;
+			children = (
+				5246D7901B34F72900D782F3 /* document.h */,
+				5246D7911B34F72900D782F3 /* filestream.h */,
+				5246D7921B34F72900D782F3 /* internal */,
+				5246D7961B34F72900D782F3 /* prettywriter.h */,
+				5246D7971B34F72900D782F3 /* rapidjson.h */,
+				5246D7981B34F72900D782F3 /* reader.h */,
+				5246D7991B34F72900D782F3 /* stringbuffer.h */,
+				5246D79A1B34F72900D782F3 /* writer.h */,
+			);
+			path = rapidjson;
+			sourceTree = "<group>";
+		};
+		5246D7921B34F72900D782F3 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				5246D7931B34F72900D782F3 /* pow10.h */,
+				5246D7941B34F72900D782F3 /* stack.h */,
+				5246D7951B34F72900D782F3 /* strfunc.h */,
+			);
+			path = internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

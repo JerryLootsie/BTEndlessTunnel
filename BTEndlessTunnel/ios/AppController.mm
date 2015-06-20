@@ -122,6 +122,8 @@ static AppDelegate s_sharedApplication;
 
     [[Lootsie sharedInstance] setRenderingMode:landscape];
     
+    [[Lootsie sharedInstance] setNotificationConfiguration:notify_to_disabled];
+    
    	Lootsie *lootsie = [Lootsie sharedInstance];
    	lootsie->getControllerBlock = ^UIViewController* (void){
         // Change these example lines: get your viewcontroller instead.

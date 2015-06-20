@@ -34,11 +34,16 @@ void LootsieManager::achievementReached(char *achievementCharStr)
             if (result != nil) {
                 NSString *resultStr = (NSString *)result;
                 NSLog(@"LootsieManager: achievementReachedCallback: result: %@", resultStr);
+                
+                if (GameLayer::sharedInstance() != NULL) {
+                    //GameLayer::sharedInstance()->showInAppNotification((char *) "test");
+                    const char *resultCStr = [resultStr cStringUsingEncoding:NSUTF8StringEncoding];
+                    
+                    GameLayer::sharedInstance()->showInAppNotification((char *)resultCStr);
+                }
+                
             }
             
-            if (GameLayer::sharedInstance() != NULL) {
-                GameLayer::sharedInstance()->showInAppNotification((char *) "test");
-            }
             
         } else {
             if (errorMessage != nil) {

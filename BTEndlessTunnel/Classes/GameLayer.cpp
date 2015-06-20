@@ -30,6 +30,9 @@
 
 #include "NativeUtils.h"
 
+#include "include/rapidjson/document.h"
+//#include "document.h"
+
 #define SP_PISTA "pista.png"
 #define SP_CIELO "cielo.png"
 #define SP_NUBE "nube.png"
@@ -902,7 +905,24 @@ void GameLayer::showInAppNotification(char *jsonStr)
 {
     
     std::cout << "GameLayer: showInAppNotification: " << jsonStr << std::endl;
- 
+
+    
+    // {"total_lp": 40, "lp": 10}
+    //const char json[] = "{ \"hello\" : \"world\" }";
+    //const char jsonStr[] = "{\"total_lp\": 40, \"lp\": 10}";
+    
+    // setString on Android is failing miserably!
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    rapidjson::Document d;
+    d.Parse<0>(jsonStr);
+        
+    std::ostringstream os;
+    os << "Bonus +" << d["lp"].GetInt() << " LP";
+    std::string mesgStr = os.str();
+    const char *charStr = mesgStr.c_str();
+    
+    _achievementLabel->setString(charStr);
+#endif
     
     
     CCPoint visOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
