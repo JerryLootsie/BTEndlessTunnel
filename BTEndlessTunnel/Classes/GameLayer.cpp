@@ -106,14 +106,16 @@ MusicPlaying _music;
 
 // End Level definition
 
-static GameLayer *instance = NULL;
+// Allocating and initializing HomeLayer
+// static data member.  The pointer is being
+// allocated - not the object inself.
+GameLayer *GameLayer::instance = 0;
+//static GameLayer *instance = NULL;
+
 #pragma mark - Singleton
 
 GameLayer* GameLayer::sharedInstance()
 {
-    if (instance == NULL) {
-        //instance = new GameLayer();
-    }
     return instance;
 }
 
@@ -194,7 +196,7 @@ GameLayer::GameLayer(HudLayer* hudLayer, GameMode gameMode, GameLevel gameLevel)
     
     this->setKeypadEnabled(true);
     
-    instance = this;
+    GameLayer::instance = this;
 }
 
 
@@ -390,7 +392,9 @@ void GameLayer::configureGame(GameLevel gameLevel)
     CCSize visSize = CCDirector::sharedDirector()->getVisibleSize();
     
     
-    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(GameLayer::pauseGameAndShowRewards));
+//    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(GameLayer::pauseGameAndShowRewards));
+    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(
+                                                                                                            GameLayer::showInAppNotification));
     _menuRewards->setVisible(false);
     _menuRewards->setPositionX(visOrigin.x + _menuRewards->getContentSize().width * 2.0f);
     _menuRewards->setPositionY(visOrigin.y + visSize.height - _menuRewards->getContentSize().width * 0.6f);
@@ -400,11 +404,51 @@ void GameLayer::configureGame(GameLevel gameLevel)
     _menuPause->setPositionX(visOrigin.x + _menuPause->getContentSize().width * 0.9f);
     _menuPause->setPositionY(visOrigin.y + visSize.height - _menuPause->getContentSize().width * 0.6f);
     
-    CCMenu* menu = CCMenu::create();
+    float scale = 1.05f;
+    float time_dt = 1.3f;
+    
+    _menuAchievement = CCMenuItemImage::create("ian_btn_large.png", "ian_btn_large.png", this, menu_selector(GameLayer::pauseGameAndShowRewards));
+    _menuAchievement->setAnchorPoint(ccp(0.5, 0));
+    float originX = visOrigin.x + visSize.width * .5f;
+    float originY = visOrigin.y + visSize.height;
+
+    float actualX = visOrigin.x + visSize.width * .5f;
+    float actualY = visOrigin.y + visSize.height - _menuAchievement->getContentSize().height;
+    
+    _menuAchievement->setPositionX(originX);
+    _menuAchievement->setPositionY(originY);
+    
+
+    
+    _achievementLabel = CCLabelTTF::create("Achievement", FONT_GAME, SIZE_RATE_APP);
+    _achievementLabel->setAnchorPoint(ccp(0.5, 0.5));
+    _achievementLabel->setPosition(ccp((_menuAchievement->getContentSize().width * .6f), (_menuAchievement->getContentSize().height/2)));
+    _achievementLabel->setColor(ccBLACK);
+    _menuAchievement->addChild(_achievementLabel);
+    
+//    _menuAchievement->runAction(CCRepeatForever::create(CCSequence::create(CCScaleTo::create(0.5f * time_dt, scale),
+//                                                                           CCScaleTo::create(0.5f * time_dt, 1.0f),
+//                                                                           CCDelayTime::create(2 * time_dt), NULL)));
+    
+    // Create the actions
+    cocos2d::CCFiniteTimeAction* actionMoveDest = CCMoveTo::create(1.0f,ccp(actualX, actualY) );
+    cocos2d::CCFiniteTimeAction* actionMoveSource = CCMoveTo::create(1.0f,ccp(originX, originY) );
+    
+    cocos2d::CCSequence*_actionSequence = CCSequence::create(actionMoveDest,
+                       CCDelayTime::create(2 * time_dt),
+                       actionMoveSource,
+                       NULL);
+    
+//    _menuAchievement->runAction(CCRepeatForever::create(_actionSequence));
+//    _menuAchievement->runAction( _actionSequence);
+    _menuAchievement->setVisible(false);
+    
+    menu = CCMenu::create();
     menu->setAnchorPoint(ccp(0, 0));
     menu->setPosition(CCPointZero);
     menu->addChild(_menuPause);
     menu->addChild(_menuRewards);
+    menu->addChild(_menuAchievement);
     
     addChild(menu, kDeepPauseLayer);
     
@@ -810,6 +854,10 @@ void GameLayer::pauseGameAndShowRewards()
     if(_gameState == kGameFinish)
         return;
     
+    
+     _menuAchievement->setVisible(false);
+    
+    
     if(_gameMode == kGameModePlay || _gameMode == kGameModePlayAgain || _gameMode == kGameModeReplayView)
     {
         if(!_pause)
@@ -847,6 +895,37 @@ void GameLayer::_showPopUpRewardsLayer(std::vector<BTLootsieReward*> lootsieRewa
     _popUpRewardsGameLayer->setVisible(true);
 
     
+}
+
+//void GameLayer::showInAppNotification(std::string jsonStr)
+void GameLayer::showInAppNotification(char *jsonStr)
+{
+    
+    std::cout << "GameLayer: showInAppNotification: " << jsonStr << std::endl;
+ 
+    
+    
+    CCPoint visOrigin = CCDirector::sharedDirector()->getVisibleOrigin();
+    CCSize visSize = CCDirector::sharedDirector()->getVisibleSize();
+    
+    float originX = visOrigin.x + visSize.width * .5f;
+    float originY = visOrigin.y + visSize.height;
+    
+    float actualX = visOrigin.x + visSize.width * .5f;
+    float actualY = visOrigin.y + visSize.height - _menuAchievement->getContentSize().height;
+    
+    // Create the actions
+    cocos2d::CCFiniteTimeAction* actionMoveDest = CCMoveTo::create(1.0f,ccp(actualX, actualY) );
+    cocos2d::CCFiniteTimeAction* actionMoveSource = CCMoveTo::create(1.0f,ccp(originX, originY) );
+    
+    float time_dt = 1.3f;    
+    cocos2d::CCSequence* _actionSequence = CCSequence::create(actionMoveDest,
+                                         CCDelayTime::create(2 * time_dt),
+                                         actionMoveSource,
+                                         NULL);
+    
+    GameLayer::sharedInstance()->_menuAchievement->setVisible(true);
+    GameLayer::sharedInstance()->_menuAchievement->runAction(_actionSequence);
 }
 
 

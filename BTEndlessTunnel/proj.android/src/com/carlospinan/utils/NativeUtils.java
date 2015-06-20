@@ -97,16 +97,27 @@ public class NativeUtils {
         @Override
         public void onLootsieFailed() {
             Log.v(TAG, "NativeUtils: onLootsieFailed");
+            
+            nativeAchievementReachedFailed("achievement failed");
         }
 
         @Override
         public void onLootsieSuccess() {
             Log.v(TAG, "NativeUtils: onLootsieSuccess");
+            
+            nativeAchievementReachedSuccess("achievement reached");
         }
 
         @Override
         public void onNotificationData(String json) {
             Log.v(TAG, "NativeUtils: onNotificationData: " + json);
+            
+            nativeAchievementReachedNotificationData(json);
+            
+//            String jsonCopy = new String(json);
+//            nativeAchievementReachedNotificationData(jsonCopy);
+            
+            //nativeAchievementReachedNotificationData("{}");
         }
     }
 
@@ -364,4 +375,9 @@ public class NativeUtils {
 	static native void nativeGetRewards(String testStr, ArrayList<Reward> lootsieRewards);
 	static native void nativeRedeemRewardResponse(boolean result, String testStr);
 	static native void nativeAchievementReachedIANClicked(String testStr);
+	
+	static native void nativeAchievementReachedSuccess(String testStr);
+	static native void nativeAchievementReachedFailed(String testStr);
+	static native void nativeAchievementReachedNotificationData(String testStr);	
+	
 }

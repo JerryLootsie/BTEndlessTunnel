@@ -37,6 +37,7 @@
 #include <android/log.h>
 
 #include "HomeLayer.h"
+#include "GameLayer.h"
 
 #define  LOG_TAG    "JNIHelpers"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
@@ -45,6 +46,68 @@
 #define  DEBUGLOG(...)  if (debugLevel > 0) __android_log_print(ANDROID_LOG_VERBOSE,LOG_TAG,__VA_ARGS__)
 
 extern "C" {
+  
+/*
+ * Class:     com_carlospinan_utils_NativeUtils
+ * Method:    nativeAchievementReachedSuccess
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeAchievementReachedSuccess
+(JNIEnv *env, jclass testClass, jstring mesgStr) {
+        
+    // JNI_TRUE -> copy is made
+    jboolean isCopy;
+    const char *testMesg = env->GetStringUTFChars(mesgStr, &isCopy);
+    
+    LOGE("JNIHelpers: nativeAchievementReachedSuccess: %s", testMesg);
+    
+//    if (isCopy == JNI_TRUE) {
+//        env->ReleaseStringUTFChars(mesgStr, testMesg);
+//    }
+    
+}
+    
+    
+/*
+ * Class:     com_carlospinan_utils_NativeUtils
+ * Method:    nativeAchievementReachedFailed
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeAchievementReachedFailed
+(JNIEnv *env, jclass testClass, jstring mesgStr) {
+    
+    // JNI_TRUE -> copy is made
+    jboolean isCopy;
+    const char *testMesg = env->GetStringUTFChars(mesgStr, &isCopy);
+    
+    LOGE("JNIHelpers: nativeAchievementReachedFailed: %s", testMesg);
+    
+}
+    
+/*
+ * Class:     com_carlospinan_utils_NativeUtils
+ * Method:    nativeAchievementReachedNotificationData
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeAchievementReachedNotificationData
+(JNIEnv *env, jclass testClass, jstring mesgStr) {
+    
+    // JNI_TRUE -> copy is made
+    jboolean isCopy;
+    const char *testMesg = env->GetStringUTFChars(mesgStr, &isCopy);
+    
+    LOGE("JNIHelpers: nativeAchievementReachedNotificationData: %s", testMesg);
+    
+    std::string jsonStr(testMesg);
+    if (GameLayer::sharedInstance() != NULL) {
+        GameLayer::sharedInstance()->showInAppNotification((char *)jsonStr.c_str());
+    } else {
+        LOGE("JNIHelpers: nativeAchievementReachedNotificationData: can't access GameLayer::sharedInstance!!!!");
+    }
+    
+}
+    
+    
     
 /*
  * Class:     com_carlospinan_utils_NativeUtils
@@ -54,7 +117,9 @@ extern "C" {
 JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeAchievementReachedIANClicked
 (JNIEnv *env, jclass testClass, jstring mesgStr) {
     
-    const char *testMesg = env->GetStringUTFChars(mesgStr, NULL);
+    // JNI_TRUE -> copy is made
+    jboolean isCopy;
+    const char *testMesg = env->GetStringUTFChars(mesgStr, &isCopy);
     
     LOGE("JNIHelpers: nativeAchievementReachedIANClicked: %s", testMesg);
 

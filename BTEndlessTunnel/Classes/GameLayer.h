@@ -111,6 +111,8 @@ public:
     void keyBackClicked();
     
     void _showPopUpRewardsLayer(std::vector<BTLootsieReward*> lootsieRewards);
+    //void showInAppNotification(std::string jsonStr);
+    void showInAppNotification(char *jsonStr);
     
 private:
     void _createMap();
@@ -145,6 +147,8 @@ private:
     
     
 private:
+    static GameLayer* instance;
+    
     BaseVehicle* _player;    
     
     HudLayer* _hudLayer;
@@ -169,9 +173,17 @@ private:
     
     cocos2d::CCArray* _arrayObstacles;
     
+    cocos2d::CCMenu* menu;
     cocos2d::CCMenuItemImage* _menuPause;
     cocos2d::CCMenuItemImage* _menuRewards;
+    cocos2d::CCMenuItemImage* _menuAchievement;
     
+    // to move IAN around
+//    cocos2d::CCFiniteTimeAction* actionMoveDest;
+//    cocos2d::CCFiniteTimeAction* actionMoveSource;
+//    cocos2d::CCSequence* _actionSequence;
+    
+    cocos2d::CCLabelTTF *_achievementLabel;
     
     bool _pause;
     bool _gameOver;

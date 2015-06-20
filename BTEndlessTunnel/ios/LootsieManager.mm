@@ -26,8 +26,29 @@ void LootsieManager::achievementReached(char *achievementCharStr)
     NSString* achievementStr = [NSString stringWithFormat:@"%s" , achievementCharStr];
     NSLog(@"LootsieManager: achievementReached: %@", achievementStr);
     
-    [[Lootsie sharedInstance] achievementReachedWithId:achievementStr];
+    //[[Lootsie sharedInstance] achievementReachedWithId:achievementStr];
+
+    ServiceCallback callback = ^(BOOL success, id result, NSString* errorMessage, NSInteger statusCode) {
+        
+        if (success) {
+            if (result != nil) {
+                NSString *resultStr = (NSString *)result;
+                NSLog(@"LootsieManager: achievementReachedCallback: result: %@", resultStr);
+            }
+            
+            if (GameLayer::sharedInstance() != NULL) {
+                GameLayer::sharedInstance()->showInAppNotification((char *) "test");
+            }
+            
+        } else {
+            if (errorMessage != nil) {
+                NSLog(@"LootsieManager: achievementReachedCallback: errorMessage: %@", errorMessage);
+            }
+        }
+        
+    };
     
+    [[Lootsie sharedInstance] achievementReachedWithIdLocationCallback:achievementStr location:@"default" callback:callback];
 }
 
 void LootsieManager::showAchievements()
