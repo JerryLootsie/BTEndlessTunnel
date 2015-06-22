@@ -356,20 +356,23 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
         rewardDisplay->tosItem->setVisible(false);
         rewardDisplay->detailsItem->setVisible(false);
         rewardDisplay->redeemItem->setVisible(false);
-        
+        rewardDisplay->rewardCost->setVisible(false);
         
         RewardDisplay *localRewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
         
         // CCScale9Sprite
-        _editEmail = cocos2d::extension::CCEditBox::create(CCSize(rewardBg->getContentSize().width,
-                                                                  rewardBg->getContentSize().height * .20f),
-                                                            cocos2d::extension::CCScale9Sprite::create("tos_btn_hit.png"));
+        // tos_btn_hit.png
+        _editEmail = cocos2d::extension::CCEditBox::create(CCSize(rewardBg->getContentSize().width * .80f,
+                                                                  rewardBg->getContentSize().height * .10f),
+                                                            cocos2d::extension::CCScale9Sprite::create("textfield.png"));
         
-        _editEmail->setPosition(ccp(rewardBg->getContentSize().width/2,
-                                    rewardBg->getContentSize().height * 0.40));
+        _editEmail->setPosition(ccp(rewardBg->getContentSize().width * 0.50f,
+                                    rewardBg->getContentSize().height * 0.35f));
         _editEmail->setPlaceHolder("Email:");
-        _editEmail->setFontSize(SIZE_RATE_APP);
-        _editEmail->setFontColor(ccBLACK);
+        //_editEmail->setFontSize(SIZE_RATE_APP);
+        _editEmail->setFontSize(15.0f * CC_CONTENT_SCALE_FACTOR());
+        //_editEmail->setFontColor(ccBLACK);
+        _editEmail->setFontColor(ccWHITE);
         _editEmail->setMaxLength(80);
         _editEmail->setInputMode(cocos2d::extension::kEditBoxInputModeEmailAddr);
         _editEmail->setReturnType(cocos2d::extension::kKeyboardReturnTypeDone);
@@ -431,6 +434,7 @@ void RewardDisplay::_onOptionPressed_Submit(CCObject *pSender)
     rewardDisplay->tosItem->setVisible(true);
     rewardDisplay->detailsItem->setVisible(true);
     rewardDisplay->redeemItem->setVisible(true);
+    rewardDisplay->rewardCost->setVisible(true);
 
     // hide submit buttons
     rewardDisplay->_editEmail->setVisible(false);
@@ -483,6 +487,7 @@ void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     rewardDisplay->tosItem->setVisible(true);
     rewardDisplay->detailsItem->setVisible(true);
     rewardDisplay->redeemItem->setVisible(true);
+    rewardDisplay->rewardCost->setVisible(true);
     
     // hide submit buttons
     rewardDisplay->_editEmail->setVisible(false);
