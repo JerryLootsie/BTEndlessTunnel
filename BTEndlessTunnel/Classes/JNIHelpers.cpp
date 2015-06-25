@@ -365,7 +365,7 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeMono
     std::vector<BTLootsieAchievement*> lootsieAchievments;
     
     // do methods exist on cList class?
-    if ((mSize != NULL) && (mGet != NULL)) {
+    if ((mSize != NULL) && (mGet != NULL) && (testObj != NULL)) {
         
         // get the size of the list
         jint arraySize = env->CallIntMethod(testObj, mSize);
