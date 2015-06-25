@@ -395,9 +395,9 @@ void GameLayer::configureGame(GameLevel gameLevel)
     CCSize visSize = CCDirector::sharedDirector()->getVisibleSize();
     
     
-//    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(GameLayer::pauseGameAndShowRewards));
-    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(
-                                                                                                            GameLayer::showInAppNotification));
+    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(GameLayer::pauseGameAndShowRewards));
+//    _menuRewards = CCMenuItemImage::create("marketplace_btn_large_off.png", "marketplace_btn_large.png", this, menu_selector(
+//                                                                                                            GameLayer::showInAppNotification));
     _menuRewards->setVisible(false);
     _menuRewards->setPositionX(visOrigin.x + _menuRewards->getContentSize().width * 2.0f);
     _menuRewards->setPositionY(visOrigin.y + visSize.height - _menuRewards->getContentSize().width * 0.6f);
@@ -913,15 +913,19 @@ void GameLayer::showInAppNotification(char *jsonStr)
     
     // setString on Android is failing miserably!
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    rapidjson::Document d;
-    d.Parse<0>(jsonStr);
-        
-    std::ostringstream os;
-    os << "Bonus +" << d["lp"].GetInt() << " LP";
-    std::string mesgStr = os.str();
-    const char *charStr = mesgStr.c_str();
-    
-    _achievementLabel->setString(charStr);
+    if (jsonStr != NULL) {
+        rapidjson::Document d;
+        d.Parse<0>(jsonStr);
+
+        if (d.IsObject()) {
+            std::ostringstream os;
+            os << "Bonus +" << d["lp"].GetInt() << " LP";
+            std::string mesgStr = os.str();
+            const char *charStr = mesgStr.c_str();
+            
+            _achievementLabel->setString(charStr);
+        }
+    }
 #endif
     
     

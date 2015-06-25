@@ -303,6 +303,8 @@ void PopUpAchievementsLayer::_createScrollView2() {
     scrollView->setPosition(CCPoint(horizOffset, vertOffset));
     scrollView->setDirection(cocos2d::extension::kCCScrollViewDirectionVertical);
     scrollView->setContentOffset(ccp(0.f, 0.f), false);
+    //scrollView->setContentOffset(ccp(0.f,csize.height), false);
+    
     scrollView->setAnchorPoint(CCPointZero);
     
     
@@ -409,10 +411,19 @@ cocos2d::CCLayer* PopUpAchievementsLayer::_createScrollView3(AchievmentsOrientat
     scrollView = cocos2d::extension::CCScrollView::create(viewsize, scrollContainer);
     scrollView->setPosition(CCPoint(horizOffset, vertOffset));
     //scrollView->setPosition(CCPointZero);
-    scrollView->setDirection(cocos2d::extension::kCCScrollViewDirectionVertical);
-    scrollView->setContentOffset(ccp(0.f, 0.f), false);
     scrollView->setAnchorPoint(CCPointZero);
+    scrollView->setDirection(cocos2d::extension::kCCScrollViewDirectionVertical);
+
+    scrollView->setContentSize(csize);
+//    scrollView->setContentOffset(ccp(0.f, 0.f), false);
+//    scrollView->setContentOffset(ccp(0.f, background1->getContentSize().height), true);
+//    scrollView->setContentOffset(ccp(0.f,csize.height), false);
+//    scrollView->setContentOffset(ccp(0.f,-1.0 * csize.height), false);
+//    scrollView->updateInset();
+
     
+    
+    std::cout << "PopUpAchievementsLayer: scrollView: contentOffset: " << scrollView->getContentOffset().x << "x" << scrollView->getContentOffset().y << std::endl;
     
     
     // draw border around scrollview area

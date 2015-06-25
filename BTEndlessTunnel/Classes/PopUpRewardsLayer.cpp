@@ -38,7 +38,7 @@ static PopUpRewardsLayer *instance = NULL;
 PopUpRewardsLayer* PopUpRewardsLayer::sharedInstance()
 {
     if (instance == NULL) {
-        instance = new PopUpRewardsLayer();
+        //instance = new PopUpRewardsLayer();
     }
     return instance;
 }
@@ -93,6 +93,7 @@ PopUpRewardsLayer::PopUpRewardsLayer()
         _menu->retain();
         addChild(_menu);
 
+        instance = this;
     }
 }
 

@@ -95,8 +95,8 @@ public class NativeUtils {
         }
 
         @Override
-        public void onLootsieFailed() {
-            Log.v(TAG, "NativeUtils: onLootsieFailed");
+        public void onLootsieFailed(String mesg) {
+            Log.v(TAG, "NativeUtils: onLootsieFailed: " + mesg);
             
             nativeAchievementReachedFailed("achievement failed");
         }

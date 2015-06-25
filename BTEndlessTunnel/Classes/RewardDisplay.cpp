@@ -84,7 +84,11 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inpu
         
         
         if (lootsieReward->imageURL_M.size() > 0) {
-            PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M] = rewardBg;
+            if (PopUpRewardsLayer::sharedInstance() != NULL) {
+                PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M] = rewardBg;
+            } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
+                PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M] = rewardBg;
+            }
             
             
             // reward cost string
@@ -95,6 +99,9 @@ RewardDisplay::RewardDisplay(cocos2d::CCLayer *inputLayer, BTLootsieReward *inpu
             
             downLoadImage((char *)lootsieReward->imageURL_M.c_str(), rewardBg, imageCharStr);
         }
+            
+            
+        
         
     }
     
@@ -181,20 +188,20 @@ void RewardDisplay::cleanup() {
         rewardImage->removeFromParentAndCleanup(false);
     }
     
-    rewardTitle->removeFromParentAndCleanup(true);
-    rewardCost->removeFromParentAndCleanup(true);
+    if (rewardTitle != NULL) rewardTitle->removeFromParentAndCleanup(true);
+    if (rewardCost != NULL) rewardCost->removeFromParentAndCleanup(true);
     
-    tosLabel->removeFromParentAndCleanup(true);
-    tosItem->removeFromParentAndCleanup(true);
+    if (tosLabel != NULL) tosLabel->removeFromParentAndCleanup(true);
+    if (tosItem != NULL) tosItem->removeFromParentAndCleanup(true);
     
-    detailsLabel->removeFromParentAndCleanup(true);
-    detailsItem->removeFromParentAndCleanup(true);
+    if (detailsLabel != NULL) detailsLabel->removeFromParentAndCleanup(true);
+    if (detailsItem != NULL) detailsItem->removeFromParentAndCleanup(true);
     
-    redeemLabel->removeFromParentAndCleanup(true);
-    redeemItem->removeFromParentAndCleanup(true);
+    if (redeemLabel != NULL) redeemLabel->removeFromParentAndCleanup(true);
+    if (redeemItem != NULL) redeemItem->removeFromParentAndCleanup(true);
     
-    rewardMenu->removeFromParentAndCleanup(true);
-    rewardBg->removeFromParentAndCleanup(true);
+    if (rewardMenu != NULL) rewardMenu->removeFromParentAndCleanup(true);
+    if (rewardBg != NULL) rewardBg->removeFromParentAndCleanup(true);
     
 }
 
@@ -213,7 +220,11 @@ void RewardDisplay::downLoadImage(char *imageURL, cocos2d::CCSprite *rewardBg, s
     // save sprite in hashmap, and reference it later using the tag string
     request->setTag(strImage.c_str());
     
-    PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[strImage] = rewardBg;
+    if (PopUpRewardsLayer::sharedInstance() != NULL) {
+        PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[strImage] = rewardBg;
+    } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
+        PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap[strImage] = rewardBg;
+    }
     
     cocos2d::extension::CCHttpClient::getInstance()->send(request);
     request->release();
@@ -261,11 +272,19 @@ void RewardDisplay::onImageDownLoaded(cocos2d::extension::CCHttpClient* pSender,
     
     // get bg sprite to draw sprite on top of
     std::cout << "onImageDownLoaded: response tag: " << response->getHttpRequest()->getTag() << std::endl;
-    if (PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.find(response->getHttpRequest()->getTag()) != PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.end()) {
+    
+    CCSprite *rewardBg = NULL;
+    if ((PopUpRewardsLayer::sharedInstance() != NULL) &&
+        (PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.find(response->getHttpRequest()->getTag()) != PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.end())) {
         //std::cout << "onImageDownLoaded: map contains key URL!\n";
-        
-        CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[response->getHttpRequest()->getTag()];
-        
+        rewardBg = PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[response->getHttpRequest()->getTag()];
+    } else if ((PopUpRewardsGameLayer::sharedInstance() != NULL) &&
+               (PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap.find(response->getHttpRequest()->getTag()) != PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap.end())) {
+        //std::cout << "onImageDownLoaded: map contains key URL!\n";
+        rewardBg = PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap[response->getHttpRequest()->getTag()];
+    }
+    
+    if (rewardBg != NULL) {
         //Now create Sprite from downloaded image
         rewardImage = CCSprite::create(writablePath.c_str());
         
@@ -303,11 +322,22 @@ void RewardDisplay::_onOptionPressed_TOS(CCObject *pSender)
     
     // tag contains a lookup to reward id in rewards set
     int rewardIndex = item->getTag();
-    lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     
-    std::cout << "RewardDisplay: TOS\n";
-    CCMessageBox(lootsieReward->tos_text.c_str(), "Terms Of Service");
+    if (PopUpRewardsLayer::sharedInstance() != NULL) {
+        lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     
+        std::cout << "RewardDisplay: TOS\n";
+        CCMessageBox(lootsieReward->tos_text.c_str(), "Terms Of Service");
+        
+    } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
+        lootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        
+        std::cout << "RewardDisplay: TOS\n";
+        CCMessageBox(lootsieReward->tos_text.c_str(), "Terms Of Service");
+        
+    } else {
+        std::cout << "RewardDisplay: TOS not available\n";
+    }
     
 }
 
@@ -321,11 +351,22 @@ void RewardDisplay::_onOptionPressed_Details(CCObject *pSender)
     
     // tag contains a lookup to reward id in rewards set
     int rewardIndex = item->getTag();
-    lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
     
-    std::cout << "RewardDisplay: Details\n";
-    CCMessageBox(lootsieReward->reward_description.c_str(), "Details");
-    
+    if (PopUpRewardsLayer::sharedInstance() != NULL) {
+        lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        
+        std::cout << "RewardDisplay: Details\n";
+        CCMessageBox(lootsieReward->reward_description.c_str(), "Details");
+     
+    } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
+        lootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        
+        std::cout << "RewardDisplay: Details\n";
+        CCMessageBox(lootsieReward->reward_description.c_str(), "Details");
+        
+    } else {
+        std::cout << "RewardDisplay: Details not available\n";
+    }
     
 }
 
@@ -339,26 +380,53 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
     
     // tag contains a lookup to reward id in rewards set
     int rewardIndex = item->getTag();
-    lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+    
+    if (PopUpRewardsLayer::sharedInstance() != NULL) {
+        lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+    } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
+        lootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];
+    } else {
+        std::cout << "RewardDisplay: redeem not available\n";
+        return;
+    }
     
     std::cout << "RewardDisplay: redeem\n";
     //CCMessageBox(lootsieReward->reward_description.c_str(), "Redeem");
     
     
+    CCSprite *rewardBg = NULL;
+    RewardDisplay *rewardDisplay = NULL;
+    RewardDisplay *localRewardDisplay = NULL;
+    
     // get bg sprite to draw sprite on top of
-    if (PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.find(lootsieReward->imageURL_M) != PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.end()) {
+    if ((PopUpRewardsLayer::sharedInstance() != NULL) &&
+        (PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.find(lootsieReward->imageURL_M) != PopUpRewardsLayer::sharedInstance()->urlToSpriteMap.end())) {
         std::cout << "map contains key URL!\n";
         
-        CCSprite *rewardBg = PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M];
+        rewardBg = PopUpRewardsLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M];
+        rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        localRewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        
+    } else if ((PopUpRewardsGameLayer::sharedInstance() != NULL) &&
+                   (PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap.find(lootsieReward->imageURL_M) != PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap.end())) {
+        std::cout << "map contains key URL!\n";
+        
+        rewardBg = PopUpRewardsGameLayer::sharedInstance()->urlToSpriteMap[lootsieReward->imageURL_M];
+        rewardDisplay = PopUpRewardsGameLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        localRewardDisplay = PopUpRewardsGameLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        
+    } else {
+        std::cout << "RewardDisplay: redeem: map missing key URL!\n";
+    }
+    
+    if ((rewardBg != NULL) && (rewardDisplay != NULL) && (localRewardDisplay != NULL)) {
         
         // hide other buttons
-        RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
         rewardDisplay->tosItem->setVisible(false);
         rewardDisplay->detailsItem->setVisible(false);
         rewardDisplay->redeemItem->setVisible(false);
         rewardDisplay->rewardCost->setVisible(false);
         
-        RewardDisplay *localRewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
         
         // CCScale9Sprite
         // tos_btn_hit.png
@@ -407,7 +475,7 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
         localRewardDisplay->rewardMenu->addChild(sendRewardItem);
         
     } else {
-        std::cout << "RewardDisplay: redeem: map missing key URL!\n";
+        std::cout << "RewardDisplay: redeem: map missing rewardbg, rewarddisplay, localrewarddisplay!\n";
         
     }
     
@@ -429,19 +497,30 @@ void RewardDisplay::_onOptionPressed_Submit(CCObject *pSender)
     
     std::cout << "RewardDisplay: Submit rewardIndex: " << rewardIndex << "\n";
     
-    // show other buttons
-    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
-    rewardDisplay->tosItem->setVisible(true);
-    rewardDisplay->detailsItem->setVisible(true);
-    rewardDisplay->redeemItem->setVisible(true);
-    rewardDisplay->rewardCost->setVisible(true);
-
-    // hide submit buttons
-    rewardDisplay->_editEmail->setVisible(false);
-    rewardDisplay->sendRewardItem->setVisible(false);
     
+    RewardDisplay *rewardDisplay = NULL;
+    BTLootsieReward *btLootsieReward = NULL;
     
-    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+    if (PopUpRewardsLayer::sharedInstance() != NULL) {
+        rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+    } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
+        rewardDisplay = PopUpRewardsGameLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        btLootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];        
+    }
+    
+    if (rewardDisplay != NULL) {
+        // show other buttons
+        if (rewardDisplay->tosItem != NULL) rewardDisplay->tosItem->setVisible(true);
+        if (rewardDisplay->detailsItem != NULL) rewardDisplay->detailsItem->setVisible(true);
+        if (rewardDisplay->redeemItem != NULL) rewardDisplay->redeemItem->setVisible(true);
+        if (rewardDisplay->rewardCost != NULL) rewardDisplay->rewardCost->setVisible(true);
+        
+        // hide submit buttons
+        if (rewardDisplay->_editEmail != NULL) rewardDisplay->_editEmail->setVisible(false);
+        if (rewardDisplay->sendRewardItem != NULL) rewardDisplay->sendRewardItem->setVisible(false);
+    }
+    
     //long rewardId = std::atol(btLootsieReward->reward_id.c_str());
     //std::cout << "redeem reward:" << rewardId << std::endl;
     std::string rewardIdStr = btLootsieReward->reward_id;
@@ -480,32 +559,47 @@ void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     
     std::string emailStr = editBox->getText();
     
-    // show other buttons
+
     rewardIndex = editBox->getTag();
     
-    RewardDisplay *rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
-    rewardDisplay->tosItem->setVisible(true);
-    rewardDisplay->detailsItem->setVisible(true);
-    rewardDisplay->redeemItem->setVisible(true);
-    rewardDisplay->rewardCost->setVisible(true);
+    RewardDisplay *rewardDisplay = NULL;
+    BTLootsieReward *btLootsieReward = NULL;
     
-    // hide submit buttons
-    rewardDisplay->_editEmail->setVisible(false);
-    rewardDisplay->sendRewardItem->setVisible(false);
+    if (PopUpRewardsLayer::sharedInstance() != NULL) {
+        rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+    } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
+        rewardDisplay = PopUpRewardsGameLayer::sharedInstance()->rewardDisplays[rewardIndex];
+        btLootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];
+    }
     
-    BTLootsieReward *btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
-    //long rewardId = std::atol(btLootsieReward->reward_id.c_str());
-    //std::cout << "redeem reward:" << rewardId << std::endl;
-    std::string rewardIdStr = btLootsieReward->reward_id;
-    std::cout << "redeem reward:" << rewardIdStr << std::endl;
-
+    if (rewardDisplay != NULL) {
+        // show other buttons
+        if (rewardDisplay->tosItem != NULL) rewardDisplay->tosItem->setVisible(true);
+        if (rewardDisplay->detailsItem != NULL) rewardDisplay->detailsItem->setVisible(true);
+        if (rewardDisplay->redeemItem != NULL) rewardDisplay->redeemItem->setVisible(true);
+        if (rewardDisplay->rewardCost != NULL) rewardDisplay->rewardCost->setVisible(true);
     
-    if (isValidEmailAddress(emailStr.c_str())) {
-        NativeUtils::redeemReward(emailStr.c_str(), rewardIdStr.c_str());
-    } else {
-        CCMessageBox("Invalid Email Address!", "Email Address Check");
+        // hide submit buttons
+        if (rewardDisplay->_editEmail != NULL) rewardDisplay->_editEmail->setVisible(false);
+        if (rewardDisplay->sendRewardItem != NULL) rewardDisplay->sendRewardItem->setVisible(false);
     }
 
+
+    if (btLootsieReward != NULL) {
+    
+        //long rewardId = std::atol(btLootsieReward->reward_id.c_str());
+        //std::cout << "redeem reward:" << rewardId << std::endl;
+        std::string rewardIdStr = btLootsieReward->reward_id;
+        std::cout << "redeem reward:" << rewardIdStr << std::endl;
+
+        
+        if (isValidEmailAddress(emailStr.c_str())) {
+            NativeUtils::redeemReward(emailStr.c_str(), rewardIdStr.c_str());
+        } else {
+            CCMessageBox("Invalid Email Address!", "Email Address Check");
+        }
+    }
     
     
     //editBox->onExit();
