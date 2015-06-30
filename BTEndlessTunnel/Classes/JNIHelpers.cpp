@@ -176,7 +176,7 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
  
     std::vector<BTLootsieReward*> lootsieRewards;
     
-    int debugLevel = 1;
+    int debugLevel = 0;
     
     // do methods exist on cList class?
     if ((testObj != NULL) && (mSize != NULL) && (mGet != NULL)) {
@@ -257,7 +257,14 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
 
             btLootsieReward->lp = intLP;
             
-            
+            //need to release this string when done with it in
+            //order to avoid memory leak??
+        
+            env->ReleaseStringUTFChars(jstrId, strId);
+            env->ReleaseStringUTFChars(jstrName, strName);
+            env->ReleaseStringUTFChars(jstrTextToShare, strTextToShare);
+            env->ReleaseStringUTFChars(jstr_tos_text, str_tos_text);
+            env->ReleaseStringUTFChars(jstrDescription, strDescription);
 
             
             // Icon class in icon field of cReward
@@ -305,17 +312,24 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeGetRewards
                         std::string stdStrL(strL);
                         btLootsieReward->imageURL_L = stdStrL;
                         
+                        //need to release this string when done with it in
+                        //order to avoid memory leak??
+                        
+                        env->ReleaseStringUTFChars(jstrS, strS);
+                        env->ReleaseStringUTFChars(jstrM, strM);
+                        env->ReleaseStringUTFChars(jstrL, strL);
+                        
                     } // Icon Object
                 } // Icon field
             } // Icon class
             
             
+
+            
             DEBUGLOG("JNIHelpers: nativeGetRewards: insert into std::vector<BTLootsieReward*> ");
             lootsieRewards.insert(lootsieRewards.end(), btLootsieReward);
             
-            //need to release this string when done with it in
-            //order to avoid memory leak??
-            //env->ReleaseStringUTFChars(jstrDescription, strDescription);
+
         }
         
     } else {
@@ -427,6 +441,13 @@ JNIEXPORT void JNICALL Java_com_carlospinan_utils_NativeUtils_nativeMono
 //            btLootsieAchievement->date = std::string(strDate);
             btLootsieAchievement->lp = intLP;
 
+            //need to release this string when done with it in
+            //order to avoid memory leak??
+            env->ReleaseStringUTFChars(jstrId, strId);
+            env->ReleaseStringUTFChars(jstrName, strName);
+            env->ReleaseStringUTFChars(jstrDescription, strDescription);
+            env->ReleaseStringUTFChars(jstrDate, strDate);
+            
             
 //            btLootsieAchievement->id = strId;
 //            btLootsieAchievement->name = strName;

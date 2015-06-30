@@ -472,9 +472,13 @@ obj/local/armeabi/objs/game_shared/__/__/Classes/HomeScene.o: \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/SkeletonJson.h \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeleton.h \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeletonAnimation.h \
- jni/../../Classes/BTLootsieAchievement.h jni/../../Classes/HomeLayer.h \
- jni/../../Classes/SettingsLayer.h jni/../../Classes/Constants.h \
- jni/../../Classes/PlayGameConstants.h
+ jni/../../Classes/BTLootsieAchievement.h \
+ jni/../../Classes/PopUpRewardsGameLayer.h \
+ jni/../../Classes/PopupRewardsLayer.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h \
+ jni/../../Classes/BTLootsieReward.h jni/../../Classes/HomeLayer.h \
+ jni/../../Classes/SettingsLayer.h jni/../../Classes/PopUpRewardsLayer.h \
+ jni/../../Classes/Constants.h jni/../../Classes/PlayGameConstants.h
 
 jni/../../Classes/HomeScene.h:
 
@@ -1430,9 +1434,19 @@ jni/../../Classes/PopUpAchievementsLayer.h:
 
 jni/../../Classes/BTLootsieAchievement.h:
 
+jni/../../Classes/PopUpRewardsGameLayer.h:
+
+jni/../../Classes/PopupRewardsLayer.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h:
+
+jni/../../Classes/BTLootsieReward.h:
+
 jni/../../Classes/HomeLayer.h:
 
 jni/../../Classes/SettingsLayer.h:
+
+jni/../../Classes/PopUpRewardsLayer.h:
 
 jni/../../Classes/Constants.h:
 

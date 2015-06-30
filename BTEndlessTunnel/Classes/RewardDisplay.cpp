@@ -383,8 +383,10 @@ void RewardDisplay::_onOptionPressed_Redeem(CCObject *pSender)
     
     if (PopUpRewardsLayer::sharedInstance() != NULL) {
         lootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        PopUpRewardsLayer::sharedInstance()->_disableScrolling();
     } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
         lootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        PopUpRewardsGameLayer::sharedInstance()->_disableScrolling();
     } else {
         std::cout << "RewardDisplay: redeem not available\n";
         return;
@@ -504,9 +506,11 @@ void RewardDisplay::_onOptionPressed_Submit(CCObject *pSender)
     if (PopUpRewardsLayer::sharedInstance() != NULL) {
         rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
         btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        PopUpRewardsLayer::sharedInstance()->_enableScrolling();
     } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
         rewardDisplay = PopUpRewardsGameLayer::sharedInstance()->rewardDisplays[rewardIndex];
-        btLootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];        
+        btLootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        PopUpRewardsGameLayer::sharedInstance()->_enableScrolling();
     }
     
     if (rewardDisplay != NULL) {
@@ -568,9 +572,11 @@ void RewardDisplay::editBoxReturn(cocos2d::extension::CCEditBox *editBox) {
     if (PopUpRewardsLayer::sharedInstance() != NULL) {
         rewardDisplay = PopUpRewardsLayer::sharedInstance()->rewardDisplays[rewardIndex];
         btLootsieReward = PopUpRewardsLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        PopUpRewardsLayer::sharedInstance()->_enableScrolling();
     } else if (PopUpRewardsGameLayer::sharedInstance() != NULL) {
         rewardDisplay = PopUpRewardsGameLayer::sharedInstance()->rewardDisplays[rewardIndex];
         btLootsieReward = PopUpRewardsGameLayer::sharedInstance()->lootsieRewards[rewardIndex];
+        PopUpRewardsGameLayer::sharedInstance()->_enableScrolling();
     }
     
     if (rewardDisplay != NULL) {

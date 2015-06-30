@@ -473,17 +473,22 @@ obj/local/armeabi/objs/game_shared/__/__/Classes/GameLayer.o: \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeleton.h \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/spine/CCSkeletonAnimation.h \
  jni/../../Classes/BTLootsieAchievement.h \
- jni/../../Classes/ObstacleSimple.h jni/../../Classes/ObstacleDoble.h \
- jni/../../Classes/ObstacleDobleAir.h jni/../../Classes/VehicleFrog.h \
- jni/../../Classes/Constants.h jni/../../Classes/PlayGameConstants.h \
+ jni/../../Classes/PopUpRewardsGameLayer.h \
+ jni/../../Classes/PopupRewardsLayer.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h \
+ jni/../../Classes/BTLootsieReward.h jni/../../Classes/ObstacleSimple.h \
+ jni/../../Classes/ObstacleDoble.h jni/../../Classes/ObstacleDobleAir.h \
+ jni/../../Classes/VehicleFrog.h jni/../../Classes/Constants.h \
+ jni/../../Classes/PlayGameConstants.h \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/CocosDenshion/android/../include/SimpleAudioEngine.h \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/CocosDenshion/android/../include/Export.h \
  jni/../../Classes/HomeScene.h jni/../../Classes/HomeLayer.h \
- jni/../../Classes/SettingsLayer.h \
+ jni/../../Classes/SettingsLayer.h jni/../../Classes/PopUpRewardsLayer.h \
  jni/../../Classes/LocalStorageManager.h jni/../../Classes/Utils.h \
  /Users/jerrylootsie/Downloads/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/ctime \
  /Users/jerrylootsie/Downloads/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/algorithm \
- jni/../../Classes/NativeUtils.h jni/../../Classes/JNIHelpers.h
+ jni/../../Classes/NativeUtils.h jni/../../Classes/JNIHelpers.h \
+ jni/../../Classes/include/rapidjson/document.h
 
 jni/../../Classes/GameLayer.h:
 
@@ -1437,6 +1442,14 @@ jni/../../Classes/PopUpAchievementsLayer.h:
 
 jni/../../Classes/BTLootsieAchievement.h:
 
+jni/../../Classes/PopUpRewardsGameLayer.h:
+
+jni/../../Classes/PopupRewardsLayer.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h:
+
+jni/../../Classes/BTLootsieReward.h:
+
 jni/../../Classes/ObstacleSimple.h:
 
 jni/../../Classes/ObstacleDoble.h:
@@ -1459,6 +1472,8 @@ jni/../../Classes/HomeLayer.h:
 
 jni/../../Classes/SettingsLayer.h:
 
+jni/../../Classes/PopUpRewardsLayer.h:
+
 jni/../../Classes/LocalStorageManager.h:
 
 jni/../../Classes/Utils.h:
@@ -1470,3 +1485,5 @@ jni/../../Classes/Utils.h:
 jni/../../Classes/NativeUtils.h:
 
 jni/../../Classes/JNIHelpers.h:
+
+jni/../../Classes/include/rapidjson/document.h:

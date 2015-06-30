@@ -190,6 +190,41 @@ void PopUpRewardsLayer::_setRewards(std::vector<BTLootsieReward*> inputLootsieRe
     
 }
 
+void PopUpRewardsLayer::_disableScrolling() {
+    
+    std::cout << "PopUpRewardsLayer: _disableScrolling\n";
+    
+    if (scrollView != NULL) {
+        // scrollView->setPropogateTouchEvents(false);
+        // scrollContainer->setPropagateTouchEvents(false);
+
+        //scrollView->setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
+        scrollView->setTouchMode(kCCTouchesOneByOne);
+        scrollView->setTouchEnabled(false);
+    }
+    
+}
+
+void PopUpRewardsLayer::_enableScrolling() {
+
+    std::cout << "PopUpRewardsLayer: _enableScrolling\n";
+    
+    if (scrollView != NULL) {
+        //scrollView->setTouchMode(Touch::DispatchMode::ALL_AT_ONCE);
+        scrollView->setTouchMode(kCCTouchesAllAtOnce);
+        scrollView->setTouchEnabled(true);
+        
+        // something after the CCMessageBox is hosing up the skew values
+        scrollView->setSkewX(0.0f);
+        scrollView->setSkewY(0.0f);
+    }
+    
+    if (scrollContainer != NULL) {
+        scrollContainer->setSkewX(0.0f);
+        scrollContainer->setSkewY(0.0f);
+    }
+    
+}
 
 int PopUpRewardsLayer::createStringHash(std::string s) {
     
@@ -215,31 +250,31 @@ void PopUpRewardsLayer::_onOptionPressed(CCObject *pSender)
     switch (item->getTag()) {
 
         case kTagTOS:
-            std::cout << "PopUpAchievementsLayer: kTagTOS\n";
+            std::cout << "PopUpRewardsLayer: kTagTOS\n";
             CCMessageBox("Terms Of Service", "terms");
             
             
             break;
             
         case kTagDetails:
-            std::cout << "PopUpAchievementsLayer: kTagDetails\n";
+            std::cout << "PopUpRewardsLayer: kTagDetails\n";
             
             break;
             
         case kTagRedeem:
-            std::cout << "PopUpAchievementsLayer: kTagRedeem\n";
+            std::cout << "PopUpRewardsLayer: kTagRedeem\n";
             
             break;
             
         case kTagGoHome:
-            std::cout << "PopUpAchievementsLayer: kTagGoHome\n";
+            std::cout << "PopUpRewardsLayer: kTagGoHome\n";
             
             NativeUtils::sendAnalytics("Game Over - Home Button");
             this->setVisible(false);
             
             
             for (int i = 0; i<rewardDisplays.size(); i++) {
-                std::cout << "PopUpAchievementsLayer: cleanup reward Display: " << i << std::endl;
+                std::cout << "PopUpRewardsLayer: cleanup reward Display: " << i << std::endl;
                 
                 RewardDisplay *rewardDisplay = rewardDisplays[i];
                 rewardDisplay->cleanup();

@@ -42,6 +42,9 @@ public:
     std::map<std::string, cocos2d::CCSprite*> urlToSpriteMap;
     std::vector<BTLootsieReward*> lootsieRewards;
     std::vector<RewardDisplay*> rewardDisplays;
+    
+    void _disableScrolling();
+    void _enableScrolling();
 private:
     void _onOptionPressed(cocos2d::CCObject* pSender);
 
@@ -53,8 +56,8 @@ private:
     cocos2d::CCMenu* _menu;
     
     // scrollview, scrollcontainer for showing rewards
-    cocos2d::extension::CCScrollView *scrollView;
-    cocos2d::CCLayer *scrollContainer;
+    cocos2d::extension::CCScrollView *scrollView = NULL;
+    cocos2d::CCLayer *scrollContainer = NULL;
     
     //void _createRewardGUI(int rewardIndex, BTLootsieReward *lootsieReward);
     

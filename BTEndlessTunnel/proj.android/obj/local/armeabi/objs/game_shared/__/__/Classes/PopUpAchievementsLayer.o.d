@@ -473,8 +473,12 @@ obj/local/armeabi/objs/game_shared/__/__/Classes/PopUpAchievementsLayer.o: \
  jni/../../Classes/SneakyInputCocos2dx/SneakyJoystickSkinnedBase.h \
  jni/../../Classes/SneakyInputCocos2dx/SneakyJoystick.h \
  jni/../../Classes/PauseLayer.h jni/../../Classes/PopUpLoseLayer.h \
- jni/../../Classes/BaseObstacle.h jni/../../Classes/HomeLayer.h \
- jni/../../Classes/SettingsLayer.h \
+ jni/../../Classes/BaseObstacle.h \
+ jni/../../Classes/PopUpRewardsGameLayer.h \
+ jni/../../Classes/PopupRewardsLayer.h \
+ /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h \
+ jni/../../Classes/BTLootsieReward.h jni/../../Classes/HomeLayer.h \
+ jni/../../Classes/SettingsLayer.h jni/../../Classes/PopUpRewardsLayer.h \
  jni/../../Classes/LocalStorageManager.h jni/../../Classes/Utils.h \
  jni/../../Classes/NativeUtils.h jni/../../Classes/JNIHelpers.h \
  /Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/CocosDenshion/android/../include/SimpleAudioEngine.h \
@@ -1438,9 +1442,19 @@ jni/../../Classes/PopUpLoseLayer.h:
 
 jni/../../Classes/BaseObstacle.h:
 
+jni/../../Classes/PopUpRewardsGameLayer.h:
+
+jni/../../Classes/PopupRewardsLayer.h:
+
+/Users/jerrylootsie/Downloads/cocos2d-x-2.2.6/extensions/network/HttpClient.h:
+
+jni/../../Classes/BTLootsieReward.h:
+
 jni/../../Classes/HomeLayer.h:
 
 jni/../../Classes/SettingsLayer.h:
+
+jni/../../Classes/PopUpRewardsLayer.h:
 
 jni/../../Classes/LocalStorageManager.h:
 
