@@ -11,7 +11,9 @@ import android.content.res.Resources;
 import android.util.Log;
 
 //import com.carlospinan.turborace.R;
-import com.lootsie.turborace.R;
+//import com.lootsie.turborace.R;
+import com.lootsie.turboracewhitelabel.R;
+
 //import com.google.android.gms.common.ConnectionResult;
 //import com.google.android.gms.games.GamesActivityResultCodes;
 

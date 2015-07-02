@@ -15,7 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 //import com.carlospinan.turborace.R;
-import com.lootsie.turborace.R;
+//import com.lootsie.turborace.R;
+import com.lootsie.turboracewhitelabel.R;
+
 
 
 import com.google.basegameutils.BaseGameActivity;
